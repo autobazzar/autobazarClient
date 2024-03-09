@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .header-section {
+        @apply flex flex-row justify-around text-[var(--text-black)] bg-[var(--header-background)];
+    }
+
+    .logo {
+        @apply w-[var(--logo-size)] h-[var(--logo-size)];
+    }
+
+    .row-container {
+        @apply flex flex-row items-center gap-6;
+    }
+
+    .row-container.links {
+        @apply gap-3
+    }
+
+    div.vertical-line {
+        @apply w-[1px] bg-[var(--text-black)] h-[30px] float-left;
+    }
+
+    .vertical-line::before {
+        content: ' ';
+    }
+
+}

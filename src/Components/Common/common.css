@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .modal {
+        @apply w-full h-full grid absolute top-0 left-0;
+    }
+
+    .modal-container {
+        @apply w-fit h-fit m-auto flex flex-col p-[5px] z-10 bg-[var(--modal-container-bg)] rounded-lg text-[var(--text-black)];
+    }
+
+    .modal-backdrop {
+        @apply w-full h-full absolute bg-[var(--modal-backdrop-bg)] opacity-15;
+    }
+
+    .login-container {
+        @apply flex flex-col relative gap-3;
+    }
+
+    .login-container-cancel-button {
+        @apply w-full h-fit flex justify-end;
+    }
+
+    .login-title {
+        @apply w-[70%] m-auto text-center font-bold text-2xl;
+    }
+
+    .login-button-section {
+        @apply w-full flex flex-col gap-1 m-auto;
+    }
+
+    .login-divier-line {
+        @apply relative;
+    }
+
+    .login-divier-line p {
+        @apply absolute top-[-14px];
+    }
+
+    .form {
+        @apply w-full m-auto flex flex-col justify-center gap-3;
+    }
+
+    .icon-button {
+        @apply w-full flex flex-row items-center gap-1 font-bold border-solid border-2 border-gray-500 border-opacity-20 rounded-lg p-2;
+    }
+
+    .input-form {
+        @apply border-solid border-2 border-gray-500 border-opacity-20 rounded-lg p-2;
+    }
+
+    .icon-button:hover {
+        @apply border-opacity-100;
+    }
+
+}
