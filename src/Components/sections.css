@@ -27,4 +27,28 @@
         content: ' ';
     }
 
+    .container {
+        @apply flex flex-col relative gap-3;
+    }
+
+    .container-cancel-button {
+        @apply w-full h-fit flex justify-end;
+    }
+
+    .title-section {
+        @apply w-full whitespace-nowrap p-5 m-0 text-center font-bold text-2xl;
+    }
+
+    .button-section {
+        @apply w-full flex flex-col gap-1 m-auto;
+    }
+
+    .divier-line {
+        @apply relative;
+    }
+
+    .divier-line p {
+        @apply absolute top-[-14px];
+    }
+
 }

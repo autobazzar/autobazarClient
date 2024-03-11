@@ -5,7 +5,7 @@ import { FcGoogle } from "react-icons/fc";
 import { ImCancelCircle } from "react-icons/im";
 import InputForm from "./Common/InputForm";
 import { AiOutlineUserAdd } from "react-icons/ai";
-
+import "./sections.css";
 export default function Signup() {
   const [isModalOpen, setisModalOpen] = useState(false);
   const formRef = useRef(null);
@@ -23,15 +23,12 @@ export default function Signup() {
   return (
     <div className="flex flex-row items-center">
       <Modal isOpen={isModalOpen} handleClose={handleClose}>
-        <div className="login-container">
-          <button
-            className="login-container-cancel-button"
-            onClick={handleClose}
-          >
+        <div className="container">
+          <button className="container-cancel-button" onClick={handleClose}>
             <ImCancelCircle />
           </button>
-          <h2 className="login-title">Create an account</h2>
-          <div className="login-divier-line">
+          <h2 className="title-section">Create an account</h2>
+          <div className="divier-line">
             {/* <p>or</p> */}
             <hr />
           </div>
