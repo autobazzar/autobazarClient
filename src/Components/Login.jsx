@@ -5,7 +5,7 @@ import { FcGoogle } from "react-icons/fc";
 import { ImCancelCircle } from "react-icons/im";
 import InputForm from "./Common/InputForm";
 import { CiLogin } from "react-icons/ci";
-import { AiOutlineUserAdd } from "react-icons/ai";
+import "./sections.css";
 
 export default function Login() {
   const [isModalOpen, setisModalOpen] = useState(false);
@@ -25,27 +25,24 @@ export default function Login() {
   return (
     <div className="flex flex-row items-center">
       <Modal isOpen={isModalOpen} handleClose={handleClose}>
-        <div className="login-container">
-          <button
-            className="login-container-cancel-button"
-            onClick={handleClose}
-          >
+        <div className="container">
+          <button className="container-cancel-button" onClick={handleClose}>
             <ImCancelCircle />
           </button>
-          <h2 className="login-title">Sign in</h2>
-          <div className="login-button-section">
+          <h2 className="title-section">Sign in</h2>
+          <div className="button-section">
             <IconButton
               title={"sign in with Google"}
               Icon={FcGoogle}
               clickHandler={null}
             />
           </div>
-          <div className="login-divier-line">
-            {/* <p>or</p> */}
+          <div className="divier-line">
             <hr />
           </div>
           <form ref={formRef} className="form" onSubmit={handleFormSubmit}>
             <InputForm placeHolder={"Email"} />
+            <InputForm placeHolder={"password"} />
             <button
               className="h-[44px] text-center bg-purple-700 text-white rounded-lg"
               type="sumbit"
