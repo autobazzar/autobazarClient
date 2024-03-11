@@ -1,54 +1,59 @@
-import React, { useRef, useState } from "react";
-import Modal from "./Common/Modal";
-import IconButton from "./Common/IconButton";
-import { FcGoogle } from "react-icons/fc";
-import { ImCancelCircle } from "react-icons/im";
-import InputForm from "./Common/InputForm";
-import { CiLogin } from "react-icons/ci";
-import { AiOutlineUserAdd } from "react-icons/ai";
+import React, { useRef, useState } from 'react'
+import Modal from './Common/Modal'
+import IconButton from './Common/IconButton'
+import { FcGoogle } from 'react-icons/fc'
+import { ImCancelCircle } from 'react-icons/im'
+import InputForm from './Common/InputForm'
+import { CiLogin } from 'react-icons/ci'
+import { AiOutlineUserAdd } from 'react-icons/ai'
+import { GoogleLogin } from '@react-oauth/google'
+import { getUserGoogle } from '../utils/decoder'
+export default function Login () {
+  const [isModalOpen, setisModalOpen] = useState(false)
+  const formRef = useRef(null)
+  async function responseMessage (credintalResponse) {    
+  console.error(getUserGoogle(credintalResponse.credential));
 
-export default function Login() {
-  const [isModalOpen, setisModalOpen] = useState(false);
-  const formRef = useRef(null);
-  function handleOpen() {
-    console.error("hello");
-    setisModalOpen(true);
   }
-  function handleClose() {
-    setisModalOpen(false);
+  function onError (error) {
+    console.error(error)
   }
-  function handleFormSubmit(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    console.error(formRef.current);
+
+  function handleOpen () {
+    console.error('hello')
+    setisModalOpen(true)
+  }
+  function handleClose () {
+    setisModalOpen(false)
+  }
+  function handleFormSubmit (e) {
+    e.preventDefault()
+    e.stopPropagation()
+    console.error(formRef.current)
   }
   return (
-    <div className="flex flex-row items-center">
+    <div className='flex flex-row items-center'>
       <Modal isOpen={isModalOpen} handleClose={handleClose}>
-        <div className="login-container">
+        <div className='login-container'>
           <button
-            className="login-container-cancel-button"
+            className='login-container-cancel-button'
             onClick={handleClose}
           >
             <ImCancelCircle />
           </button>
-          <h2 className="login-title">Sign in</h2>
-          <div className="login-button-section">
-            <IconButton
-              title={"sign in with Google"}
-              Icon={FcGoogle}
-              clickHandler={null}
-            />
+          <h2 className='login-title'>Sign in</h2>
+          <div className='login-button-section'>
+            <GoogleLogin onSuccess={responseMessage} onError={onError} useOneTap />
           </div>
-          <div className="login-divier-line">
+          <div className='login-divier-line'>
             {/* <p>or</p> */}
             <hr />
           </div>
-          <form ref={formRef} className="form" onSubmit={handleFormSubmit}>
-            <InputForm placeHolder={"Email"} />
+          <form ref={formRef} className='form' onSubmit={handleFormSubmit}>
+            <InputForm placeHolder={'Email'} />
             <button
-              className="h-[44px] text-center bg-purple-700 text-white rounded-lg"
-              type="sumbit"
+              className='h-[44px] text-center bg-purple-700 text-white rounded-lg'
+              type='sumbit'
             >
               Continue
             </button>
@@ -59,5 +64,5 @@ export default function Login() {
         <CiLogin />
       </button>
     </div>
-  );
+  )
 }
