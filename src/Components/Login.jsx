@@ -9,22 +9,27 @@ import { AiOutlineUserAdd } from "react-icons/ai";
 import { GoogleLogin } from "@react-oauth/google";
 import { getUserGoogle } from "../utils/decoder";
 import "./sections.css";
-import { loginUser, registerUser } from "../api/api";
+// import { loginUser, registerUser } from "../api/api";
+import { useDispatch } from "react-redux";
+import { logginUser } from "../store/profileSlice";
+
 export default function Login({ openInitial }) {
   const [isModalOpen, setisModalOpen] = useState(openInitial || false);
   const formRef = useRef(null);
-
+  const dispatch = useDispatch();
   async function responseMessage(credintalResponse) {
+    console.error();
     const user = getUserGoogle(credintalResponse.credential);
-    loginUser(
-      {
-        // headers: { "Content-Type": "application/json" },
-        // body: { 
-          email: user.email 
-        // },
-      },
-      true
-    );
+    dispatch(logginUser({email: user.email},true))
+    // await loginUser(
+    //   {
+    //     // headers: { "Content-Type": "application/json" },
+    //     // body: {
+    //     email: user.email,
+    //     // },
+    //   },
+    //   true
+    // );
   }
   function onError(error) {
     console.error(error);

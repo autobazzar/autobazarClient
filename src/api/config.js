@@ -1,11 +1,11 @@
 export const BASE_URL = 'http://localhost:3000'
 
-// export function GET (url, payload) {
-//   return fetch(`${BASE_URL}/${url}`, {
-//     method: 'GET',
-//     ...payload
-//   })
-// }
+export function GET (url, payload) {
+  return fetch(`${BASE_URL}${url}`, {
+    method: 'GET',
+    ...payload
+  })
+}
 export async function POST (url, payload) {
   const body = JSON.stringify(payload)
   const headers = new Headers()
@@ -17,16 +17,16 @@ export async function POST (url, payload) {
   })
 }
 
-// export function PATCH (url, payload) {
-//   return fetch(`${BASE_URL}/${url}`, {
-//     method: 'PATCH',
-//     ...payload
-//   })
-// }
+export function PATCH (url, payload) {
+  return fetch(`${BASE_URL}${url}`, {
+    method: 'PATCH',
+    ...payload
+  })
+}
 
-// export function DELETE (url, payload) {
-//   return fetch(`${BASE_URL}/${url}`, {
-//     method: 'DELETE',
-//     ...payload
-//   })
-// }
+export function DELETE (url, payload) {
+  return fetch(`${BASE_URL}${url}`, {
+    method: 'DELETE',
+    ...payload
+  })
+}
