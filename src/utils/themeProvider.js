@@ -15,3 +15,7 @@ function isThemeDark() {
 export function changeTheme() {
   rootElement.dataset.theme = isThemeDark() ? "light" : "dark";
 }
+
+export function getRoot() {
+  return rootElement;
+}
