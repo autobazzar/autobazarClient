@@ -18,35 +18,33 @@ export default function Login({ openInitial }) {
   const formRef = useRef(null);
   const dispatch = useDispatch();
   async function responseMessage(credintalResponse) {
-    console.error();
     const user = getUserGoogle(credintalResponse.credential);
-    dispatch(logginUser({email: user.email},true))
-    // await loginUser(
-    //   {
-    //     // headers: { "Content-Type": "application/json" },
-    //     // body: {
-    //     email: user.email,
-    //     // },
-    //   },
-    //   true
-    // );
+    dispatch(logginUser({ email: user.email }, true));
   }
   function onError(error) {
     console.error(error);
   }
 
   function handleOpen() {
-    console.error("hello");
     setisModalOpen(true);
   }
   function handleClose() {
     setisModalOpen(false);
   }
+
   function handleFormSubmit(e) {
     e.preventDefault();
-    e.stopPropagation();
-    console.error(formRef.current);
+    dispatch(logginUser(formRef.current, false));
+    handleClose();
   }
+
+  function handleChange(e, key) {
+    formRef.current = {
+      ...formRef.current,
+      [key]: e.target.value,
+    };
+  }
+
   return (
     <div className="flex flex-row items-center">
       <Modal isOpen={isModalOpen} handleClose={handleClose}>
@@ -66,8 +64,19 @@ export default function Login({ openInitial }) {
             {/* <p>or</p> */}
             <hr />
           </div>
-          <form ref={formRef} className="form" onSubmit={handleFormSubmit}>
-            <InputForm placeHolder={"Email"} />
+          <form className="form" onSubmit={handleFormSubmit}>
+            <InputForm
+              placeHolder={"Email"}
+              type={"email"}
+              handleChange={handleChange}
+              fieldkey={"email"}
+            />
+            <InputForm
+              placeHolder={"password"}
+              type={"password"}
+              handleChange={handleChange}
+              fieldkey={"password"}
+            />
             <button
               className="h-[44px] text-center bg-purple-700 text-white rounded-lg"
               type="sumbit"
