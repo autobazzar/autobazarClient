@@ -1,5 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { loginUser } from "../api/api";
+import { loginUser, registerUser } from "../api/api";
+import { parseJwt } from "../utils/decoder";
+
+const ProfileSetter = (state, action) => {
+  const { token } = action.payload;
+  state.profile = parseJwt(token);
+};
 
 export const logginUser = createAsyncThunk(
   "loginUser",
@@ -8,13 +14,22 @@ export const logginUser = createAsyncThunk(
   }
 );
 
+export const SignUpUser = createAsyncThunk(
+  "SignUpUser",
+  async (payload, flag) => {
+    return registerUser(payload, flag);
+  }
+);
+
 const profileSlice = createSlice({
   name: "profile",
-  initialState: {},
+  initialState: {
+    profile: {},
+  },
   extraReducers: (builder) => {
-    builder.addCase(logginUser.fulfilled, (state, action) => {
-      state = action.payload;
-    });
+    builder
+      .addCase(logginUser.fulfilled, ProfileSetter)
+      .addCase(SignUpUser.fulfilled, ProfileSetter);
   },
 });
 

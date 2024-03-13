@@ -5,7 +5,11 @@ import "./sections.css";
 import Login from "./Login";
 import Signup from "./Signup";
 import { changeTheme } from "../utils/themeProvider";
+import { useSelector } from "react-redux";
+import { VscAccount } from "react-icons/vsc";
+import { isEmpty } from "../utils/validators";
 export default function Header() {
+  const profile = useSelector((state) => state.profile);
   return (
     <div className="header-section">
       <div className="row-container">
@@ -22,11 +26,19 @@ export default function Header() {
         <button onClick={changeTheme}>
           <MdOutlineDarkMode />
         </button>
-        <div className="flex flex-row gap-2">
-          <Signup />
-          <div className="vertical-line"></div>
-          <Login />
-        </div>
+        {isEmpty(profile) ? (
+          <div className="flex flex-row gap-2">
+            <Signup />
+            <div className="vertical-line"></div>
+            <Login />
+          </div>
+        ) : (
+          <>
+            <button>
+              <VscAccount />
+            </button>
+          </>
+        )}
       </div>
     </div>
   );
