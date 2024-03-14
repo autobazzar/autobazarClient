@@ -1,34 +1,32 @@
 export const BASE_URL = "http://localhost:3000";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { prettyString } from "../utils/prettyString";
 
-export function GET(url, payload) {
-  return fetch(`${BASE_URL}${url}`, {
-    method: "GET",
-    ...payload,
-  });
+export function GET(url) {
+  return axios.get(`${BASE_URL}${url}`);
 }
 export async function POST(url, payload) {
-  const body = JSON.stringify(payload);
-  const headers = new Headers();
-  headers.append("Content-Type", "application/json");
-  return await (
-    await fetch(`${BASE_URL}${url}`, {
-      method: "POST",
-      headers,
-      body,
-    })
-  ).json();
+  const body = payload;
+  try {
+    return axios
+      .post(`${BASE_URL}${url}`, body)
+      .then((response) => response.data);
+  } catch (err) {
+    const { message } = err.response.data;
+    toast.error(prettyString(message));
+    throw null;
+  }
 }
 
 export function PATCH(url, payload) {
-  return fetch(`${BASE_URL}${url}`, {
-    method: "PATCH",
+  return axios.patch(`${BASE_URL}${url}`, {
     ...payload,
   });
 }
 
 export function DELETE(url, payload) {
-  return fetch(`${BASE_URL}${url}`, {
-    method: "DELETE",
+  return axios.delete(`${BASE_URL}${url}`, {
     ...payload,
   });
 }

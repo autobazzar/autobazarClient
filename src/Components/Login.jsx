@@ -9,7 +9,6 @@ import { AiOutlineUserAdd } from "react-icons/ai";
 import { GoogleLogin } from "@react-oauth/google";
 import { getUserGoogle } from "../utils/decoder";
 import "./sections.css";
-// import { loginUser, registerUser } from "../api/api";
 import { useDispatch } from "react-redux";
 import { logginUser } from "../store/profileSlice";
 
@@ -19,7 +18,7 @@ export default function Login({ openInitial }) {
   const dispatch = useDispatch();
   async function responseMessage(credintalResponse) {
     const user = getUserGoogle(credintalResponse.credential);
-    dispatch(logginUser({ email: user.email }, true));
+    dispatch(logginUser({ email: user.email, flag: true }));
   }
   function onError(error) {
     console.error(error);
@@ -34,7 +33,7 @@ export default function Login({ openInitial }) {
 
   function handleFormSubmit(e) {
     e.preventDefault();
-    dispatch(logginUser(formRef.current, false));
+    dispatch(logginUser({ ...formRef.current, flag: false }));
     handleClose();
   }
 
@@ -87,7 +86,7 @@ export default function Login({ openInitial }) {
         </div>
       </Modal>
       <button onClick={handleOpen}>
-        <CiLogin />
+        <CiLogin size={20} />
       </button>
     </div>
   );
