@@ -18,7 +18,7 @@ export default function Login({ openInitial }) {
   const dispatch = useDispatch();
   async function responseMessage(credintalResponse) {
     const user = getUserGoogle(credintalResponse.credential);
-    dispatch(logginUser({ email: user.email }, true));
+    dispatch(logginUser({ email: user.email, flag: true }));
   }
   function onError(error) {
     console.error(error);
@@ -33,7 +33,7 @@ export default function Login({ openInitial }) {
 
   function handleFormSubmit(e) {
     e.preventDefault();
-    dispatch(logginUser(formRef.current, false));
+    dispatch(logginUser({...formRef.current, flag:false}));
     handleClose();
   }
 

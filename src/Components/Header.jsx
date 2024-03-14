@@ -12,6 +12,7 @@ import { toast } from "react-toastify";
 
 export default function Header() {
   const profile = useSelector((state) => state.profile);
+  console.error(profile);
   return (
     <div className="header-section">
       <div className="row-container">
@@ -19,9 +20,8 @@ export default function Header() {
           <img className="logo" src={logo} alt="" />
         </a>
         <div className="row-container links">
-          <a href=""> Car for sales</a>
-          <a href=""> New Cars</a>
-          <a href=""> Sell Your Car</a>
+          <a href=""> تماس با ما</a>
+          <a href=""> درباره ما</a>
         </div>
       </div>
       <div className="row-container">
@@ -35,11 +35,10 @@ export default function Header() {
             <Login />
           </div>
         ) : (
-          <>
-            <button>
-              <VscAccount />
-            </button>
-          </>
+          <a className="flex flex-row gap-1 items-center" href="/profile">
+            <h3>{profile.userName}</h3>
+            <VscAccount />
+          </a>
         )}
       </div>
     </div>

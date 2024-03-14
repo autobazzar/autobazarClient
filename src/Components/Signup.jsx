@@ -19,7 +19,7 @@ export default function Signup () {
   async function responseMessage (credintalResponse) {
     const user = getUserGoogle(credintalResponse.credential)
     handleClose()
-    dispatch(SignUpUser({ user, flag: true }))
+    dispatch(SignUpUser({ ...user, flag: true }))
   }
 
   function handleChange (e, key) {
@@ -43,7 +43,7 @@ export default function Signup () {
 
   function handleFormSubmit (e) {
     e.preventDefault()
-    dispatch(SignUpUser({ user: formRef.current,flag:false }))
+    dispatch(SignUpUser({ ...formRef.current,flag:false }))
     handleClose()
   }
 
