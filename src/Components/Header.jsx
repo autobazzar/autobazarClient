@@ -8,6 +8,8 @@ import { changeTheme } from "../utils/themeProvider";
 import { useSelector } from "react-redux";
 import { VscAccount } from "react-icons/vsc";
 import { isEmpty } from "../utils/validators";
+import { toast } from "react-toastify";
+
 export default function Header() {
   const profile = useSelector((state) => state.profile);
   return (

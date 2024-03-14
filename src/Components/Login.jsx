@@ -9,7 +9,6 @@ import { AiOutlineUserAdd } from "react-icons/ai";
 import { GoogleLogin } from "@react-oauth/google";
 import { getUserGoogle } from "../utils/decoder";
 import "./sections.css";
-// import { loginUser, registerUser } from "../api/api";
 import { useDispatch } from "react-redux";
 import { logginUser } from "../store/profileSlice";
 

@@ -1,36 +1,38 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { loginUser, registerUser } from "../api/api";
-import { parseJwt } from "../utils/decoder";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { loginUser, registerUser } from '../api/api'
+import { parseJwt } from '../utils/decoder'
 
 const ProfileSetter = (state, action) => {
-  const { token } = action.payload;
-  state.profile = parseJwt(token);
-};
+  const { token } = action.payload
+  state.profile = parseJwt(token)
+}
 
 export const logginUser = createAsyncThunk(
-  "loginUser",
+  'loginUser',
   async (payload, flag) => {
-    return loginUser(payload, flag);
+    return loginUser(payload, flag)
   }
-);
+)
 
 export const SignUpUser = createAsyncThunk(
-  "SignUpUser",
-  async (payload, flag) => {
-    return registerUser(payload, flag);
+  'SignUpUser',
+  async (payload) => {
+    console.error(payload);
+    const { user, flag } = payload
+    return registerUser(user, flag)
   }
-);
+)
 
 const profileSlice = createSlice({
-  name: "profile",
+  name: 'profile',
   initialState: {
-    profile: {},
+    profile: {}
   },
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder
       .addCase(logginUser.fulfilled, ProfileSetter)
-      .addCase(SignUpUser.fulfilled, ProfileSetter);
-  },
-});
+      .addCase(SignUpUser.fulfilled, ProfileSetter)
+  }
+})
 
-export default profileSlice;
+export default profileSlice
