@@ -9,7 +9,6 @@ const persistConfig = {
 };
 
 // const rootReducers = combineReducers({ profilereducer: profileSlice.reducer });
-
 const persistedReducer = persistReducer(persistConfig, profileSlice.reducer);
 
 const store = configureStore({

@@ -4,12 +4,9 @@ import { parseJwt } from "../utils/decoder";
 import { FLUSH, PURGE } from "redux-persist";
 
 const ProfileSetter = (state, action) => {
-  console.error(action);
   const { token } = action.payload;
   const profile = parseJwt(token);
-  console.error(profile);
   if (profile) {
-    console.error(state);
     state.profile = profile;
     state.token = token;
   }
@@ -25,21 +22,29 @@ export const SignUpUser = createAsyncThunk("SignUpUser", async (payload) => {
   return await registerUser(user, flag);
 });
 
+const initialState = {
+  profile: {},
+  token: null,
+};
+
 const profileSlice = createSlice({
   name: "profile",
-  initialState: {
-    profile: {},
-    token: null,
-  },
+  initialState,
 
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
   extraReducers: (builder) => {
     builder
       .addCase(logginUser.fulfilled, ProfileSetter)
       .addCase(SignUpUser.fulfilled, ProfileSetter)
-      .addCase(FLUSH, (state, action) => {
-        console.error(state);
+      .addCase(PURGE, () => {
+        return initialState;
       });
   },
 });
-
+export const { logOut } = profileSlice.reducer;
 export default profileSlice;

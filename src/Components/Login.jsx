@@ -33,7 +33,7 @@ export default function Login({ openInitial }) {
 
   function handleFormSubmit(e) {
     e.preventDefault();
-    dispatch(logginUser({...formRef.current, flag:false}));
+    dispatch(logginUser({ ...formRef.current, flag: false }));
     handleClose();
   }
 
@@ -86,7 +86,7 @@ export default function Login({ openInitial }) {
         </div>
       </Modal>
       <button onClick={handleOpen}>
-        <CiLogin />
+        <CiLogin size={20} />
       </button>
     </div>
   );

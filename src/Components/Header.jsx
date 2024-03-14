@@ -8,11 +8,15 @@ import { changeTheme } from "../utils/themeProvider";
 import { useSelector } from "react-redux";
 import { VscAccount } from "react-icons/vsc";
 import { isEmpty } from "../utils/validators";
-import { toast } from "react-toastify";
-
+import { IoIosLogOut } from "react-icons/io";
+import { persistor } from "../store/store";
+// import { logOut } from "../store/profileSlice";
 export default function Header() {
   const profile = useSelector((state) => state.profile);
-  console.error(profile);
+  async function handleLogOout() {
+    // dispatch(logOut());
+    persistor.purge();
+  }
   return (
     <div className="header-section">
       <div className="row-container">
@@ -26,7 +30,7 @@ export default function Header() {
       </div>
       <div className="row-container">
         <button onClick={changeTheme}>
-          <MdOutlineDarkMode />
+          <MdOutlineDarkMode size={20} />
         </button>
         {isEmpty(profile) ? (
           <div className="flex flex-row gap-2">
@@ -35,10 +39,15 @@ export default function Header() {
             <Login />
           </div>
         ) : (
-          <a className="flex flex-row gap-1 items-center" href="/profile">
-            <h3>{profile.userName}</h3>
-            <VscAccount />
-          </a>
+          <div className="flex flex-row gap-5">
+            <a className="flex flex-row gap-1 items-center" href="/profile">
+              <h3>{profile.userName}</h3>
+              <VscAccount />
+            </a>
+            <button onClick={handleLogOout} aria-label="log out">
+              <IoIosLogOut size={20} />
+            </button>
+          </div>
         )}
       </div>
     </div>
