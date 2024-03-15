@@ -1,7 +1,5 @@
 import React, { useRef, useState } from "react";
 import Modal from "./Common/Modal";
-import IconButton from "./Common/IconButton";
-import { FcGoogle } from "react-icons/fc";
 import { ImCancelCircle } from "react-icons/im";
 import InputForm from "./Common/InputForm";
 import { GoogleLogin } from "@react-oauth/google";
@@ -10,7 +8,6 @@ import { AiOutlineUserAdd } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import "./sections.css";
 import { SignUpUser } from "../store/profileSlice";
-
 export default function Signup() {
   const [isModalOpen, setisModalOpen] = useState(false);
   const formRef = useRef(null);

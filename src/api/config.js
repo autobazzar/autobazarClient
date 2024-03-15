@@ -8,15 +8,14 @@ export function GET(url) {
 }
 export async function POST(url, payload) {
   const body = payload;
-  try {
-    return axios
-      .post(`${BASE_URL}${url}`, body)
-      .then((response) => response.data);
-  } catch (err) {
-    const { message } = err.response.data;
-    toast.error(prettyString(message));
-    throw null;
-  }
+  return axios
+    .post(`${BASE_URL}${url}`, body)
+    .then((response) => response.data)
+    .catch((err) => {
+      const { message } = err.response.data;
+      toast.error(prettyString(message));
+      return err;
+    });
 }
 
 export function PATCH(url, payload) {
