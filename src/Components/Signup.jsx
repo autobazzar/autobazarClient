@@ -48,10 +48,15 @@ export default function Signup() {
     <div className="flex flex-row items-center">
       <Modal isOpen={isModalOpen} handleClose={handleClose}>
         <div className="container">
-          <button className="container-cancel-button" onClick={handleClose}>
-            <ImCancelCircle />
-          </button>
-          <h2 className="title-section">Create an account</h2>
+          <div className="flex flex-row items-center justify-between mb-8">
+            <button
+              className="container-cancel-button justify-normal"
+              onClick={handleClose}
+            >
+              <ImCancelCircle />
+            </button>
+            <h2 className="title-section">ساخت حساب کاربری</h2>
+          </div>
           <div className="button-section">
             <GoogleLogin
               onSuccess={responseMessage}
@@ -60,33 +65,33 @@ export default function Signup() {
             />
           </div>
           <div className="divier-line">
-            {/* <p>or</p> */}
+            <p>یا</p>
             <hr />
           </div>
           <form className="form" onSubmit={handleFormSubmit}>
             <InputForm
-              placeHolder={"username"}
+              placeHolder={"نام کاربری"}
               type={"text"}
               fieldkey={"userName"}
               handleChange={handleChange}
             />
             <InputForm
-              placeHolder={"password"}
+              placeHolder={"رمز عبور"}
               type={"password"}
               fieldkey={"password"}
               handleChange={handleChange}
             />
             <InputForm
-              placeHolder={"Email"}
+              placeHolder={"ایمیل"}
               type={"email"}
               fieldkey={"email"}
               handleChange={handleChange}
             />
             <button
-              className="h-[44px] text-center bg-purple-700 text-white rounded-lg"
+              className="h-[44px] text-center bg-[var(--buttons-color)] text-white rounded-lg"
               type="sumbit"
             >
-              Continue
+              تایید
             </button>
           </form>
         </div>

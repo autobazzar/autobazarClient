@@ -48,10 +48,15 @@ export default function Login({ openInitial }) {
     <div className="flex flex-row items-center">
       <Modal isOpen={isModalOpen} handleClose={handleClose}>
         <div className="container">
-          <button className="container-cancel-button" onClick={handleClose}>
-            <ImCancelCircle />
-          </button>
-          <h2 className="title-section">Sign in</h2>
+          <div className="flex flex-row items-center justify-between mb-8">
+            <button
+              className="container-cancel-button justify-normal"
+              onClick={handleClose}
+            >
+              <ImCancelCircle />
+            </button>
+            <p className="title-section">ورود به حساب کاربری</p>
+          </div>
           <div className="button-section">
             <GoogleLogin
               onSuccess={responseMessage}
@@ -60,27 +65,27 @@ export default function Login({ openInitial }) {
             />
           </div>
           <div className="divier-line">
-            {/* <p>or</p> */}
+            <p >یا</p>
             <hr />
           </div>
           <form className="form" onSubmit={handleFormSubmit}>
             <InputForm
-              placeHolder={"Email"}
+              placeHolder={"ایمیل"}
               type={"email"}
               handleChange={handleChange}
               fieldkey={"email"}
             />
             <InputForm
-              placeHolder={"password"}
+              placeHolder={"رمز عبور"}
               type={"password"}
               handleChange={handleChange}
               fieldkey={"password"}
             />
             <button
-              className="h-[44px] text-center bg-purple-700 text-white rounded-lg"
+              className="h-[44px] text-center bg-[var(--buttons-color)] text-white rounded-lg"
               type="sumbit"
             >
-              Continue
+              تایید
             </button>
           </form>
         </div>

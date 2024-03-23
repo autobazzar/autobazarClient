@@ -1,12 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
 import "./index.css";
 import { initRoot } from "./utils/themeProvider.js";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { Provider } from "react-redux";
 import Store, { persistor } from "./store/store.js";
 import { PersistGate } from "redux-persist/integration/react";
+import { router } from "./utils/routeProvider.js";
+import { RouterProvider } from "react-router-dom";
+import Layout from "./Components/Layout.jsx";
 const rootElement = document.getElementById("root");
 
 initRoot(rootElement);
@@ -16,7 +18,9 @@ root.render(
     <Provider store={Store}>
       <PersistGate persistor={persistor} loading={null}>
         <React.StrictMode>
-          <App />
+          <Layout>
+            <RouterProvider router={router} />
+          </Layout>
         </React.StrictMode>
       </PersistGate>
     </Provider>
