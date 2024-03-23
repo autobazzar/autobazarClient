@@ -18,14 +18,15 @@ export default function Header() {
     persistor.purge();
   }
   return (
-    <div className="header-section">
+    <div className="header-section shadow-sm p-3">
       <div className="row-container">
-        <a href="#">
-          <img className="logo" src={logo} alt="" />
-        </a>
         <div className="row-container links">
-          <a href=""> تماس با ما</a>
-          <a href=""> درباره ما</a>
+          <a className="font-dast text-lg" href="contact-us">
+            تماس با ما
+          </a>
+          <a className="font-dast text-lg" href="about-us">
+            درباره ما
+          </a>
         </div>
       </div>
       <div className="row-container">
