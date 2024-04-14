@@ -91,7 +91,7 @@ export default function Login({ openInitial }) {
         </div>
       </Modal>
       <button onClick={handleOpen}>
-        <CiLogin size={20} />
+        ورود
       </button>
     </div>
   );

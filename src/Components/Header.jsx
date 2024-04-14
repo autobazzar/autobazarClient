@@ -1,6 +1,5 @@
 import React from "react";
 import { MdOutlineDarkMode } from "react-icons/md";
-import logo from "../assets/image/logo.png";
 import "./sections.css";
 import Login from "./Login";
 import Signup from "./Signup";
@@ -10,7 +9,7 @@ import { VscAccount } from "react-icons/vsc";
 import { isEmpty } from "../utils/validators";
 import { IoIosLogOut } from "react-icons/io";
 import { persistor } from "../store/store";
-// import { logOut } from "../store/profileSlice";
+import { RiAccountCircleLine } from "react-icons/ri";
 export default function Header() {
   const profile = useSelector((state) => state.profile);
   async function handleLogOout() {
@@ -20,7 +19,7 @@ export default function Header() {
   return (
     <div className="header-section shadow-sm p-3">
       <div className="row-container">
-        <div className="row-container links">
+        <div className="row-container links font-dast">
           <a className="font-dast text-lg" href="contact-us">
             تماس با ما
           </a>
@@ -36,8 +35,11 @@ export default function Header() {
         {isEmpty(profile) ? (
           <div className="flex flex-row gap-2">
             <Signup />
-            <div className="vertical-line"></div>
+            <div className="text-[22px]" >/</div>
             <Login />
+            <div className="h-auto flex justify-center items-center">
+            <RiAccountCircleLine className="h-full" width={200} />
+            </div>
           </div>
         ) : (
           <div className="flex flex-row gap-5">

@@ -53,10 +53,3 @@
 
 }
 
-
-@layer base {
-    @font-face {
-        font-family: dastNevis;
-        src: url('./assets/fonts/danstevis.otf') format('otf');
-    }
-}

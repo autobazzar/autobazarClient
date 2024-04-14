@@ -1,25 +1,3 @@
-:root {
-  --background-Color: #fff;
-  --modal-backdrop-bg: #000;
-  --modal-container-bg: #fff;
-  --text-black: #000;
-  --text-white: #fff;
-  --logo-size: 64px;
-  --header-background: #fff;
-  --buttons-color:#2B4E47;
-}
-
-#root {
-  width: 100%;
-  height: 100%;
-  background-color: var(--background-Color);
-}
-
-#root[data-theme="dark"] {
-  --background-Color: #000;
-  --modal-container-bg: #292929;
-  --text-black: #fff;
-  --text-white: #000;
-  --header-background: #414144;
-
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

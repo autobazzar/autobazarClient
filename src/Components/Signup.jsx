@@ -97,7 +97,7 @@ export default function Signup() {
         </div>
       </Modal>
       <button onClick={handleOpen} aria-label="signup">
-        <AiOutlineUserAdd size={20} />
+        ثبت نام
       </button>
     </div>
   );
