@@ -37,9 +37,9 @@ export default function Header() {
             <Signup />
             <div className="text-[22px]" >/</div>
             <Login />
-            <div className="h-auto flex justify-center items-center">
+            {/* <div className="h-auto flex justify-center items-center">
             <RiAccountCircleLine className="h-full" width={200} />
-            </div>
+            </div> */}
           </div>
         ) : (
           <div className="flex flex-row gap-5">

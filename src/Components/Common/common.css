@@ -8,11 +8,11 @@
     }
 
     .modal-container {
-        @apply w-fit h-fit m-auto flex flex-col p-[2rem] z-10 bg-[var(--modal-container-bg)] rounded-lg text-[var(--text-black)];
+        @apply w-fit h-fit m-auto flex flex-col p-[2rem] z-30 bg-[var(--modal-container-bg)] rounded-lg text-[var(--text-black)];
     }
 
     .modal-backdrop {
-        @apply w-full h-full absolute bg-[var(--modal-backdrop-bg)] opacity-15;
+        @apply w-full h-full absolute bg-[var(--modal-backdrop-bg)] z-20 opacity-15;
     }
 
     .form {

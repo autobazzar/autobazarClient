@@ -36,11 +36,11 @@
     }
 
     .title-section {
-        @apply w-full whitespace-nowrap m-0 text-center text-lg font-dast p-0;
+        @apply w-full whitespace-nowrap m-0 text-end text-lg font-dast p-0;
     }
 
     .button-section {
-        @apply w-full flex flex-col gap-1 m-auto mb-3;
+        @apply w-fit flex flex-col gap-1 m-auto mb-3;
     }
 
     .divier-line {

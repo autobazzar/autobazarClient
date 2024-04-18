@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useRef } from "react";
 import landing from "./assets/image/landing_logo.png";
 import { VscSearch } from "react-icons/vsc";
 import Slider from "./Components/Common/Slider";
 export default function Home() {
+  const mainDiv = useRef(null);
   return (
-    <div className="">
+    <div ref={mainDiv} className=" flex flex-col z-10">
       <div className="flex flex-row gap-[-5rem] relative w-full items-center h-full justify-center font-dast">
         <div className="flex flex-col pl-5 relative left-[10rem] text-[20px] gap-[5rem] mt-[-11rem]">
           <h1 className="text-[2.5rem] font-bold text-[var(--text-black)]">
@@ -21,7 +22,7 @@ export default function Home() {
           alt=""
         />
       </div>
-      <Slider/>
+      <Slider mainDiv={mainDiv}/>
     </div>
   );
 }
