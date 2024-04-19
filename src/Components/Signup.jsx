@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import Modal from "./Common/Modal";
 import { ImCancelCircle } from "react-icons/im";
 import InputForm from "./Common/InputForm";
@@ -19,24 +19,23 @@ export default function Signup() {
     dispatch(SignUpUser({ ...user, flag: true }));
   }
 
-  function handleChange(e, key) {
+  const handleChange = useCallback((e, key) => {
     formRef.current = {
       ...formRef.current,
       [key]: e.target.value,
     };
-  }
+  }, []);
 
-  function onError(error) {
+  const onError = useCallback((error) => {
     console.error(error);
-  }
-
+  }, []);
   function handleOpen() {
     setisModalOpen(true);
   }
 
-  function handleClose() {
+  const handleClose = useCallback(() => {
     setisModalOpen(false);
-  }
+  }, []);
 
   function handleFormSubmit(e) {
     e.preventDefault();
@@ -97,7 +96,7 @@ export default function Signup() {
         </div>
       </Modal>
       <button onClick={handleOpen} aria-label="signup">
-        <AiOutlineUserAdd size={20} />
+        ثبت نام
       </button>
     </div>
   );
