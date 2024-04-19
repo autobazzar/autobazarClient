@@ -18,7 +18,7 @@ export default function Slider({mainDiv}) {
         onTouchMove={handleMoveOver}
         onTouchEnd= {handlMouseUp}
         onMouseUp=  {handlMouseUp}
-        style={{ right: `${translate}px` }}
+        style={{ transform: `translate(${translate}px)` }}
         className="w-full cursor-pointer relative flex flex-row gap-5 bg-[var(--slider-background)] p-5 text-[var(--text-black)]"
       >
         {arr.map((item) => {

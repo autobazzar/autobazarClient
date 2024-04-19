@@ -46,8 +46,7 @@ export default function useSlider(mainbody, sliderdiv) {
         newtranlate < valueRef.current.maxTranslate &&
         newtranlate > valueRef.current.minTranslate
       ) {
-        console.error(newtranlate);
-        settranslate(translate - newtranlate);
+        settranslate(newtranlate);
       }
     }
   }
