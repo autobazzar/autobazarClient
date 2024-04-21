@@ -1,4 +1,4 @@
-import React from "react";
+import { bool, element, func } from "prop-types";
 import "./common.css";
 export default function Modal({ children, handleClose, isOpen }) {
   return (
@@ -10,3 +10,8 @@ export default function Modal({ children, handleClose, isOpen }) {
     )
   );
 }
+Modal.propTypes = {
+  children: element,
+  handleClose: func,
+  isOpen: bool,
+};

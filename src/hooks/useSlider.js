@@ -35,7 +35,7 @@ export default function useSlider(mainbody, sliderdiv) {
       ? event.touches[0].clientX
       : event.clientX;
   }
-  function handlMouseUp(e) {
+  function handlMouseUp() {
     valueRef.current.isDragging = false;
   }
   function handleMoveOver(e) {

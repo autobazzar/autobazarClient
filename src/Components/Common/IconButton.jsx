@@ -1,4 +1,4 @@
-import React from "react";
+import { element, func, string } from "prop-types";
 import "./common.css";
 
 export default function IconButton({ title, clickHandler, Icon }) {
@@ -8,3 +8,9 @@ export default function IconButton({ title, clickHandler, Icon }) {
     </button>
   );
 }
+
+IconButton.propTypes = {
+  title: string,
+  Icon: element,
+  clickHandler: func,
+};
