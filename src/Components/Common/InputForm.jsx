@@ -1,4 +1,4 @@
-import React from "react";
+import { func, number, string } from "prop-types";
 
 export default function InputForm({
   placeHolder,
@@ -18,3 +18,10 @@ export default function InputForm({
     />
   );
 }
+
+InputForm.propTypes = {
+  placeHolder: string,
+  type: string,
+  handleChange: func,
+  fieldkey: number,
+};

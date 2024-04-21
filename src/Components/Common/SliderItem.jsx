@@ -1,4 +1,4 @@
-import React from "react";
+import { number, string } from "prop-types";
 import Avatar from "./Avatar";
 
 export default function SliderItem({ id, title, img, price, kilometer }) {
@@ -16,3 +16,11 @@ export default function SliderItem({ id, title, img, price, kilometer }) {
     </div>
   );
 }
+
+SliderItem.propTypes = {
+  id: number,
+  title: string,
+  img: string,
+  price: string,
+  kilometer: string,
+};
