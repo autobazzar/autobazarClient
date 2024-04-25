@@ -10,7 +10,6 @@ export default function Detail({isOpen,handleClose,detail}) {
     return `امتیاز ${detail.numberOfScores} از مجموع`
   }
   return (
-    <>
       <Modal isOpen={isOpen} handleClose={handleClose}>
         <button onClick={handleClose}>
           <CgClose />
@@ -77,7 +76,6 @@ export default function Detail({isOpen,handleClose,detail}) {
           </div>
         </div>
       </Modal>
-    </>
   );
 }
 

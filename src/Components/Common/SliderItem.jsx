@@ -32,12 +32,10 @@ export default function SliderItem({ id, title, img, price, kilometer }) {
         handleClose={handleClose}
         isOpen={isOpen}
       />
-      <div
+      <button
         key={id}
         className="flex flex-row w-fit p-5 items-center justify-center bg-[var(--background-Color)] min-w-fit gap-5"
         onClick={handleOpen}
-        role="button"
-        tabIndex={0}
       >
         <Avatar imgSrc={img} />
         <div className="select-none flex flex-col w-fit text-nowrap" >
@@ -45,7 +43,7 @@ export default function SliderItem({ id, title, img, price, kilometer }) {
           <h3>{kilometer}</h3>
           <h3>{price}</h3>
         </div>
-      </div>
+      </button>
     </>
   );
 }
