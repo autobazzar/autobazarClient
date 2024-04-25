@@ -12,7 +12,9 @@ export default function Detail({isOpen,handleClose,detail}) {
   return (
     <>
       <Modal isOpen={isOpen} handleClose={handleClose}>
-        <button onClick={handleClose}><CgClose/></button>
+        <button onClick={handleClose}>
+          <CgClose />
+        </button>
         <div dir="rtl" className="flex flex-row gap-5">
           <div className="detail">
             <div className="flex flex-col items-end">
@@ -25,7 +27,7 @@ export default function Detail({isOpen,handleClose,detail}) {
               <div
                 dir="rtl"
                 className="flex pt-7 pb-5 flex-row justify-between gap-5"
-                >
+              >
                 <button className="p-2 w-[10rem] text-nowrap rounded-xl bg-[var(--buttons-color)] text-white shadow-lg shadow-gray-200">
                   اطلاعات تماس
                 </button>
@@ -40,7 +42,7 @@ export default function Detail({isOpen,handleClose,detail}) {
                   dir="rtl"
                   className="flex flex-row text-gray-500 py-1 border-b-[1px] border-gray-300 justify-between w-full"
                   key={key}
-                  >
+                >
                   <span>{value}</span>
                   <span className="text-gray-900">{detail[key]}</span>
                 </div>
@@ -53,14 +55,13 @@ export default function Detail({isOpen,handleClose,detail}) {
                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6tcD5h90YTk2sVcruvpVJ49YsR5H8o-Bl74I6VdrjIg&s",
                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4oiqvLyfyyU9UghkY6KiXstwQ0Uxhg4oPaU7kMtWilw&s",
               ]}
-              />
+            />
             <div className="flex flex-col">
               <h3 className="font-bold border-b-[1px] border-gray-300 pb-3">
                 امتیاز و دیدگاه کاربران
               </h3>
               <span className="flex flex-row pt-3 px-3">
-                <span className="text-xl">{detail["score"]}</span>
-                &nbsp;از &nbsp;
+                <span className="text-xl">{` ${detail["score"]} از `}</span>
                 <span className="text-xl">
                   <b>5</b>
                 </span>
@@ -70,8 +71,7 @@ export default function Detail({isOpen,handleClose,detail}) {
                 ثبت امتیاز
               </h3>
               <div className="flex flex-col justify-center w-full">
-
-            <StarPicker/>
+                <StarPicker />
               </div>
             </div>
           </div>

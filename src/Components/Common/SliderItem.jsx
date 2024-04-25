@@ -36,6 +36,7 @@ export default function SliderItem({ id, title, img, price, kilometer }) {
         key={id}
         className="flex flex-row w-fit p-5 items-center justify-center bg-[var(--background-Color)] min-w-fit gap-5"
         onClick={handleOpen}
+        role="button"
       >
         <Avatar imgSrc={img} />
         <div className="select-none flex flex-col w-fit text-nowrap" role="button">

@@ -8,8 +8,7 @@ export default function StarPicker() {
     <div dir="rtl" className="flex flex-row gap-2 justify-center mt-5">
       {[1,2,3,4,5]
         .map((value) => (
-            <span
-            role="button"
+            <button
             key={value}
             onClick={() => {
                 setChoosenStar(value);
@@ -19,7 +18,7 @@ export default function StarPicker() {
             }`}
             >
             &#9733;
-          </span>
+          </button>
         ))}
         </div>
         <button className="border-[1px] border-gray-400 w-fit self-center py-1 px-10 text-gray-700 rounded-lg shadow-xl">ثبت امتیاز</button>
