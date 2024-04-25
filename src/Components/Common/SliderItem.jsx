@@ -38,7 +38,7 @@ export default function SliderItem({ id, title, img, price, kilometer }) {
         onClick={handleOpen}
       >
         <Avatar imgSrc={img} />
-        <div className="select-none flex flex-col w-fit text-nowrap">
+        <div className="select-none flex flex-col w-fit text-nowrap" role="button">
           <h1 className="font-bold mb-5">{title}</h1>
           <h3>{kilometer}</h3>
           <h3>{price}</h3>

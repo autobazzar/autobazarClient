@@ -7,8 +7,9 @@ export default function StarPicker() {
 
     <div dir="rtl" className="flex flex-row gap-2 justify-center mt-5">
       {[1,2,3,4,5]
-        .map((value, index) => (
+        .map((value) => (
             <span
+            role="button"
             key={value}
             onClick={() => {
                 setChoosenStar(value);
