@@ -4,15 +4,15 @@
 
 @layer components {
     .modal {
-        @apply w-full h-full grid absolute top-0 left-0;
+        @apply w-full h-full grid absolute top-5  left-0;
     }
 
     .modal-container {
-        @apply w-fit h-fit m-auto flex flex-col p-[2rem] z-30 bg-[var(--modal-container-bg)] rounded-lg text-[var(--text-black)];
+        @apply w-fit h-fit m-auto flex flex-col p-[2rem] z-30 border-[1px] border-gray-200 bg-[var(--modal-container-bg)] rounded-lg text-[var(--text-black)] shadow-lg;
     }
 
     .modal-backdrop {
-        @apply w-full h-full absolute bg-[var(--modal-backdrop-bg)] z-20 opacity-15;
+        @apply w-full h-full absolute  z-20 opacity-15;
     }
 
     .form {
