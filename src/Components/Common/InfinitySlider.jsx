@@ -1,7 +1,6 @@
 import { array } from "prop-types"
 import { useState } from "react"
-import { IoIosArrowBack } from "react-icons/io";
-import { IoIosArrowForward } from "react-icons/io";
+import { IoIosArrowBack,IoIosArrowForward } from "react-icons/io";
 export default function InfinitySlider({images}) {
     
     const [currentImage,setCurrentImage]=useState(0);

@@ -12,7 +12,6 @@ export default function Detail({isOpen,handleClose,detail}) {
   return (
     <>
       <Modal isOpen={isOpen} handleClose={handleClose}>
-        <>
         <button onClick={handleClose}><CgClose/></button>
         <div dir="rtl" className="flex flex-row gap-5">
           <div className="detail">
@@ -77,7 +76,6 @@ export default function Detail({isOpen,handleClose,detail}) {
             </div>
           </div>
         </div>
-              </>
       </Modal>
     </>
   );

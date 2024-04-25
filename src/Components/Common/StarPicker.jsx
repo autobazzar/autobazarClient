@@ -6,16 +6,15 @@ export default function StarPicker() {
     <div className="flex flex-col gap-2 justify-center">
 
     <div dir="rtl" className="flex flex-row gap-2 justify-center mt-5">
-      {Array(5)
-        .fill(0)
-        .map((_, index) => (
+      {[1,2,3,4,5]
+        .map((value, index) => (
             <span
-            key={index}
+            key={value}
             onClick={() => {
-                setChoosenStar(index);
+                setChoosenStar(value);
             }}
             className={`cursor-pointer ${
-                index > choosenStar ? "text-gray-400" : "text-yellow-400"
+                value > choosenStar ? "text-gray-400" : "text-yellow-400"
             }`}
             >
             &#9733;
