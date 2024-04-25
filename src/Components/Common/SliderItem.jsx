@@ -39,7 +39,7 @@ export default function SliderItem({ id, title, img, price, kilometer }) {
         role="button"
       >
         <Avatar imgSrc={img} />
-        <div className="select-none flex flex-col w-fit text-nowrap" role="button">
+        <div className="select-none flex flex-col w-fit text-nowrap" >
           <h1 className="font-bold mb-5">{title}</h1>
           <h3>{kilometer}</h3>
           <h3>{price}</h3>
