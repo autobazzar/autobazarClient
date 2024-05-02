@@ -1,13 +1,13 @@
-import React, { useCallback, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import Modal from "./Common/Modal";
 import { ImCancelCircle } from "react-icons/im";
 import InputForm from "./Common/InputForm";
 import { GoogleLogin } from "@react-oauth/google";
 import { getUserGoogle } from "../utils/decoder";
-import { AiOutlineUserAdd } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import "./sections.css";
 import { SignUpUser } from "../store/profileSlice";
+
 export default function Signup() {
   const [isModalOpen, setisModalOpen] = useState(false);
   const formRef = useRef(null);
@@ -44,7 +44,7 @@ export default function Signup() {
   }
 
   return (
-    <div className="flex flex-row items-center">
+    <div className="flex flex-row items-center font-dast">
       <Modal isOpen={isModalOpen} handleClose={handleClose}>
         <div className="container">
           <div className="flex flex-row items-center justify-between mb-8">
