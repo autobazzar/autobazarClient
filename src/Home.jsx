@@ -11,7 +11,7 @@ export default function Home() {
           <h1 className="text-[2.5rem] font-bold text-[var(--text-black)]">
             !با اتوبازار همین الان ماشینت رو بخر
           </h1>
-          <button className="bg-[var(--buttons-color)] shadow-xl font-bold text-[2rem] text-white flex flex-row w-fit p-5 px-[3rem] justify-center gap-5 rounded-md items-center">
+          <button className="h-full hover:bg-[#4C857A] bg-[var(--buttons-color)] shadow-xl font-bold text-[2rem] text-white flex flex-row w-fit p-5 px-[3rem] justify-center gap-5 rounded-md items-center">
             جستجو کن
             <VscSearch color="white" fontSize={30} />
           </button>

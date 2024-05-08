@@ -6,13 +6,13 @@ export default function ShowAds() {
     const dropdownItems = ['Item 1', 'Item 2', 'Item 3'];
   return (
     <>
-        <div dir="rtl" className=' h-screen flex flex-col h-full min-h-0 '>
-            <div className='z-10 flex flex-row bg-white justify-between items-center fixed top-12 px-16 w-full min-h-0 h-[7%] mb-0'>
-                 <p className='text-2xl font-semibold'>فیلترها</p>
-                 <Button text="آگهی بده!" className="h-[90%]"/>
+        <div dir="rtl" className='h-screen flex flex-col h-full min-h-0 '>
+            <div className='z-10 flex flex-row bg-white justify-center lg:justify-between items-center fixed top-12 px-16 w-full min-h-0 h-[7%] mb-0'>
+                 <p className='hidden lg:flex text-2xl font-semibold pr-2'>فیلترها</p>
+                 <Button text="آگهی بده!" className="h-[90%] w-full"/>
             </div>
-            <div className=' h-screen z-0 flex flex-row mt-[54px] basis-3/4 px-16 pt-4'> 
-                <div className='flex flex-col basis-1/5 '>
+            <div className='h-[100vh] z-0 w-full flex flex-row mt-[54px] basis-3/4 px-16 pt-4'> 
+                <div className='hidden w-[0px] h-[0px] lg:flex lg:flex-col lg:basis-1/5'>
                     <DropDownMenu title="برند و تیپ" items={['بی ام و', 'پراید', 'رانا','سایپا','پژو']} showInput={false}/>
                     <DropDownMenu title="رنگ" items={dropdownItems} showInput={true} placeholder={"رنگ را وارد کنید"}/>
                     <DropDownMenu title="سال تولید" items={dropdownItems} showInput={true} placeholder={"مثلا 1399"}/>
@@ -27,19 +27,25 @@ export default function ShowAds() {
                     <DropDownMenu title="مهلت بیمه شخص ثالث" items={dropdownItems} showInput={true} placeholder={"مثلا 7 ماه"} />
                    
                 </div>              
-                <div dir="ltr" className=' overflow-y-auto flex flex-row flex-wrap basis-4/5 gap-y-6 gap-x-4 content-start p-0 m-0'>
-                    <AdsItem className="basis-[32%]"/>
-                    <AdsItem className="basis-[32%]"/>
-                    <AdsItem className="basis-[32%]"/>
-                    <AdsItem className="basis-[32%]"/>
-                    <AdsItem className="basis-[32%]"/>
-                    <AdsItem className="basis-[32%]"/>
-                    <AdsItem className="basis-[32%]"/>
-                    <AdsItem className="basis-[32%]"/>
-                    <AdsItem className="basis-[32%]"/>
-                    <AdsItem className="basis-[32%]"/>
-                    <AdsItem className="basis-[32%]"/>
-                    <AdsItem className="basis-[32%]"/>
+                <div dir="ltr" className='flex flex-col w-full gap-y-6 p-0 m-0 lg:overflow-y-auto lg:flex-row lg:flex-wrap lg:basis-4/5 lg:gap-x-4 lg:content-start'>
+                    <AdsItem className="lg:basis-[32%]"/>
+                    <AdsItem className="lg:basis-[32%]"/>
+                    <AdsItem className="lg:basis-[32%]"/>
+                    <AdsItem className="lg:basis-[32%]"/>
+                    <AdsItem className="lg:basis-[32%]"/>
+                    <AdsItem className="lg:basis-[32%]"/>
+                    <AdsItem className="lg:basis-[32%]"/>
+                    <AdsItem className="lg:basis-[32%]"/>
+                    <AdsItem className="lg:basis-[32%]"/>
+                    <AdsItem className="lg:basis-[32%]"/>
+                    <AdsItem className="lg:basis-[32%]"/>
+                    <AdsItem className="lg:basis-[32%]"/>
+                    <AdsItem className="lg:basis-[32%]"/>
+                    <AdsItem className="lg:basis-[32%]"/>
+                    <AdsItem className="lg:basis-[32%]"/>
+                    <AdsItem className="lg:basis-[32%]"/>
+                    <AdsItem className="lg:basis-[32%]"/>
+                    
                     
                 </div>
             </div>
