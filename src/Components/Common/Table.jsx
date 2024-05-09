@@ -8,10 +8,10 @@ export default function Table({ title }) {
       <table className="w-full  h-[4rem]">
         <thead className="text-[20px] text-center">
           <tr>
-            <td>نام کاربری</td>
-            <td>دیدگاه</td>
-            <td>کد آگهی</td>
-            <td>عملیات</td>
+            <th>نام کاربری</th>
+            <th>دیدگاه</th>
+            <th>کد آگهی</th>
+            <th>عملیات</th>
           </tr>
         </thead>
         <tbody className=" text-center h-[1rem] overflow-scorll  text-gray-500">
