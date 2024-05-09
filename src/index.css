@@ -23,7 +23,9 @@ body {
   --logo-size: 64px;
   --header-background: #fff;
   --buttons-color:#2B4E47;
+  --admin-dashboard-color:#2B4E47;
   --slider-background: #F1F5F6;
+  --admin-bg-color:#EEEEEE;
 }
 
 #root {

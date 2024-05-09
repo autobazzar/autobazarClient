@@ -8,7 +8,6 @@ import Store, { persistor } from "./store/store.js";
 import { PersistGate } from "redux-persist/integration/react";
 import { router } from "./utils/routeProvider.js";
 import { RouterProvider } from "react-router-dom";
-import Layout from "./Components/Layout.jsx";
 const rootElement = document.getElementById("root");
 
 initRoot(rootElement);
@@ -18,9 +17,7 @@ root.render(
     <Provider store={Store}>
       <PersistGate persistor={persistor} loading={null}>
         <React.StrictMode>
-          <Layout>
-            <RouterProvider router={router} />
-          </Layout>
+          <RouterProvider router={router} />
         </React.StrictMode>
       </PersistGate>
     </Provider>

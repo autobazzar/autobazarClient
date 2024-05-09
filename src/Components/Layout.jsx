@@ -1,14 +1,14 @@
-import React from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import { ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-export default function Layout({ children }) {
+import { Outlet } from "react-router-dom";
+export default function Layout() {
   return (
     <>
     <ToastContainer />
       <Header />
-      {children}
+      <Outlet/>
       <Footer />
     </>
   );
