@@ -2,13 +2,10 @@ import { IoPersonOutline } from "react-icons/io5";
 import IconButton from "./Common/IconButton";
 import { ImStatsDots } from "react-icons/im";
 import { BsChatLeftText } from "react-icons/bs";
-import { IoIosPeople } from "react-icons/io";
 import { LuFileSpreadsheet } from "react-icons/lu";
-import { IoMdLogOut } from "react-icons/io";
+import { IoMdLogOut,IoIosPeople,IoMdStats } from "react-icons/io";
 import DashboardCard from "./Common/Dashboard-card";
-import { IoMdStats } from "react-icons/io";
-import { MdQueryStats } from "react-icons/md";
-import { MdSignalWifiStatusbar1Bar } from "react-icons/md";
+import {MdQueryStats , MdSignalWifiStatusbar1Bar } from "react-icons/md";
 import Table from "./Common/Table";
 
 export default function Admin() {
