@@ -3,20 +3,30 @@ import React from "react";
 import Home from "../Home";
 import Profile from "../Components/Profile";
 import ShowAds from "../Components/ShowAds";
+import Admin from "../Components/Admin";
+import Layout from "../Components/Layout";
 export const router = createBrowserRouter([
   {
-    path: "/",
-    element: React.createElement(Home),
+    element: React.createElement(Layout),
+    children:[
+      {
+        path: "/",
+        element: React.createElement(Home),
+          },
+      {
+        path: "/profile", 
+        element: React.createElement(Profile)
+      },
+      {
+        path: "/show-ads",
+        element: React.createElement(ShowAds)
+      },
+    ],
   },
   {
-    path: "/profile", 
-    element: React.createElement(Profile)
+    path: "/admin",
+    element: React.createElement(Admin)
   },
-  {
-    path: "/show-ads",
-    element: React.createElement(ShowAds)
-
-  }
 ]);
 
 

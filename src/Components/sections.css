@@ -54,6 +54,18 @@
     .detail-border{
         @apply border-b-[1px] border-gray-400;
     }
+    .dashboard-iconbutton{
+        @apply flex flex-row outline-none items-center gap-3 text-xl;
+    }
+    .dashboard-iconbutton:hover{
+        @apply opacity-75;
+    }
+    td {
+        @apply py-2;
+    }
+    tr { 
+        @apply h-[1px];
+    }
 
 }
 
