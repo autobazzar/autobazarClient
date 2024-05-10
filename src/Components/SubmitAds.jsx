@@ -1,7 +1,7 @@
 import { useState } from "react";
 import InputForm from "./Common/InputForm";
 
-export default function SubmitAdvertisement() {
+export default function SubmitAds() {
     const [formData, setFormData] = useState({
         city: "",
         parish: "",
