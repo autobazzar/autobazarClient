@@ -21,6 +21,10 @@ export const router = createBrowserRouter([
         path: "/show-ads",
         element: React.createElement(ShowAds)
       },
+      {
+        path: "/SubmitAdvertisment",
+        element: React.createElement(ShowAds)
+      }
     ],
   },
   {
