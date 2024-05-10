@@ -7,7 +7,7 @@ export default function SubmitAds() {
         parish: "",
         address: "",
         brand: "",
-        color: "",
+        carColor: "",
         year: "",
         output: "",
         price: "",
@@ -54,10 +54,10 @@ export default function SubmitAds() {
     }
 
     return (
-        <div className="flex flex-row items-center font-dast">
+        <div dir="rtl" className="flex flex-row items-center font-dast">
             <div className="container">
                 <form className="form" onSubmit={handleFormSubmit}>
-                    <span>محل سکونت</span>
+                    <div>محل سکونت</div>
                     <InputForm
                         placeHolder={"شهر"}
                         type={"city"}
@@ -78,7 +78,7 @@ export default function SubmitAds() {
               handleChange={handleChange}
               fieldkey={"address"}
             />
-            <span>مشخصات ظاهری</span>
+            <div>مشخصات ظاهری</div>
             <InputForm
               placeHolder={"برند و تیپ"}
               type={"brand"}
@@ -87,9 +87,9 @@ export default function SubmitAds() {
             />
              <InputForm
               placeHolder={"رنگ"}
-              type={"color"}
+              type={"carColor"}
               handleChange={handleChange}
-              fieldkey={"color"}
+              fieldkey={"carColor"}
             />
              <InputForm
               placeHolder={"سال تولید"}
@@ -115,7 +115,7 @@ export default function SubmitAds() {
               handleChange={handleChange}
               fieldkey={"frame"}
             />
-            <span>مشخصات تکمیلی</span>
+            <div>مشخصات تکمیلی</div>
             <InputForm
               placeHolder={"وضعیت موتور"}
               type={"motor"}
@@ -146,17 +146,17 @@ export default function SubmitAds() {
               handleChange={handleChange}
               fieldkey={"insurance"}
             />
-            <span>مشخصات تماس</span>
+            <div>مشخصات تماس</div>
             <InputForm
               placeHolder={"شماره تماس"}
               type={"number"}
               handleChange={handleChange}
               fieldkey={"number"}
             />
-             <span>آپلود عکس</span>
+             <div>آپلود عکس</div>
              <input type="file" accept="image/*" onChange={handlePictureChange} />       
              
-             <span>آپلود ویدیو</span>
+             <div>آپلود ویدیو</div>
              <input type="file" accept="video/*" onChange={handleVideoChange} />
                     <button type="submit">Submit</button>
                 </form>

@@ -5,6 +5,7 @@ import Profile from "../Components/Profile";
 import ShowAds from "../Components/ShowAds";
 import Admin from "../Components/Admin";
 import Layout from "../Components/Layout";
+import SubmitAds from "../Components/SubmitAds";
 export const router = createBrowserRouter([
   {
     element: React.createElement(Layout),
@@ -23,7 +24,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/submit-ads",
-        element: React.createElement(ShowAds)
+        element: React.createElement(SubmitAds)
       }
     ],
   },
