@@ -1,16 +1,13 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Modal from "./Common/Modal";
-import IconButton from "./Common/IconButton";
-import { FcGoogle } from "react-icons/fc";
 import { ImCancelCircle } from "react-icons/im";
 import InputForm from "./Common/InputForm";
-import { CiLogin } from "react-icons/ci";
-import { AiOutlineUserAdd } from "react-icons/ai";
 import { GoogleLogin } from "@react-oauth/google";
 import { getUserGoogle } from "../utils/decoder";
 import "./sections.css";
 import { useDispatch } from "react-redux";
 import { logginUser } from "../store/profileSlice";
+import { bool } from "prop-types";
 
 export default function Login({ openInitial }) {
   const [isModalOpen, setisModalOpen] = useState(openInitial || false);
@@ -45,7 +42,7 @@ export default function Login({ openInitial }) {
   }
 
   return (
-    <div className="flex flex-row items-center">
+    <div className="flex flex-row items-center font-dast">
       <Modal isOpen={isModalOpen} handleClose={handleClose}>
         <div className="container">
           <div className="flex flex-row items-center justify-between mb-8">
@@ -95,4 +92,8 @@ export default function Login({ openInitial }) {
       </button>
     </div>
   );
+}
+
+Login.propTypes={
+  openInitial:bool
 }

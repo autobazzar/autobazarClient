@@ -1,7 +1,8 @@
-import React, { useRef } from "react";
+import  { useRef } from "react";
 import landing from "./assets/image/landing_logo.png";
 import { VscSearch } from "react-icons/vsc";
 import Slider from "./Components/Common/Slider";
+import {Link} from 'react-router-dom';
 export default function Home() {
   const mainDiv = useRef(null);
   return (
@@ -22,7 +23,7 @@ export default function Home() {
           alt=""
         />
       </div>
-      <Slider mainDiv={mainDiv}/>
+      <Slider mainDiv={mainDiv} />
     </div>
   );
 }

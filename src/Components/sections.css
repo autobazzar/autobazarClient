@@ -51,9 +51,71 @@
         @apply absolute top-[-12px] bg-white px-2 justify-self-center font-dast;
     }
 
-    .detail-border{
+    .detail-border {
         @apply border-b-[1px] border-gray-400;
     }
 
-}
+    .dashboard-iconbutton {
+        @apply flex flex-row outline-none items-center gap-3 text-xl;
+    }
 
+    .dashboard-iconbutton:hover {
+        @apply opacity-75;
+    }
+
+    td {
+        @apply py-2;
+    }
+
+    tr {
+        @apply h-[1px];
+    }
+
+    table {
+        width: 100%;
+    }
+
+    th,
+    td {
+        background: #fff;
+        padding: 8px 16px;
+    }
+
+
+    .tableFixHead {
+        overflow: auto;
+        height: 15rem;
+    }
+
+    .tableFixHead thead th {
+        position: sticky;
+        top: 0;
+    }
+
+    .tableFixHead h1 {
+        position: relative;
+        top: 0;
+    }
+
+    /* width */
+    ::-webkit-scrollbar {
+        width: 10px;
+        border-radius: 10px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 10px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+}
