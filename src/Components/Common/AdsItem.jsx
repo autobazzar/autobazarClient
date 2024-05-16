@@ -2,7 +2,7 @@ import React from 'react'
 import carImg from "../../assets/image/p206.jpg"
 export default function AdsItem({className}) {
   return (
-    <div dir="rtl" className={`flex flex-row justify-around w-1/4 h-1/4 border-2 rounded-md p-2 m-0 items-center ${className}`}>
+    <div dir="rtl" className={`flex flex-row justify-around lg:w-1/4 lg:h-1/4 border-2 rounded-md p-2 m-0 items-center ${className}`}>
         <div className='mb-2'>
           <p className='text-lg font-semibold pr-2'>پژو 206 تیپ 2</p>
           <p className='text-sm mt-6 pr-2'>195000 کیلومتر</p>
