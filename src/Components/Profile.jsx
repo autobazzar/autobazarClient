@@ -7,16 +7,16 @@ import { LuFolderArchive } from "react-icons/lu";
 import { RxExit } from "react-icons/rx";
 import { IoSearchOutline } from "react-icons/io5";
 import { FaPlus } from "react-icons/fa6";
-
+import { GiHamburgerMenu } from "react-icons/gi";
 import AdsItem from './Common/AdsItem'
 export default function Profile() {
 
   const profile = useSelector((state) => state.profile);
   console.log(profile);
   return (
-    <div dir="rtl" className=' flex flex-row h-screen '>
+    <div dir="rtl" className='flex flex-row h-screen '>
     
-      <div className=' bg-[#2b4e47] rounded-bl-[4rem] basis-[28%] flex flex-col gap-y-12 h-[92%]'> 
+      <div className=' bg-[#2b4e47] rounded-bl-[4rem] med:basis-[28%] w-full flex flex-col gap-y-12 h-[92%]'> 
         <div className='flex flex-row justify-between items-center hover:bg-[#4C857A] '>
           <div>
           <p className='text-xl font-semibold text-white m-5'>ریحانه سلجوقی</p>
@@ -50,7 +50,7 @@ export default function Profile() {
         </div>
       </div>
     
-      <div className='basis-[72%] mt-5 pr-16'>
+      <div className=' hidden med:block med:basis-[72%] mt-5 pr-16'>
         
           <form class="w-[37%] mb-8">   
               <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
