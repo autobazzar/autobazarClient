@@ -2,8 +2,25 @@ import React from 'react'
 import Button from './Common/Button'
 import AdsItem from './Common/AdsItem'
 import DropDownMenu from './Common/DropDownMenu'
+import { useRef, useEffect, useState } from 'react'
+import { receiveAds } from '../api/api'
 export default function ShowAds() {
+    const [ads, setAds] = useState([]);
     const dropdownItems = ['Item 1', 'Item 2', 'Item 3'];
+    useEffect(() => {
+        const fetchAds = async () => {
+          try {
+            const response = await receiveAds();
+            setAds(response.data);
+            console.log(response.data);
+          } catch (error) {
+            console.error('Error fetching ads data:', error);
+          }
+        };
+    
+        fetchAds();
+      }, []);
+    
   return (
     <>
         <div dir="rtl" className='h-screen flex flex-col h-full min-h-0 '>
@@ -28,24 +45,16 @@ export default function ShowAds() {
                    
                 </div>              
                 <div dir="ltr" className='flex flex-col w-full gap-y-6 p-0 m-0 lg:overflow-y-auto lg:flex-row lg:flex-wrap lg:basis-4/5 lg:gap-x-4 lg:content-start'>
-                    <AdsItem className="lg:basis-[32%]"/>
-                    <AdsItem className="lg:basis-[32%]"/>
-                    <AdsItem className="lg:basis-[32%]"/>
-                    <AdsItem className="lg:basis-[32%]"/>
-                    <AdsItem className="lg:basis-[32%]"/>
-                    <AdsItem className="lg:basis-[32%]"/>
-                    <AdsItem className="lg:basis-[32%]"/>
-                    <AdsItem className="lg:basis-[32%]"/>
-                    <AdsItem className="lg:basis-[32%]"/>
-                    <AdsItem className="lg:basis-[32%]"/>
-                    <AdsItem className="lg:basis-[32%]"/>
-                    <AdsItem className="lg:basis-[32%]"/>
-                    <AdsItem className="lg:basis-[32%]"/>
-                    <AdsItem className="lg:basis-[32%]"/>
-                    <AdsItem className="lg:basis-[32%]"/>
-                    <AdsItem className="lg:basis-[32%]"/>
-                    <AdsItem className="lg:basis-[32%]"/>
-                    
+                {ads.map((ad, index) => (
+                    <AdsItem
+                        key={index}
+                        className="lg:basis-[32%]"
+                        carName={ad.carName}
+                        distance={ad.distance}
+                        price={ad.price}
+                        picsUrl={ad.picsUrl}
+                    />
+                ))}
                     
                 </div>
             </div>
