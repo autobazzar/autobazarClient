@@ -10,6 +10,7 @@ import { IoIosLogOut } from "react-icons/io";
 import { persistor } from "../store/store";
 export default function Header() {
   const profile = useSelector((state) => state.profile);
+  console.log(profile)
   async function handleLogOout() {
     persistor.purge();
   }

@@ -68,7 +68,6 @@ export default function Profile() {
               </div>
           </form>
 
-
           <div dir='rtl'  className='overflow-y-auto flex flex-row flex-wrap gap-y-6 gap-x-4 content-start p-0 '>
             <AdsItem className="basis-2/5"/>
             <AdsItem className="basis-2/5"/>
