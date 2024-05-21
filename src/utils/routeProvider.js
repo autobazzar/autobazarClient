@@ -5,6 +5,7 @@ import Profile from "../Components/Profile";
 import ShowAds from "../Components/ShowAds";
 import Admin from "../Components/Admin";
 import Layout from "../Components/Layout";
+import SubmitAds from "../Components/SubmitAds";
 import ProtectedRoute from "./protectedRoute";
 import { ToastContainer } from 'react-toastify'; 
 import 'react-toastify/dist/ReactToastify.css'; 
@@ -24,6 +25,10 @@ export const router = createBrowserRouter([
         path: "/show-ads",
         element: React.createElement(ShowAds)
       },
+      {
+        path: "/submit-ads",
+        element: React.createElement(SubmitAds)
+      }
     ],
   },
   {
