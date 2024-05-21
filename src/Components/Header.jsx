@@ -10,12 +10,12 @@ import { IoIosLogOut } from "react-icons/io";
 import { persistor } from "../store/store";
 export default function Header() {
   const profile = useSelector((state) => state.profile);
+  console.log(profile)
   async function handleLogOout() {
-    // dispatch(logOut());
     persistor.purge();
   }
   return (
-    <div className="header-section shadow-sm p-3 ">
+    <div className="header-section shadow-sm p-3 sticky top-0 bg-white z-10">
       <div className="row-container">
         <div className="row-container links font-dast">
           <a className="font-dast text-lg" href="contact-us">

@@ -34,7 +34,7 @@ const profileSlice = createSlice({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        ignoredActions: [FLUSH, PURGE],
       },
     }),
   extraReducers: (builder) => {

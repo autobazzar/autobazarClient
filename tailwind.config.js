@@ -6,6 +6,16 @@ export default {
       dast: ["dastNevis"],
     },
     extend: {},
+    screens: {
+      'lg': '1130px',
+      // => @media (min-width: 640px) { ... }
+
+      'med': '950px',
+      // => @media (min-width: 1024px) { ... }
+
+      'desktop': '1280px',
+      // => @media (min-width: 1280px) { ... }
+    },
   },
   plugins: [],
 };
