@@ -44,9 +44,9 @@ export default function ShowAds() {
                    
                 </div>              
                 <div dir="ltr" className='flex flex-col w-full gap-y-6 p-0 m-0 lg:overflow-y-auto lg:flex-row lg:flex-wrap lg:basis-4/5 lg:gap-x-4 lg:content-start'>
-                {ads.map((ad, index) => (
+                {ads.map((ad) => (
                     <AdsItem
-                        key={index}
+                        key={ad.adId}
                         className="lg:basis-[32%]"
                         carName={ad.carName}
                         distance={ad.distance}
