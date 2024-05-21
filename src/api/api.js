@@ -1,5 +1,4 @@
 import { POST, GET } from "./config";
-const authToken = localStorage.getItem("jwt");
 
 export async function registerUser(payload, googleFlag) {
   const url = "/users/sign-up";

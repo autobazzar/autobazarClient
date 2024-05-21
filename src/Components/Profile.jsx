@@ -75,7 +75,6 @@ export default function Profile() {
             <AdsItem className="basis-2/5"/>
             
           </div>
-          
                   
       </div>
     </div>
