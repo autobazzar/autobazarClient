@@ -9,7 +9,7 @@ import AdsItem from './Common/AdsItem'
 export default function Profile() {
 
   const profile = useSelector((state) => state.profile);
-  console.log(profile);
+  
   return (
     <div dir="rtl" className='flex flex-row h-screen '>
     
