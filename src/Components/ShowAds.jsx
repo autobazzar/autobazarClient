@@ -55,6 +55,8 @@ export default function ShowAds() {
                         picsUrl={ad.picsUrl}
                     />
                 ))}
+
+                
                     
                 </div>
             </div>
