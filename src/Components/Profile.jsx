@@ -6,44 +6,49 @@ import { RxExit } from "react-icons/rx";
 import { IoSearchOutline } from "react-icons/io5";
 import { FaPlus } from "react-icons/fa6";
 import AdsItem from './Common/AdsItem'
+import { useState } from 'react';
 export default function Profile() {
 
   const profile = useSelector((state) => state.profile);
+  console.log(profile)
+  const [state, setState] = useState({
+    state_count: 1
+  })
   
   return (
     <div dir="rtl" className='flex flex-row h-screen '>
     
       <div className=' bg-[#2b4e47] med:rounded-bl-[4rem] med:basis-[28%] w-full flex flex-col gap-y-12 h-[92%]'> 
-        <div className='flex flex-row justify-start med:justify-between items-center hover:bg-[#4C857A] '>
+        <div className='cursor-pointer flex flex-row justify-start med:justify-between items-center hover:bg-[#4C857A] '>
           <MdOutlineEdit color='white' className="med:hidden h-12 w-12 pr-4" />
           <div>
-          <p className='text-xl font-semibold text-white m-5'>ریحانه سلجوقی</p>
-          <p className='text-white mr-5 mt-2'>reysalphimo@gmail.com</p>
+          <p className='text-xl font-semibold text-white m-5'>{profile.userName}</p>
+          <p className='text-white mr-5 mt-2'>{profile.email}</p>
           </div>
           <MdOutlineEdit color='white'  className="hidden med:block h-12 w-12 ml-5" />
         </div>
-        <div className='flex flex-row justify-start med:justify-between items-center hover:bg-[#4C857A]  '>
+        <div className='cursor-pointer flex flex-row justify-start med:justify-between items-center hover:bg-[#4C857A]  '>
           <LuFolderArchive color='white'  className="med:hidden h-12 w-12 pr-4" />
           <div>
           <p className='text-xl font-semibold text-white m-5'>آگهی های من</p>
           </div>
           <LuFolderArchive color='white'  className="hidden med:block h-12 w-12 ml-5" />
         </div>
-        <div className='flex flex-row justify-start med:justify-between items-center hover:bg-[#4C857A]'>
+        <div className='cursor-pointer flex flex-row justify-start med:justify-between items-center hover:bg-[#4C857A]'>
           <FaPlus color='white'  className="med:hidden h-12 w-12 ml-5 pr-4" />
           <div>
           <p className='text-xl font-semibold text-white m-5'>ثبت آگهی </p>
           </div>
           <FaPlus color='white'  className="hidden med:block h-12 w-12 ml-5" />
         </div>
-        <div className='flex flex-row justify-start med:justify-between items-center hover:bg-[#4C857A] '>
+        <div className='cursor-pointer flex flex-row justify-start med:justify-between items-center hover:bg-[#4C857A] '>
           <IoSearchOutline color='white'  className=" med:hidden h-12 w-12 ml-5 pr-4" />
           <div>
           <p className='text-xl font-semibold text-white m-5'> بازارگردی </p>
           </div>
           <IoSearchOutline color='white'  className=" hidden med:block h-12 w-12 ml-5" />
         </div>
-        <div className='flex flex-row justify-start med:justify-between items-center hover:bg-[#4C857A]   '>
+        <div className='cursor-pointer flex flex-row justify-start med:justify-between items-center hover:bg-[#4C857A]   '>
           <RxExit color='white'  className=" med:hidden h-12 w-12 ml-5 pr-4" />
           <div>
           <p className='text-xl font-semibold text-white m-5'> خروج </p>
@@ -53,8 +58,11 @@ export default function Profile() {
       </div>
     
       <div className=' hidden med:block med:basis-[72%] mt-5 pr-16'>
-        
-          <form className="w-[37%] mb-8">   
+        {state.state_count == 0 &&
+          <h1>Edit profile Page</h1>
+        }
+        {state.state_count == 1 &&
+          (<form className="w-[37%] mb-8">   
               <div className="relative min-h-0 h-full">
                   <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                       <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -66,8 +74,9 @@ export default function Profile() {
 
                   <Button type="submit" text="جستجو" className='h-[82%] !w-1/4 shadow-2xl text-sm text-white text-center absolute end-2.5 bottom-1 focus:ring-4 focus:outline-none rounded-lg text-sm'/>
               </div>
-          </form>
-
+          </form>)
+        }
+        
           <div dir='rtl'  className='overflow-y-auto flex flex-row flex-wrap gap-y-6 gap-x-4 content-start p-0 '>
             <AdsItem className="basis-2/5"/>
             <AdsItem className="basis-2/5"/>
