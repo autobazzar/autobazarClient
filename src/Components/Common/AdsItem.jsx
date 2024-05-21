@@ -1,5 +1,4 @@
-import React from 'react'
-import carImg from "../../assets/image/p206.jpg"
+import PropTypes from 'prop-types';
 export default function AdsItem({className, carName, distance, price, picsUrl}) {
   return (
     <div dir="rtl" className={`flex flex-row justify-around lg:w-1/4 lg:h-1/4 border-2 rounded-md p-2 m-0 items-center ${className}`}>
@@ -12,3 +11,11 @@ export default function AdsItem({className, carName, distance, price, picsUrl}) 
     </div>
   )
 }
+
+AdsItem.propTypes = {
+  className: PropTypes.string.isRequired,
+  carName: PropTypes.string.isRequired,
+  price: PropTypes.string.isRequired,
+  distance: PropTypes.string.isRequired,
+  picsUrl: PropTypes.string.isRequired,
+};

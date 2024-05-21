@@ -1,8 +1,7 @@
-import React from 'react'
 import Button from './Common/Button'
 import AdsItem from './Common/AdsItem'
 import DropDownMenu from './Common/DropDownMenu'
-import { useRef, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { receiveAds } from '../api/api'
 export default function ShowAds() {
     const [ads, setAds] = useState([]);

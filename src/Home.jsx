@@ -2,8 +2,7 @@ import  { useRef } from "react";
 import landing from "./assets/image/landing_logo.png";
 import { VscSearch } from "react-icons/vsc";
 import Slider from "./Components/Common/Slider";
-import {Link} from 'react-router-dom';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 export default function Home() {
   const mainDiv = useRef(null);
   const navigate = useNavigate();
