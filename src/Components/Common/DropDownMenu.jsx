@@ -2,9 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import { IoIosArrowDown } from 'react-icons/io';
 import { IoIosArrowUp } from 'react-icons/io';
 
-const DropDownMenu = ({ title, items, showInput, placeholder }) => {
+const DropDownMenu = ({ title, items, showInput, placeholder, type, onYearRangeChange }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
+  const [startYear, setStartYear] = useState('');
+  const [endYear, setEndYear] = useState('');
   const dropdownRef = useRef(null);
 
   const toggleDropdown = () => {
@@ -19,10 +21,14 @@ const DropDownMenu = ({ title, items, showInput, placeholder }) => {
     setInputValue(event.target.value);
   };
 
-  const handleInputSubmit = (event) => {
-    event.preventDefault();
-    console.log('Submitted value:', inputValue);
-    setInputValue('');
+  const handleStartYearChange = (event) => {
+    setStartYear(event.target.value);
+    onYearRangeChange(event.target.value, endYear);
+  };
+
+  const handleEndYearChange = (event) => {
+    setEndYear(event.target.value);
+    onYearRangeChange(startYear, event.target.value);
   };
 
   useEffect(() => {
@@ -42,7 +48,7 @@ const DropDownMenu = ({ title, items, showInput, placeholder }) => {
   return (
     <div ref={dropdownRef} className="relative hover:bg-[#F1F5F6]">
       <button
-        className="w-3/4 text-lg py-4 px-4 border-b border-gray-300 text-gray-700 text-right"
+        className="w-[84%] text-sm py-4 px-4 border-b border-gray-300 text-gray-700 text-right"
         onClick={toggleDropdown}
       >
         <div className="flex flex-row items-center">
@@ -55,8 +61,25 @@ const DropDownMenu = ({ title, items, showInput, placeholder }) => {
         </div>
       </button>
       {isOpen && (
-        <div className="w-full bg-white  p-4">
-          {showInput ? (
+        <div className="w-full bg-white text-sm p-4">
+          {type === 'year' ? (
+            <div>
+              <input
+                type="number"
+                value={startYear}
+                onChange={handleStartYearChange}
+                placeholder="Start Year"
+                className="w-full px-2 py-1 mb-2 border border-gray-300 rounded"
+              />
+              <input
+                type="number"
+                value={endYear}
+                onChange={handleEndYearChange}
+                placeholder="End Year"
+                className="w-full px-2 py-1 mb-2 border border-gray-300 rounded"
+              />
+            </div>
+          ) : showInput ? (
             <form onSubmit={handleInputSubmit}>
               <input
                 type="text"
@@ -67,7 +90,7 @@ const DropDownMenu = ({ title, items, showInput, placeholder }) => {
               />
               <button
                 type="submit"
-                className="mt-2 py-1 px-4 bg-gray-200 hover:bg-gray-300 rounded"
+                className="mt-2 text-sm py-1 px-4 bg-gray-200 hover:bg-gray-300 rounded"
               >
                 Submit
               </button>
@@ -86,4 +109,5 @@ const DropDownMenu = ({ title, items, showInput, placeholder }) => {
     </div>
   );
 };
+
 export default DropDownMenu;

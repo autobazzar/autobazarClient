@@ -7,16 +7,24 @@ import { IoSearchOutline } from "react-icons/io5";
 import { FaPlus } from "react-icons/fa6";
 import AdsItem from './Common/AdsItem';
 import { useState } from 'react';
+import { useNavigate,Navigate } from 'react-router-dom';
+import { persistor } from "../store/store";
 
 export default function Profile() {
   const profile = useSelector((state) => state.profile);
   console.log(profile);
+  const navigate=useNavigate();
   const [state, setState] = useState({
-    state_count: 0
+    state_count: 1
   });
 
   const handleItemClick = (count) => {
     setState({ state_count: count });
+    console.log(count)
+    if (count===4){
+      persistor.purge();
+      navigate("/")
+    }
   };
 
   return (
@@ -25,8 +33,8 @@ export default function Profile() {
         <div onClick={() => handleItemClick(0)} className={`cursor-pointer flex flex-row justify-start med:justify-between items-center hover:bg-[#465956] ${state.state_count === 0 && "bg-[#4C857A]" }`}>
           <MdOutlineEdit color='white' className="med:hidden h-12 w-12 pr-4" />
           <div>
-            <p className='text-xl font-semibold text-white m-5'>{profile.userName}</p>
-            <p className='text-white mr-5 mt-2'>{profile.email}</p>
+            <p className='text-xl font-semibold text-white pr-5 pt-3 mb-2'>{profile.userName}</p>
+            <p className='text-white mr-5 pb-3'>{profile.email}</p>
           </div>
           <MdOutlineEdit color='white' className="hidden med:block h-12 w-12 ml-5" />
         </div>
@@ -83,8 +91,8 @@ export default function Profile() {
           </>
         )}
         {state.state_count === 2 && <h1>ثبت آگهی Page</h1>}
-        {state.state_count === 3 && <h1>بازارگردی Page</h1>}
-        {state.state_count === 4 && <h1>خروج Page</h1>}
+        {state.state_count === 3 && <Navigate to='/show-ads' />}
+        
 
         
       </div>
