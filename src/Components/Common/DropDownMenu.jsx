@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { IoIosArrowDown } from 'react-icons/io';
-import { IoIosArrowUp } from 'react-icons/io';
+import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 
 const DropDownMenu = ({ title, items, showInput, placeholder, type, onChange }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,34 +27,10 @@ const DropDownMenu = ({ title, items, showInput, placeholder, type, onChange }) 
     setInputValue(event.target.value);
   };
 
-  const handleStartYearChange = (event) => {
-    setStartYear(event.target.value);
-    onChange(event.target.value, endYear);
-  };
-
-  const handleEndYearChange = (event) => {
-    setEndYear(event.target.value);
-    onChange(startYear, event.target.value);
-  };
-
-  const handleStartPriceChange = (event) => {
-    setStartPrice(event.target.value);
-    onChange(event.target.value, endPrice);
-  };
-
-  const handleEndPriceChange = (event) => {
-    setEndPrice(event.target.value);
-    onChange(startPrice, event.target.value);
-  };
-
-  const handleStartDisChange = (event) => {
-    setStartDis(event.target.value);
-    onChange(event.target.value, endDis);
-  };
-
-  const handleEndDisChange = (event) => {
-    setEndDis(event.target.value);
-    onChange(startDis, event.target.value);
+  const handleRangeChange = (startValue, endValue, startStateSetter, endStateSetter) => {
+    startStateSetter(startValue);
+    endStateSetter(endValue);
+    onChange(startValue, endValue);
   };
 
   const handleColorSelection = (color) => {
@@ -71,7 +46,6 @@ const DropDownMenu = ({ title, items, showInput, placeholder, type, onChange }) 
   const handleAccidentalChange = (event) => {
     setIsAccidental(event.target.checked);
     onChange(event.target.checked);
-    
   };
 
   useEffect(() => {
@@ -87,6 +61,107 @@ const DropDownMenu = ({ title, items, showInput, placeholder, type, onChange }) 
       document.removeEventListener('click', handleOutsideClick);
     };
   }, []);
+
+  const renderInputFields = () => {
+    if (type === 'year') {
+      return (
+        <div>
+          <input
+            type="number"
+            value={startYear}
+            onChange={(event) => handleRangeChange(event.target.value, endYear, setStartYear, setEndYear)}
+            placeholder="Start Year"
+            className="w-full px-2 py-1 mb-2 border border-gray-300 rounded"
+          />
+          <input
+            type="number"
+            value={endYear}
+            onChange={(event) => handleRangeChange(startYear, event.target.value, setStartYear, setEndYear)}
+            placeholder="End Year"
+            className="w-full px-2 py-1 mb-2 border border-gray-300 rounded"
+          />
+        </div>
+      );
+    }
+
+    if (type === 'distance') {
+      return (
+        <div>
+          <input
+            type="number"
+            value={startDis}
+            onChange={(event) => handleRangeChange(event.target.value, endDis, setStartDis, setEndDis)}
+            placeholder="از ... کیلومتر"
+            className="w-full px-2 py-1 mb-2 border border-gray-300 rounded"
+          />
+          <input
+            type="number"
+            value={endDis}
+            onChange={(event) => handleRangeChange(startDis, event.target.value, setStartDis, setEndDis)}
+            placeholder="تا ... کیلومتر"
+            className="w-full px-2 py-1 mb-2 border border-gray-300 rounded"
+          />
+        </div>
+      );
+    }
+
+    if (type === 'color') {
+      return (
+        <ul>
+          {items.map((color) => (
+            <li
+              key={color}
+              className={`rounded-md py-2 px-4 hover:bg-gray-200 cursor-pointer w-full ${
+                selectedColor === color ? 'bg-gray-200' : ''
+              }`}
+              onClick={() => handleColorSelection(color)}
+              onKeyDown={() => handleColorSelection(color)}
+            >
+              {color}
+            </li>
+          ))}
+        </ul>
+      );
+    }
+
+    if (type === 'price') {
+      return (
+        <div>
+          <input
+            type="number"
+            value={startPrice}
+            onChange={(event) => handleRangeChange(event.target.value, endPrice, setStartPrice, setEndPrice)}
+            placeholder="از قیمت ... تومان"
+            className="w-full px-2 py-1 mb-2 border border-gray-300 rounded"
+          />
+          <input
+            type="number"
+            value={endPrice}
+            onChange={(event) => handleRangeChange(startPrice, event.target.value, setStartPrice, setEndPrice)}
+            placeholder="تا قیمت ... تومان"
+            className="w-full px-2 py-1 mb-2 border border-gray-300 rounded"
+          />
+        </div>
+      );
+    }
+
+    if (type === 'accidental') {
+      return (
+        <div className='flex flex-row justify-around'>
+          <input
+            type="checkbox"
+            checked={isAccidental}
+            onClick={handleAccidentalChange}
+            onKeyDown={handleAccidentalChange}
+            className="mr-2"
+          />
+          <label>Accidental</label>
+        </div>
+      );
+    }
+
+    return null;
+  };
 
   return (
     <div ref={dropdownRef} className="relative hover:bg-[#F1F5F6]">
@@ -105,85 +180,7 @@ const DropDownMenu = ({ title, items, showInput, placeholder, type, onChange }) 
       </button>
       {isOpen && (
         <div className="w-full bg-white text-sm p-4">
-          { type === 'year' ? (
-            <div>
-              <input
-                type="number"
-                value={startYear}
-                onChange={handleStartYearChange}
-                placeholder="Start Year"
-                className="w-full px-2 py-1 mb-2 border border-gray-300 rounded"
-              />
-              <input
-                type="number"
-                value={endYear}
-                onChange={handleEndYearChange}
-                placeholder="End Year"
-                className="w-full px-2 py-1 mb-2 border border-gray-300 rounded"
-              />
-            </div>
-          ) : type === 'distance' ? (
-            <div>
-              <input
-                type="number"
-                value={startDis}
-                onChange={handleStartDisChange}
-                placeholder="از ... کیلومتر"
-                className="w-full px-2 py-1 mb-2 border border-gray-300 rounded"
-              />
-              <input
-                type="number"
-                value={endDis}
-                onChange={handleEndDisChange}
-                placeholder="تا ... کیلومتر"
-                className="w-full px-2 py-1 mb-2 border border-gray-300 rounded"
-              />
-            </div>
-          ) : type === 'color' ? (
-            <ul>
-              {items.map((color) => (
-                <li
-                  key={color}
-                  className={`rounded-md py-2 px-4 hover:bg-gray-200 cursor-pointer w-full ${
-                    selectedColor === color ? 'bg-gray-200' : ''
-                  }`}
-                  onClick={() => handleColorSelection(color)}
-                  onKeyDown={() => handleColorSelection(color)}
-                >
-                  {color}
-                
-                </li>
-              ))}
-            </ul>
-          ) :type === 'price' ? (
-            <div>
-              <input
-                type="number"
-                value={startPrice}
-                onChange={handleStartPriceChange}
-                placeholder="از قیمت ... تومان"
-                className="w-full px-2 py-1 mb-2 border border-gray-300 rounded"
-              />
-              <input
-                type="number"
-                value={endPrice}
-                onChange={handleEndPriceChange}
-                placeholder="تا قیمت ... تومان"
-                className="w-full px-2 py-1 mb-2 border border-gray-300 rounded"
-              />
-            </div>
-          ) : type === 'accidental' ? (
-            <div className='flex flex-row justify-around'>
-              <input
-                type="checkbox"
-                checked={isAccidental}
-                onClick={handleAccidentalChange}
-                onKeyDown={handleAccidentalChange}
-                className="mr-2"
-              />
-              <label>Accidental</label>
-            </div>
-          ) : <div></div>}
+          {renderInputFields()}
         </div>
       )}
     </div>
