@@ -10,6 +10,7 @@ const DropDownMenu = ({ title, items, showInput, placeholder, type, onChange }) 
   const [startPrice, setStartPrice] = useState('');
   const [endPrice, setEndPrice] = useState('');
   const [selectedColor, setSelectedColor] = useState('');
+  const [isAccidental, setIsAccidental] = useState(false);
 
   const dropdownRef = useRef(null);
 
@@ -53,6 +54,12 @@ const DropDownMenu = ({ title, items, showInput, placeholder, type, onChange }) 
       setSelectedColor(color);
       onChange(color);
     }
+  };
+
+  const handleAccidentalChange = (event) => {
+    setIsAccidental(event.target.checked);
+    onChange(event.target.checked);
+    
   };
 
   useEffect(() => {
@@ -134,6 +141,16 @@ const DropDownMenu = ({ title, items, showInput, placeholder, type, onChange }) 
                 placeholder="تا قیمت ... تومان"
                 className="w-full px-2 py-1 mb-2 border border-gray-300 rounded"
               />
+            </div>
+          ) : type === 'accidental' ? (
+            <div>
+              <input
+                type="checkbox"
+                checked={isAccidental}
+                onClick={handleAccidentalChange}
+                className="mr-2"
+              />
+              <label>Accidental</label>
             </div>
           ) : showInput ? (
             <form onSubmit={handleInputSubmit}>

@@ -8,7 +8,7 @@ export default function ShowAds() {
   const [ads, setAds] = useState([]);
   const [filteredAds, setFilteredAds] = useState([]);
   const dropdownItems = ['Item 1', 'Item 2', 'Item 3'];
-  const [selectedColor, setSelectedColor] = useState('');
+  
 
   useEffect(() => {
     const fetchAds = async () => {
@@ -36,14 +36,25 @@ export default function ShowAds() {
   };
 
   const handleColorChange = (color) => {
-    setSelectedColor(color);
-    console.log(color)
     if (color === '') {
       setFilteredAds(ads);
     } else {
       const filtered = ads.filter((ad) => ad.color === color);
       setFilteredAds(filtered);
     }
+  };
+
+  const handleAccidentalChange = (checked) => {
+    
+    if(checked){
+      const filtered = ads.filter((ad) => {
+      
+      ad.accidental === true});
+      setFilteredAds(filtered);
+    }else{
+      setFilteredAds(ads);
+    }
+    
   };
 
   return (
@@ -80,7 +91,13 @@ export default function ShowAds() {
             />
             <DropDownMenu title="مشخصات بدنه" items={['سالم', 'خط و خش جزیی', 'رنگ شدگی', 'دوررنگ', 'تمام رنگ', 'تصادفی', 'اوراقی']} showInput={false} />
             <DropDownMenu title="نوع سوخت" items={['دوگانه سوز دستی', 'دوگانه سوز شرکتی', 'گازوییل', 'بنزین']} showInput={false} />
-            <DropDownMenu title="تصادفی بودن" items={dropdownItems} />
+            <DropDownMenu 
+             
+             title="تصادفی بودن"
+             items={dropdownItems} 
+             type="accidental"
+             onChange={handleAccidentalChange}
+            />
             <DropDownMenu title="موتور" items={['تعویض شده', 'نیاز به تعمیر', 'سالم']} showInput={false} />
             <DropDownMenu title="محل" items={dropdownItems} showInput={true} placeholder={'محل را وارد کنید'} />
             <DropDownMenu title="مهلت بیمه شخص ثالث" items={dropdownItems} showInput={true} placeholder={"مثلا 7 ماه"} />
