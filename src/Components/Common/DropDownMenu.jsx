@@ -9,6 +9,8 @@ const DropDownMenu = ({ title, items, showInput, placeholder, type, onChange }) 
   const [endYear, setEndYear] = useState('');
   const [startPrice, setStartPrice] = useState('');
   const [endPrice, setEndPrice] = useState('');
+  const [startDis, setStartDis] = useState('');
+  const [endDis, setEndDis] = useState('');
   const [selectedColor, setSelectedColor] = useState('');
   const [isAccidental, setIsAccidental] = useState(false);
 
@@ -44,6 +46,16 @@ const DropDownMenu = ({ title, items, showInput, placeholder, type, onChange }) 
   const handleEndPriceChange = (event) => {
     setEndPrice(event.target.value);
     onChange(startPrice, event.target.value);
+  };
+
+  const handleStartDisChange = (event) => {
+    setStartDis(event.target.value);
+    onChange(event.target.value, endDis);
+  };
+
+  const handleEndDisChange = (event) => {
+    setEndDis(event.target.value);
+    onChange(startDis, event.target.value);
   };
 
   const handleColorSelection = (color) => {
@@ -93,7 +105,7 @@ const DropDownMenu = ({ title, items, showInput, placeholder, type, onChange }) 
       </button>
       {isOpen && (
         <div className="w-full bg-white text-sm p-4">
-          {type === 'year' ? (
+          { type === 'year' ? (
             <div>
               <input
                 type="number"
@@ -110,6 +122,23 @@ const DropDownMenu = ({ title, items, showInput, placeholder, type, onChange }) 
                 className="w-full px-2 py-1 mb-2 border border-gray-300 rounded"
               />
             </div>
+          ) : type === 'distance' ? (
+            <div>
+              <input
+                type="number"
+                value={startDis}
+                onChange={handleStartDisChange}
+                placeholder="از ... کیلومتر"
+                className="w-full px-2 py-1 mb-2 border border-gray-300 rounded"
+              />
+              <input
+                type="number"
+                value={endDis}
+                onChange={handleEndDisChange}
+                placeholder="تا ... کیلومتر"
+                className="w-full px-2 py-1 mb-2 border border-gray-300 rounded"
+              />
+            </div>
           ) : type === 'color' ? (
             <ul>
               {items.map((color) => (
@@ -119,6 +148,7 @@ const DropDownMenu = ({ title, items, showInput, placeholder, type, onChange }) 
                     selectedColor === color ? 'bg-gray-200' : ''
                   }`}
                   onClick={() => handleColorSelection(color)}
+                  onKeyDown={() => handleColorSelection(color)}
                 >
                   {color}
                 
@@ -143,40 +173,17 @@ const DropDownMenu = ({ title, items, showInput, placeholder, type, onChange }) 
               />
             </div>
           ) : type === 'accidental' ? (
-            <div>
+            <div className='flex flex-row justify-around'>
               <input
                 type="checkbox"
                 checked={isAccidental}
                 onClick={handleAccidentalChange}
+                onKeyDown={handleAccidentalChange}
                 className="mr-2"
               />
               <label>Accidental</label>
             </div>
-          ) : showInput ? (
-            <form onSubmit={handleInputSubmit}>
-              <input
-                type="text"
-                value={inputValue}
-                onChange={handleInputChange}
-                placeholder={placeholder}
-                className="w-full px-2 py-1 border border-gray-300 rounded"
-              />
-              <button
-                type="submit"
-                className="mt-2 text-sm py-1 px-4 bg-gray-200 hover:bg-gray-300 rounded"
-              >
-                Submit
-              </button>
-            </form>
-          ) : (
-            <ul>
-              {items.map((item) => (
-                <li key={item} className="py-2 px-4 hover:bg-gray-200 cursor-pointer w-full">
-                  {item}
-                </li>
-              ))}
-            </ul>
-          )}
+          ) : <div></div>}
         </div>
       )}
     </div>

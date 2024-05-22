@@ -35,6 +35,11 @@ export default function ShowAds() {
     setFilteredAds(filtered);
   };
 
+  const handleDisRangeChange = (startDis, endDis) => {
+    const filtered = ads.filter(ad => ad.distance >= startDis && ad.distance <= endDis);
+    setFilteredAds(filtered);
+  };
+
   const handleColorChange = (color) => {
     if (color === '') {
       setFilteredAds(ads);
@@ -47,9 +52,7 @@ export default function ShowAds() {
   const handleAccidentalChange = (checked) => {
     
     if(checked){
-      const filtered = ads.filter((ad) => {
-      
-      ad.accidental === true});
+      const filtered = ads.filter((ad) => ad.accidental === true);
       setFilteredAds(filtered);
     }else{
       setFilteredAds(ads);
@@ -81,7 +84,14 @@ export default function ShowAds() {
               type="year" 
               onChange={handleYearRangeChange} 
             />
-            <DropDownMenu title="کارکرد" items={dropdownItems} showInput={true} placeholder={'مثلا 1000 کیلومتر'} />
+            <DropDownMenu 
+              title="کارکرد" 
+              items={dropdownItems} 
+              showInput={true} 
+              type="distance"
+              placeholder={'مثلا 1000 کیلومتر'} 
+              onChange={handleDisRangeChange}
+            />
             <DropDownMenu 
               title="قیمت" 
               items={dropdownItems} 
