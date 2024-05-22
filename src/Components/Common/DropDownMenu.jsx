@@ -2,11 +2,15 @@ import React, { useState, useEffect, useRef } from 'react';
 import { IoIosArrowDown } from 'react-icons/io';
 import { IoIosArrowUp } from 'react-icons/io';
 
-const DropDownMenu = ({ title, items, showInput, placeholder, type, onYearRangeChange }) => {
+const DropDownMenu = ({ title, items, showInput, placeholder, type, onChange }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [startYear, setStartYear] = useState('');
   const [endYear, setEndYear] = useState('');
+  const [startPrice, setStartPrice] = useState('');
+  const [endPrice, setEndPrice] = useState('');
+  const [selectedColor, setSelectedColor] = useState('');
+
   const dropdownRef = useRef(null);
 
   const toggleDropdown = () => {
@@ -23,12 +27,32 @@ const DropDownMenu = ({ title, items, showInput, placeholder, type, onYearRangeC
 
   const handleStartYearChange = (event) => {
     setStartYear(event.target.value);
-    onYearRangeChange(event.target.value, endYear);
+    onChange(event.target.value, endYear);
   };
 
   const handleEndYearChange = (event) => {
     setEndYear(event.target.value);
-    onYearRangeChange(startYear, event.target.value);
+    onChange(startYear, event.target.value);
+  };
+
+  const handleStartPriceChange = (event) => {
+    setStartPrice(event.target.value);
+    onChange(event.target.value, endPrice);
+  };
+
+  const handleEndPriceChange = (event) => {
+    setEndPrice(event.target.value);
+    onChange(startPrice, event.target.value);
+  };
+
+  const handleColorSelection = (color) => {
+    if (selectedColor === color || color === 'None') {
+      setSelectedColor('');
+      onChange('');
+    } else {
+      setSelectedColor(color);
+      onChange(color);
+    }
   };
 
   useEffect(() => {
@@ -76,6 +100,38 @@ const DropDownMenu = ({ title, items, showInput, placeholder, type, onYearRangeC
                 value={endYear}
                 onChange={handleEndYearChange}
                 placeholder="End Year"
+                className="w-full px-2 py-1 mb-2 border border-gray-300 rounded"
+              />
+            </div>
+          ) : type === 'color' ? (
+            <ul>
+              {items.map((color) => (
+                <li
+                  key={color}
+                  className={`rounded-md py-2 px-4 hover:bg-gray-200 cursor-pointer w-full ${
+                    selectedColor === color ? 'bg-gray-200' : ''
+                  }`}
+                  onClick={() => handleColorSelection(color)}
+                >
+                  {color}
+                
+                </li>
+              ))}
+            </ul>
+          ) :type === 'price' ? (
+            <div>
+              <input
+                type="number"
+                value={startPrice}
+                onChange={handleStartPriceChange}
+                placeholder="از قیمت ... تومان"
+                className="w-full px-2 py-1 mb-2 border border-gray-300 rounded"
+              />
+              <input
+                type="number"
+                value={endPrice}
+                onChange={handleEndPriceChange}
+                placeholder="تا قیمت ... تومان"
                 className="w-full px-2 py-1 mb-2 border border-gray-300 rounded"
               />
             </div>
