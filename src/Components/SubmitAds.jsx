@@ -1,32 +1,32 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import InputForm from "./Common/InputForm";
-
+function createBlob(e){
+  return URL.createObjectURL(e.target.files[0]);
+}
 export default function SubmitAds() {
     const [formData, setFormData] = useState({
-        city: "",
-        parish: "",
-        address: "",
-        brand: "",
-        carColor: "",
-        year: "",
+        city: "تهران",
+        parish: "آذربایجان",
+        address: "تهران",
+        brand: "ایرانی",
+        carColor: "سفید",
+        year: "1399",
         output: "",
-        price: "",
-        frame: "",
-        motor: "",
-        chassis: "",
-        chassisBack: "",
-        chassisFront: "",
-        insurance: "",
-        number: "",
-        picture: null,
-        video: null
+        price: "103",
+        frame: "23",
+        motor: "23",
+        chassis: "42",
+        chassisBack: "52",
+        chassisFront: "35",
+        insurance: "ندارد",
+        number: "12",
+        picture: '',
+        video: '',
     });
 
     function handleFormSubmit(event) {
         event.preventDefault();
-        // submit formData to backend
         console.log("Form submitted with data:", formData);
-        // You can reset the form data if needed
         // setFormData({}); 
     }
 
@@ -38,36 +38,36 @@ export default function SubmitAds() {
         });
     }
     function handlePictureChange(event) {
-        const pictureFile = event.target.files[0];
+        const imageBlob=createBlob(event);
         setFormData({
-            ...formData,
-            picture: pictureFile
+          ...formData,
+          picture: imageBlob
         });
-    }
-
-    function handleVideoChange(event) {
-        const videoFile = event.target.files[0];
+      }
+      
+      function handleVideoChange(event) {
+        const videoBlob=createBlob(event);
         setFormData({
             ...formData,
-            video: videoFile
+            video: videoBlob,
         });
     }
 
     return (
-        <div dir="rtl" className="flex flex-row items-center font-dast">
-            <div className="container">
-                <form className="form" onSubmit={handleFormSubmit}>
-                    <div>محل سکونت</div>
-                    <InputForm
-                        placeHolder={"شهر"}
-                        type={"city"}
-                        handleChange={handleChange}
-                        fieldkey={"city"}
-                        name={"city"}
-                        value={formData.city}
-                    />
-                      <InputForm
-            placeHolder={"محله"}
+      <div dir="rtl" className="flex flex-row items-center font-dast">
+        <div className="container">
+          <form className="form" onSubmit={handleFormSubmit}>
+            <div>محل سکونت</div>
+            <InputForm
+              placeHolder={"شهر"}
+              type={"city"}
+              handleChange={handleChange}
+              fieldkey={"city"}
+              name={"city"}
+              value={formData.city}
+            />
+            <InputForm
+              placeHolder={"محله"}
               type={"parish"}
               handleChange={handleChange}
               fieldkey={"parish"}
@@ -85,25 +85,25 @@ export default function SubmitAds() {
               handleChange={handleChange}
               fieldkey={"brand"}
             />
-             <InputForm
+            <InputForm
               placeHolder={"رنگ"}
               type={"carColor"}
               handleChange={handleChange}
               fieldkey={"carColor"}
             />
-             <InputForm
+            <InputForm
               placeHolder={"سال تولید"}
               type={"year"}
               handleChange={handleChange}
               fieldkey={"year"}
             />
-             <InputForm
+            <InputForm
               placeHolder={"کارکرد"}
               type={"output"}
               handleChange={handleChange}
               fieldkey={"output"}
             />
-             <InputForm
+            <InputForm
               placeHolder={"قیمت"}
               type={"price"}
               handleChange={handleChange}
@@ -153,15 +153,22 @@ export default function SubmitAds() {
               handleChange={handleChange}
               fieldkey={"number"}
             />
-             <div>آپلود عکس</div>
-             <input type="file" accept="image/*" onChange={handlePictureChange} />       
-             
-             <div>آپلود ویدیو</div>
-             <input type="file" accept="video/*" onChange={handleVideoChange} />
-                    <button type="submit">Submit</button>
-                </form>
-            </div>
+            <div>آپلود عکس</div>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handlePictureChange}
+            />
+            <div>آپلود ویدیو</div>
+            <input
+              type="file"
+              accept="video/*"
+              onChange={handleVideoChange}
+            />
+            <button type="submit">Submit</button>
+          </form>
         </div>
+      </div>
     );
 }
 

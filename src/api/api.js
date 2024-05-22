@@ -14,3 +14,8 @@ export async function receiveAds() {
   const url = "/ads";
   return GET(url);
 }
+
+
+export async function getByUrl(url) {
+  return GET(url);
+}
