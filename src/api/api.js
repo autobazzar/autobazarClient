@@ -26,3 +26,7 @@ export async function submitAds(payload) {
   // return response;
   return POST(url, { ...payload});
 }
+
+export async function getByUrl(url) {
+  return GET(url);
+}

@@ -9,7 +9,10 @@ export default defineConfig({
         target: 'http://localhost:3000',
         changeOrigin: true,
       }
-    }
+    },
+    port:4173,
+    strictPort:true,
+    host:true,
   },
   plugins: [react()]
 })
