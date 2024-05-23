@@ -10,7 +10,7 @@ export default defineConfig({
         changeOrigin: true,
       }
     },
-    port:4173,
+    port:5173,
     strictPort:true,
     host:true,
   },

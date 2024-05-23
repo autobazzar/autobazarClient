@@ -1,229 +1,117 @@
-import InputForm from "./Common/InputForm";
+import React, { useCallback, useRef } from "react";
 import { ImStatsDots } from "react-icons/im";
-import { useCallback, useRef, useState } from "react";
-import {submitAds } from '../api/api'
-
+import { submitAds } from "../api/api";
+import { dataToTransfer } from "../utils/initialSubmitData";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export default function SubmitAds() {
-    const formRef = useRef(null);
-    const [formData, setFormData] = useState({
-        city: "",
-        parish: "",
-        address: "",
-        brand: "",
-        carColor: "",
-        year: "",
-        output: "",
-        price: "",
-        frame: "",
-        motor: "",
-        chassis: "",
-        chassisBack: "",
-        chassisFront: "",
-        insurance: "",
-        number: "",
-        picture: null,
-        video: null
-    });
+  const {user_id} =useSelector(state=>state.profile);
+  const formData = useRef({
+    technicalInfo: "اطلاعات فنی جدید درباره آگهی.",
+    address: "تهران ض=ق 123",
+    mobileNum: "123-456-7890",
+    city: "شهر جدید",
+    carName: "هوندا سیویک",
+    picsUrl: "http://example.com/newpic.jpg",
+    additionalInfo: "اطلاعات اضافی جدید درباره آگهی.",
+    price: 12000,
+    date: "2024-06-17",
+    year: 2023,
+    status: 1,
+    model: "مدل جدید",
+    videoUrl: "http://example.com/newvideo.mp4",
+    brand: "برند جدید",
+    color: "آبی",
+    distance: 20000,
+    accidental: false,
+    insurance: 2,
+    motor: "توربو",
+    fuel: "گازسوز",
+    userId: 456,
+  });
+const navigate=useNavigate();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
+    try {
+        console.error(formData);
+      await submitAds({...formData.current,user_id});
+      navigate('/show-ads')
     
-        try {
-          const response = await submitAds({ ...formRef.current});
-    
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-    
-          const result = await response.json();
-          console.log('Form successfully submitted:', result);
-        } catch (error) {
-          console.error('Error submitting form:', error);
-        }
-      };
-    
-
-    const handleChange = useCallback((e, key) => {
-        formRef.current = {
-          ...formRef.current,
-          [key]: e.target.value,
-        };
-      }, []);
-
-    function handlePictureChange(event) {
-        const pictureFile = event.target.files[0];
-        setFormData({
-            ...formData,
-            picture: pictureFile
-        });
+    } catch (error) {
+      console.error("Error submitting form:", error);
     }
+  };
 
-    function handleVideoChange(event) {
-        const videoFile = event.target.files[0];
-        setFormData({
-            ...formData,
-            video: videoFile
-        });
-    }
+  const handleChange = useCallback((e, key) => {
+    formData.current = {
+      ...formData.current,
+      [key]: e.target.value,
+    };
+  }, []);
 
-    return (
-        <div dir="rtl" className="flex justify-center items-center min-h-screen bg-gray-100">
-            <div className="bg-[#4C857A] p-6 rounded-lg shadow-lg w-full max-w-lg">
-                <form className="space-y-4" onSubmit={handleSubmit}>
-                    <h2 className="text-2xl font-bold mb-4 text-white">ثبت آگهی</h2>
-                    <div className="text-lg font-semibold text-white">محل سکونت</div>
-                    <InputForm
-                        placeHolder={"شهر"}
-                        type={"text"}
-                        handleChange={handleChange}
-                        fieldkey={"city"}
-                        name={"city"}
-                        value={formData.city}
-                        className="w-full"
-                    />
-                    <InputForm
-                        placeHolder={"محله"}
-                        type={"text"}
-                        handleChange={handleChange}
-                        fieldkey={"parish"}
-                        name={"parish"}
-                        value={formData.parish}
-                        className="w-full"
-                    />
-                    <InputForm
-                        placeHolder={"آدرس"}
-                        type={"text"}
-                        handleChange={handleChange}
-                        fieldkey={"address"}
-                        name={"address"}
-                        value={formData.address}
-                        className="w-full"
-                    />
-                    <div className="text-lg font-semibold text-white">مشخصات ظاهری</div>
-                    <InputForm
-                        placeHolder={"برند و تیپ"}
-                        type={"text"}
-                        handleChange={handleChange}
-                        fieldkey={"brand"}
-                        name={"brand"}
-                        value={formData.brand}
-                        className="w-full"
-                    />
-                    <InputForm
-                        placeHolder={"رنگ"}
-                        type={"text"}
-                        handleChange={handleChange}
-                        fieldkey={"carColor"}
-                        name={"carColor"}
-                        value={formData.carColor}
-                        className="w-full"
-                    />
-                    <InputForm
-                        placeHolder={"سال تولید"}
-                        type={"number"}
-                        handleChange={handleChange}
-                        fieldkey={"year"}
-                        name={"year"}
-                        value={formData.year}
-                        className="w-full"
-                    />
-                    <InputForm
-                        placeHolder={"کارکرد"}
-                        type={"number"}
-                        handleChange={handleChange}
-                        fieldkey={"output"}
-                        name={"output"}
-                        value={formData.output}
-                        className="w-full"
-                    />
-                    <InputForm
-                        placeHolder={"قیمت"}
-                        type={"number"}
-                        handleChange={handleChange}
-                        fieldkey={"price"}
-                        name={"price"}
-                        value={formData.price}
-                        className="w-full"
-                    />
-                    <InputForm
-                        placeHolder={"مشخصات بدنه"}
-                        type={"text"}
-                        handleChange={handleChange}
-                        fieldkey={"frame"}
-                        name={"frame"}
-                        value={formData.frame}
-                        className="w-full"
-                    />
-                    <div className="text-lg font-semibold text-white">مشخصات تکمیلی</div>
-                    <InputForm
-                        placeHolder={"وضعیت موتور"}
-                        type={"text"}
-                        handleChange={handleChange}
-                        fieldkey={"motor"}
-                        name={"motor"}
-                        value={formData.motor}
-                        className="w-full"
-                    />
-                    <InputForm
-                        placeHolder={"وضعیت شاسی"}
-                        type={"text"}
-                        handleChange={handleChange}
-                        fieldkey={"chassis"}
-                        name={"chassis"}
-                        value={formData.chassis}
-                        className="w-full"
-                    />
-                    <InputForm
-                        placeHolder={"وضعیت شاسی عقب"}
-                        type={"text"}
-                        handleChange={handleChange}
-                        fieldkey={"chassisBack"}
-                        name={"chassisBack"}
-                        value={formData.chassisBack}
-                        className="w-full"
-                    />
-                    <InputForm
-                        placeHolder={"وضعیت شاسی جلو"}
-                        type={"text"}
-                        handleChange={handleChange}
-                        fieldkey={"chassisFront"}
-                        name={"chassisFront"}
-                        value={formData.chassisFront}
-                        className="w-full"
-                    />
-                    <InputForm
-                        placeHolder={"مهلت بیمه شخص ثالث"}
-                        type={"text"}
-                        handleChange={handleChange}
-                        fieldkey={"insurance"}
-                        name={"insurance"}
-                        value={formData.insurance}
-                        className="w-full"
-                    />
-                    <div className="text-lg font-semibold text-white">مشخصات تماس</div>
-                    <InputForm
-                        placeHolder={"شماره تماس"}
-                        type={"text"}
-                        handleChange={handleChange}
-                        fieldkey={"number"}
-                        name={"number"}
-                        value={formData.number}
-                        className="w-full"
-                    />
-                    <div className="text-lg font-semibold text-white">آپلود عکس</div>
-                    <input type="file" accept="image/*" onChange={handlePictureChange} className="w-full mb-4 text-white" />
-                    <div className="text-lg font-semibold text-white">آپلود ویدیو</div>
-                    <input type="file" accept="video/*" onChange={handleVideoChange} className="w-full mb-4 text-white" />
-                    <button
-                        type="submit"
-                        className="flex items-center justify-center  bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors duration-200"
-                    >
-                        <ImStatsDots className="mr-2" />
-                        ثبت آگهی
-                    </button>
-                </form>
-            </div>
-        </div>
-    );
+  function handlePictureChange(event) {
+    const pictureFile = event.target.files[0];
+    const pitcureBlobl = URL.createObjectURL(pictureFile);
+    formData.current = {
+      ...formData.current,
+      picsUrl: pitcureBlobl,
+    };
+  }
+
+  function handleVideoChange(event) {
+    const videoFile = event.target.files[0];
+    const videoBlobl = URL.createObjectURL(videoFile);
+    formData.current = {
+      ...formData.current,
+      videoUrl: videoBlobl,
+    };
+  }
+
+  return (
+    <div
+      dir="rtl"
+      className="flex justify-center items-center min-h-screen bg-gray-100"
+    >
+      <div className="bg-[#4C857A] p-6 rounded-lg shadow-lg w-full max-w-lg">
+        <form className="space-y-4 flex flex-col" onSubmit={handleSubmit}>
+          {/* <input type="text" placeholder="" /> */}
+          <h2 className="text-2xl font-bold mb-4 text-white">ثبت آگهی</h2>
+          {/* <div className="text-lg font-semibold text-white">محل سکونت</div> */}
+          {dataToTransfer.map((item) =>
+            React.createElement(item.type, {
+              onChange(e) {
+                handleChange(e, item.name);
+              },
+              ...item.props,
+              key: item.name,
+              className: `input-form ${item.className}`,
+            })
+          )}
+          <div className="text-lg font-semibold text-white">آپلود عکس</div>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handlePictureChange}
+            className="w-full mb-4 text-white"
+          />
+          <div className="text-lg font-semibold text-white">آپلود ویدیو</div>
+          <input
+            type="file"
+            accept="video/*"
+            onChange={handleVideoChange}
+            className="w-full mb-4 text-white"
+          />
+          <button
+            type="submit"
+            className="flex items-center justify-center  bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors duration-200"
+          >
+            <ImStatsDots className="mr-2" />
+            ثبت آگهی
+          </button>
+        </form>
+      </div>
+    </div>
+  );
 }

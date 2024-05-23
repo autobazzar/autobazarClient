@@ -1,0 +1,33 @@
+export const dataToTransfer = [
+  //   { props:{placeholder:""},type: "input", name: "123" },
+  {
+    props: { placeholder: "مشخصات فنی" },
+    type: "input",
+    name: "technicalInfo",
+  },
+  { props: { placeholder: "آدرس" }, type: "input", name: "address" },
+  { props: { placeholder: "شماره تماس" }, type: "input", name: "mobileNum" },
+  { props: { placeholder: "شهر" }, type: "input", name: "city" },
+  { props: { placeholder: "مدل ماشین" }, type: "input", name: "carName" },
+
+  { props: { placeholder: "قیمت" }, type: "input", name: "price" },
+  { props: { placeholder: "تاریخ" }, type: "input", name: "date" },
+  { props: { placeholder: "سال تولید" }, type: "input", name: "year" },
+  { props: { placeholder: "سوخت مصرفی" }, type: "input", name: "fuel" },
+  { props: { placeholder: "وضعیت" }, type: "input", name: "status" },
+  { props: { placeholder: "مدل" }, type: "input", name: "model" },
+  { props: { placeholder: "موتور" }, type: "input", name: "motor" },
+  { props: { placeholder: "وضعیت بیمه" }, type: "input", name: "insurance" },
+  //  props:{placeholder:""}, { type: "input", name: "picsUrl" },
+  //  props:{placeholder:""}, { type: "input", name: "videoUrl" },
+  { props: { placeholder: "برند" }, type: "input", name: "brand" },
+  { props: { placeholder: "رنگ" }, type: "input", name: "color" },
+  { props: { placeholder: "فاصله" }, type: "input", name: "distance" },
+  { props: { placeholder: "وضعیت تصادف" }, type: "input", name: "accidental" },
+  {
+    props: { placeholder: "اطلاعات اضافه" },
+    type: "textarea",
+    name: "additionalInfo",
+    className: "resize-none",
+  },
+];
