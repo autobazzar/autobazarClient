@@ -14,3 +14,15 @@ export async function receiveAds() {
   const url = "/ads";
   return GET(url);
 }
+export async function submitAds(payload) {
+  const url = "/ads/create";
+  // const response = await fetch(`http://localhost:3000/submitAds`, {
+  //   method: 'POST',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //   },
+  //   body: JSON.stringify(payload),
+  // });
+  // return response;
+  return POST(url, { ...payload});
+}

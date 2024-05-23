@@ -1,8 +1,11 @@
-import { useState } from "react";
 import InputForm from "./Common/InputForm";
 import { ImStatsDots } from "react-icons/im";
+import { useCallback, useRef, useState } from "react";
+import {submitAds } from '../api/api'
+
 
 export default function SubmitAds() {
+    const formRef = useRef(null);
     const [formData, setFormData] = useState({
         city: "",
         parish: "",
@@ -23,60 +26,37 @@ export default function SubmitAds() {
         video: null
     });
 
-    async function handleFormSubmit(event) {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-
-        const data = new FormData();
-        for (const key in formData) {
-            data.append(key, formData[key]);
-        }
-
+    
+        const formData = new FormData(event.target);
+    
         try {
-            const response = await fetch('localhost3000:ads', {
-                method: 'POST',
-                body: data
-            });
-
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-
-            const result = await response.json();
-            console.log('Form successfully submitted:', result);
-
-            // Optionally reset the form
-            // setFormData({
-            //     city: "",
-            //     parish: "",
-            //     address: "",
-            //     brand: "",
-            //     carColor: "",
-            //     year: "",
-            //     output: "",
-            //     price: "",
-            //     frame: "",
-            //     motor: "",
-            //     chassis: "",
-            //     chassisBack: "",
-            //     chassisFront: "",
-            //     insurance: "",
-            //     number: "",
-            //     picture: null,
-            //     video: null
-            // });
-
+          const payload = {};
+          formData.forEach((value, key) => {
+            payload[key] = value;
+          });
+    
+          const response = await submitAds({ ...formRef.current});
+    
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+    
+          const result = await response.json();
+          console.log('Form successfully submitted:', result);
         } catch (error) {
-            console.error('There was a problem with the fetch operation:', error);
+          console.error('Error submitting form:', error);
         }
-    }
+      };
+    
 
-    function handleChange(event) {
-        const { name, value } = event.target;
-        setFormData({
-            ...formData,
-            [name]: value
-        });
-    }
+    const handleChange = useCallback((e, key) => {
+        formRef.current = {
+          ...formRef.current,
+          [key]: e.target.value,
+        };
+      }, []);
 
     function handlePictureChange(event) {
         const pictureFile = event.target.files[0];
@@ -97,7 +77,7 @@ export default function SubmitAds() {
     return (
         <div dir="rtl" className="flex justify-center items-center min-h-screen bg-gray-100">
             <div className="bg-[#4C857A] p-6 rounded-lg shadow-lg w-full max-w-lg">
-                <form className="space-y-4" onSubmit={handleFormSubmit}>
+                <form className="space-y-4" onSubmit={handleSubmit}>
                     <h2 className="text-2xl font-bold mb-4 text-white">ثبت آگهی</h2>
                     <div className="text-lg font-semibold text-white">محل سکونت</div>
                     <InputForm
