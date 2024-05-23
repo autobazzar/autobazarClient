@@ -3,6 +3,7 @@ import React from "react";
 import Home from "../Home";
 import Profile from "../Components/Profile";
 import ShowAds from "../Components/ShowAds";
+import AboutUs from "../Components/AboutUs";
 import ContactUs from "../Components/ContactUs";
 import Admin from "../Components/Admin";
 import Layout from "../Components/Layout";
@@ -31,6 +32,8 @@ export const router = createBrowserRouter([
         element: React.createElement(SubmitAds)
       },
       {
+        path: "/about-us",
+        element: React.createElement(AboutUs)
         path: "/contact-us",
       element:React.createElement(ContactUs),
       }
