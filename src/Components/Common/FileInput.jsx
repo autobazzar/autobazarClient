@@ -26,6 +26,7 @@ export default function FileInput({ handleChange, title, accept, type }) {
         className=" w-fit h-full bg-white rounded-lg text-blue-600 cursor-pointer flex p-3 flex-col items-center justify-center"
         onClick={onContainerClick}
         onKeyDown={onContainerClick}
+        tabIndex="0"
         role="button"
       >
         <GoPlus className="text-[3rem]" />
