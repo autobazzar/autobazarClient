@@ -32,7 +32,7 @@ export default function SubmitAds() {
         }
 
         try {
-            const response = await fetch('http://localhost:5173/Submit-ads', {
+            const response = await fetch('localhost3000:ads', {
                 method: 'POST',
                 body: data
             });
