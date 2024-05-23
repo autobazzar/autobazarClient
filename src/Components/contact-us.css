@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .half {
+    flex: 1;
+    border: 1px solid #ccc;
+    padding: 20px;
+  }
+  
+  .left {
+    background-color: #f0f0f0;
+  }
+  
+  .right {
+    background-color: #e0e0e0;
+  }
+  
