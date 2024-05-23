@@ -32,7 +32,7 @@ export default function SubmitAds() {
         }
 
         try {
-            const response = await fetch('https://your-backend-endpoint.com/api/submit', {
+            const response = await fetch('http://localhost:5173/Submit-ads', {
                 method: 'POST',
                 body: data
             });
@@ -96,10 +96,10 @@ export default function SubmitAds() {
 
     return (
         <div dir="rtl" className="flex justify-center items-center min-h-screen bg-gray-100">
-            <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-lg">
+            <div className="bg-[#4C857A] p-6 rounded-lg shadow-lg w-full max-w-lg">
                 <form className="space-y-4" onSubmit={handleFormSubmit}>
-                    <h2 className="text-2xl font-bold mb-4">ثبت آگهی</h2>
-                    <div className="text-lg font-semibold">محل سکونت</div>
+                    <h2 className="text-2xl font-bold mb-4 text-white">ثبت آگهی</h2>
+                    <div className="text-lg font-semibold text-white">محل سکونت</div>
                     <InputForm
                         placeHolder={"شهر"}
                         type={"text"}
@@ -127,7 +127,7 @@ export default function SubmitAds() {
                         value={formData.address}
                         className="w-full"
                     />
-                    <div className="text-lg font-semibold">مشخصات ظاهری</div>
+                    <div className="text-lg font-semibold text-white">مشخصات ظاهری</div>
                     <InputForm
                         placeHolder={"برند و تیپ"}
                         type={"text"}
@@ -182,7 +182,7 @@ export default function SubmitAds() {
                         value={formData.frame}
                         className="w-full"
                     />
-                    <div className="text-lg font-semibold">مشخصات تکمیلی</div>
+                    <div className="text-lg font-semibold text-white">مشخصات تکمیلی</div>
                     <InputForm
                         placeHolder={"وضعیت موتور"}
                         type={"text"}
@@ -228,7 +228,7 @@ export default function SubmitAds() {
                         value={formData.insurance}
                         className="w-full"
                     />
-                    <div className="text-lg font-semibold">مشخصات تماس</div>
+                    <div className="text-lg font-semibold text-white">مشخصات تماس</div>
                     <InputForm
                         placeHolder={"شماره تماس"}
                         type={"text"}
@@ -238,13 +238,13 @@ export default function SubmitAds() {
                         value={formData.number}
                         className="w-full"
                     />
-                    <div className="text-lg font-semibold">آپلود عکس</div>
-                    <input type="file" accept="image/*" onChange={handlePictureChange} className="w-full mb-4" />
-                    <div className="text-lg font-semibold">آپلود ویدیو</div>
-                    <input type="file" accept="video/*" onChange={handleVideoChange} className="w-full mb-4" />
+                    <div className="text-lg font-semibold text-white">آپلود عکس</div>
+                    <input type="file" accept="image/*" onChange={handlePictureChange} className="w-full mb-4 text-white" />
+                    <div className="text-lg font-semibold text-white">آپلود ویدیو</div>
+                    <input type="file" accept="video/*" onChange={handleVideoChange} className="w-full mb-4 text-white" />
                     <button
                         type="submit"
-                        className="flex items-center justify-center bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors duration-200"
+                        className="flex items-center justify-center  bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors duration-200"
                     >
                         <ImStatsDots className="mr-2" />
                         ثبت آگهی
