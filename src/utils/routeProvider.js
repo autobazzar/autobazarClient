@@ -3,6 +3,7 @@ import React from "react";
 import Home from "../Home";
 import Profile from "../Components/Profile";
 import ShowAds from "../Components/ShowAds";
+import CallUs from "../Components/CallUs";
 import Admin from "../Components/Admin";
 import Layout from "../Components/Layout";
 import SubmitAds from "../Components/SubmitAds";
@@ -28,6 +29,10 @@ export const router = createBrowserRouter([
       {
         path: "/submit-ads",
         element: React.createElement(SubmitAds)
+      },
+      {
+        path: "/call-us",
+      element:React.createElement(CallUs),
       }
     ],
   },
