@@ -31,7 +31,7 @@ export const router = createBrowserRouter([
         element: React.createElement(SubmitAds)
       },
       {
-        path: "/call-us",
+        path: "/contact-us",
       element:React.createElement(CallUs),
       }
     ],
