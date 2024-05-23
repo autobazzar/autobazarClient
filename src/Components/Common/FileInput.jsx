@@ -7,7 +7,7 @@ export default function FileInput({ handleChange, title, accept, type }) {
   const onContainerClick = () => {
     inputRef.current.click();
   };
-  const onInputChange = () => {
+  const onInputChange = (event) => {
     const file = event.target.files[0];
     const data = URL.createObjectURL(file);
     handleChange(data);
@@ -25,6 +25,8 @@ export default function FileInput({ handleChange, title, accept, type }) {
       <div
         className=" w-fit h-full bg-white rounded-lg text-blue-600 cursor-pointer flex p-3 flex-col items-center justify-center"
         onClick={onContainerClick}
+        onKeyDown={onContainerClick}
+        role="button"
       >
         <GoPlus className="text-[3rem]" />
         {title}

@@ -1,5 +1,4 @@
-import { useCallback, useRef, useState } from "react";
-import { ImStatsDots } from "react-icons/im";
+import { useCallback, useRef} from "react";
 import { submitAds } from "../api/api";
 import { dataToTransfer } from "../utils/initialSubmitData";
 import { useSelector } from "react-redux";
