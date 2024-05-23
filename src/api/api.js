@@ -14,7 +14,11 @@ export async function receiveAds() {
   const url = "/ads";
   return GET(url);
 }
-
+export async function submitAds(payload) {
+  //const url = "localhost:3000/ads";
+  const url = "/ads";
+  return POST(url, { ...payload});
+}
 
 export async function getByUrl(url) {
   return GET(url);
