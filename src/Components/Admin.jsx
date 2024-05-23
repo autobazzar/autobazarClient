@@ -35,8 +35,7 @@ export default function Admin() {
               Icon={MdQueryStats}
             />
           </div >
-          <div className="flex flex-col gap-5">
-
+          <div className="flex flex-col gap-5 mb-10">
             <Table title={'بررسی دیدگاه ها'}/>
             <Table title={'مدیریت کاربران'}/>
             <Table title={'مدیریت آگهی ها'}/>
@@ -44,7 +43,7 @@ export default function Admin() {
         </div>
       </section>
       {/* dashboard section */}
-      <section className=" flex flex-col w-fit text-nowrap h-fit bg-[var(--admin-dashboard-color)] rounded-r-xl text-[var(--text-white)] items-center font-dast">
+      <section className=" sticky top-0 flex flex-col w-fit text-nowrap h-fit bg-[var(--admin-dashboard-color)] rounded-r-xl text-[var(--text-white)] items-center font-dast">
         <h1 className="text-2xl mb-8 w-full text-center border-b-2 p-10">
           داشبورد
         </h1>

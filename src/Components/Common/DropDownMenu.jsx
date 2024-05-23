@@ -42,7 +42,7 @@ const DropDownMenu = ({ title, items, showInput, placeholder }) => {
   return (
     <div ref={dropdownRef} className="relative hover:bg-[#F1F5F6]">
       <button
-        className="w-60 py-4 px-4 border-b border-gray-300 text-gray-700 text-right"
+        className="w-3/4 text-lg py-4 px-4 border-b border-gray-300 text-gray-700 text-right"
         onClick={toggleDropdown}
       >
         <div className="flex flex-row items-center">

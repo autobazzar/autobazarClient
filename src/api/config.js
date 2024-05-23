@@ -4,7 +4,14 @@ import { toast } from "react-toastify";
 import { prettyString } from "../utils/prettyString";
 
 export function GET(url) {
-  return axios.get(`${BASE_URL}${url}`);
+  return axios
+      .get(`${BASE_URL}${url}`)
+      .catch((err) => {
+        const { message } = err.response.data;
+        toast.error(prettyString(message));
+        return err;
+      });
+  ;
 }
 export async function POST(url, payload) {
   const body = payload;

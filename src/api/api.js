@@ -1,5 +1,4 @@
-import { POST } from "./config";
-const authToken = localStorage.getItem("jwt");
+import { POST, GET } from "./config";
 
 export async function registerUser(payload, googleFlag) {
   const url = "/users/sign-up";
@@ -9,4 +8,9 @@ export async function registerUser(payload, googleFlag) {
 export async function loginUser(payload, googleFlag) {
   const url = "/users/login";
   return POST(url, { ...payload, isFromGoogle: Boolean(googleFlag) });
+}
+
+export async function receiveAds() {
+  const url = "/ads";
+  return GET(url);
 }
