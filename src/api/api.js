@@ -15,14 +15,7 @@ export async function receiveAds() {
   return GET(url);
 }
 export async function submitAds(payload) {
-  const url = "/ads/create";
-  // const response = await fetch(`http://localhost:3000/submitAds`, {
-  //   method: 'POST',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //   },
-  //   body: JSON.stringify(payload),
-  // });
-  // return response;
+  //const url = "localhost:3000/ads";
+  const url = "/ads";
   return POST(url, { ...payload});
 }

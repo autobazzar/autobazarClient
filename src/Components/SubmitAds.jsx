@@ -29,14 +29,7 @@ export default function SubmitAds() {
     const handleSubmit = async (event) => {
         event.preventDefault();
     
-        const formData = new FormData(event.target);
-    
         try {
-          const payload = {};
-          formData.forEach((value, key) => {
-            payload[key] = value;
-          });
-    
           const response = await submitAds({ ...formRef.current});
     
           if (!response.ok) {
