@@ -30,42 +30,42 @@ export default function Profile() {
   return (
     <div dir="rtl" className='flex flex-row h-screen'>
       <div className='bg-[#2b4e47] med:rounded-bl-[4rem] med:basis-[28%] w-full flex flex-col gap-y-12 h-[92%]'>
-        <div onClick={() => handleItemClick(0)} onKeyDown={() => handleItemClick(0)} role="button" className={`cursor-pointer flex flex-row justify-start med:justify-between items-center hover:bg-[#465956] ${state.state_count === 0 && "bg-[#4C857A]" }`}>
+        <button onClick={() => handleItemClick(0)} onKeyDown={() => handleItemClick(0)} className={`cursor-pointer flex flex-row justify-start med:justify-between items-center hover:bg-[#465956] ${state.state_count === 0 && "bg-[#4C857A]" }`}>
           <MdOutlineEdit color='white' className="med:hidden h-12 w-12 pr-4" />
           <div>
-            <p className='text-xl font-semibold text-white pr-5 pt-3 mb-2'>{profile.userName}</p>
+            <p className='text-xl text-right font-semibold text-white pr-5 pt-3 mb-2'>{profile.userName}</p>
             <p className='text-white mr-5 pb-3'>{profile.email}</p>
           </div>
           <MdOutlineEdit color='white'  className="hidden med:block h-12 w-12 ml-5" />
-        </div>
-        <div onClick={() => handleItemClick(1)} onKeyDown={() => handleItemClick(1)} role="button" className={`cursor-pointer flex flex-row justify-start med:justify-between items-center hover:bg-[#465956] ${state.state_count === 1 && "bg-[#4C857A]" }`}>
+        </button>
+        <button onClick={() => handleItemClick(1)} onKeyDown={() => handleItemClick(1)} className={`cursor-pointer flex flex-row justify-start med:justify-between items-center hover:bg-[#465956] ${state.state_count === 1 && "bg-[#4C857A]" }`}>
           <LuFolderArchive color='white' className="med:hidden h-12 w-12 pr-4" />
           <div>
             <p className='text-xl font-semibold text-white m-5'>آگهی های من</p>
           </div>
           <LuFolderArchive color='white' className="hidden med:block h-12 w-12 ml-5" />
-        </div>
-        <div onClick={() => handleItemClick(2)} onKeyDown={() => handleItemClick(2)} role="button" className={`cursor-pointer flex flex-row justify-start med:justify-between items-center hover:bg-[#465956] ${state.state_count === 2 && "bg-[#4C857A]" }`}>
+        </button>
+        <button onClick={() => handleItemClick(2)} onKeyDown={() => handleItemClick(2)} className={`cursor-pointer flex flex-row justify-start med:justify-between items-center hover:bg-[#465956] ${state.state_count === 2 && "bg-[#4C857A]" }`}>
           <FaPlus color='white' className="med:hidden h-12 w-12 ml-5 pr-4" />
           <div>
             <p className='text-xl font-semibold text-white m-5'>ثبت آگهی</p>
           </div>
           <FaPlus color='white' className="hidden med:block h-12 w-12 ml-5" />
-        </div>
-        <div onClick={() => handleItemClick(3)} onKeyDown={() => handleItemClick(3)} role="button" className={`cursor-pointer flex flex-row justify-start med:justify-between items-center hover:bg-[#465956] ${state.state_count === 3 && "bg-[#4C857A]" }`}>
+        </button>
+        <button onClick={() => handleItemClick(3)} onKeyDown={() => handleItemClick(3)} className={`cursor-pointer flex flex-row justify-start med:justify-between items-center hover:bg-[#465956] ${state.state_count === 3 && "bg-[#4C857A]" }`}>
           <IoSearchOutline color='white' className="med:hidden h-12 w-12 ml-5 pr-4" />
           <div>
             <p className='text-xl font-semibold text-white m-5'>بازارگردی</p>
           </div>
           <IoSearchOutline color='white' className="hidden med:block h-12 w-12 ml-5" />
-        </div>
-        <div onClick={() => handleItemClick(4)} onKeyDown={() => handleItemClick(4)} role="button" className={`cursor-pointer flex flex-row justify-start med:justify-between items-center hover:bg-[#465956] ${state.state_count === 4 && "bg-[#4C857A]" }`}>
+        </button>
+        <button onClick={() => handleItemClick(4)} onKeyDown={() => handleItemClick(4)} className={`cursor-pointer flex flex-row justify-start med:justify-between items-center hover:bg-[#465956] ${state.state_count === 4 && "bg-[#4C857A]" }`}>
           <RxExit color='white' className="med:hidden h-12 w-12 ml-5 pr-4" />
           <div>
             <p className='text-xl font-semibold text-white m-5'>خروج</p>
           </div>
           <RxExit color='white' className="hidden med:block h-12 w-12 ml-5" />
-        </div>
+        </button>
       </div>
 
       <div className='hidden med:block med:basis-[72%] mt-5 pr-16'>
