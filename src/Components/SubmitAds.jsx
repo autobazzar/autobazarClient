@@ -1,29 +1,28 @@
+
 import InputForm from "./Common/InputForm";
 import { ImStatsDots } from "react-icons/im";
 import { useCallback, useRef, useState } from "react";
 import {submitAds } from '../api/api'
-
-
 export default function SubmitAds() {
     const formRef = useRef(null);
     const [formData, setFormData] = useState({
-        city: "",
-        parish: "",
-        address: "",
-        brand: "",
-        carColor: "",
-        year: "",
+        city: "تهران",
+        parish: "آذربایجان",
+        address: "تهران",
+        brand: "ایرانی",
+        carColor: "سفید",
+        year: "1399",
         output: "",
-        price: "",
-        frame: "",
-        motor: "",
-        chassis: "",
-        chassisBack: "",
-        chassisFront: "",
-        insurance: "",
-        number: "",
-        picture: null,
-        video: null
+        price: "103",
+        frame: "23",
+        motor: "23",
+        chassis: "42",
+        chassisBack: "52",
+        chassisFront: "35",
+        insurance: "ندارد",
+        number: "12",
+        picture: '',
+        video: '',
     });
 
     const handleSubmit = async (event) => {
@@ -50,20 +49,23 @@ export default function SubmitAds() {
           [key]: e.target.value,
         };
       }, []);
-
-    function handlePictureChange(event) {
-        const pictureFile = event.target.files[0];
-        setFormData({
-            ...formData,
-            picture: pictureFile
-        });
+        console.log("Form submitted with data:", formData);
+        // setFormData({}); 
     }
 
-    function handleVideoChange(event) {
-        const videoFile = event.target.files[0];
+    function handlePictureChange(event) {
+        const imageBlob=createBlob(event);
+        setFormData({
+          ...formData,
+          picture: imageBlob
+        });
+      }
+      
+      function handleVideoChange(event) {
+        const videoBlob=createBlob(event);
         setFormData({
             ...formData,
-            video: videoFile
+            video: videoBlob,
         });
     }
 
@@ -224,6 +226,8 @@ export default function SubmitAds() {
                     </button>
                 </form>
             </div>
+
         </div>
+      </div>
     );
 }

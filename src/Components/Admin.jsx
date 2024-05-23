@@ -3,9 +3,9 @@ import IconButton from "./Common/IconButton";
 import { ImStatsDots } from "react-icons/im";
 import { BsChatLeftText } from "react-icons/bs";
 import { LuFileSpreadsheet } from "react-icons/lu";
-import { IoMdLogOut,IoIosPeople,IoMdStats } from "react-icons/io";
+import { IoMdLogOut, IoIosPeople, IoMdStats } from "react-icons/io";
 import DashboardCard from "./Common/Dashboard-card";
-import {MdQueryStats , MdSignalWifiStatusbar1Bar } from "react-icons/md";
+import { MdQueryStats, MdSignalWifiStatusbar1Bar } from "react-icons/md";
 import Table from "./Common/Table";
 
 export default function Admin() {
@@ -20,25 +20,31 @@ export default function Admin() {
           <h3 className="text-[1.5rem] font-bold my-4">گزارش کلی</h3>
           <div className="flex flex-row w-full justify-between mb-5">
             <DashboardCard
+              key={0}
               subtitle={"آگهی های ثبت شده امروز"}
-              title={11}
+              // title={11}
               Icon={IoMdStats}
+              url={"/admin/today-ads"}
             />
             <DashboardCard
+              key={1}
               subtitle={"آگهی های ثبت شده کل"}
-              title={155}
-              Icon={ MdSignalWifiStatusbar1Bar}
+              // title={155}
+              Icon={MdSignalWifiStatusbar1Bar}
+              url={"/admin/ad-count"}
             />
             <DashboardCard
+              key={2}
               subtitle={"تعداد کاربران ثبت نامی"}
-              title={121}
+              // title={121}
+              url={"/admin/user-count"}
               Icon={MdQueryStats}
             />
-          </div >
+          </div>
           <div className="flex flex-col gap-5 mb-10">
-            <Table title={'بررسی دیدگاه ها'}/>
-            <Table title={'مدیریت کاربران'}/>
-            <Table title={'مدیریت آگهی ها'}/>
+            <Table title={"بررسی دیدگاه ها"} />
+            <Table title={"مدیریت کاربران"} />
+            <Table title={"مدیریت آگهی ها"} />
           </div>
         </div>
       </section>
@@ -51,27 +57,27 @@ export default function Admin() {
           <IconButton
             title={"گزارش کلی"}
             Icon={ImStatsDots}
-            className={'dashboard-iconbutton'}
+            className={"dashboard-iconbutton"}
           />
           <IconButton
             title={"بررسی دیدگاه ها"}
             Icon={BsChatLeftText}
-            className={'dashboard-iconbutton'}
+            className={"dashboard-iconbutton"}
           />
           <IconButton
             title={"مدیریت کابران"}
             Icon={IoIosPeople}
-            className={'dashboard-iconbutton'}
+            className={"dashboard-iconbutton"}
           />
           <IconButton
             title={"مدیریت آگهی ها"}
             Icon={LuFileSpreadsheet}
-            className={'dashboard-iconbutton'}
+            className={"dashboard-iconbutton"}
           />
           <IconButton
             title={"خروچ"}
             Icon={IoMdLogOut}
-            className={'dashboard-iconbutton'}
+            className={"dashboard-iconbutton"}
           />
         </div>
       </section>

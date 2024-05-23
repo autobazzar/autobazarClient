@@ -19,3 +19,7 @@ export async function submitAds(payload) {
   const url = "/ads";
   return POST(url, { ...payload});
 }
+
+export async function getByUrl(url) {
+  return GET(url);
+}
