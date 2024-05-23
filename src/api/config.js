@@ -21,7 +21,7 @@ export async function POST(url, payload) {
     .catch((err) => {
       const { message } = err.response.data;
       toast.error(prettyString(message));
-      return err;
+      throw err;
     });
 }
 

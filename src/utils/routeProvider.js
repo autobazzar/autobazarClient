@@ -4,6 +4,7 @@ import Home from "../Home";
 import Profile from "../Components/Profile";
 import ShowAds from "../Components/ShowAds";
 import AboutUs from "../Components/AboutUs";
+import ContactUs from "../Components/ContactUs";
 import Admin from "../Components/Admin";
 import Layout from "../Components/Layout";
 import SubmitAds from "../Components/SubmitAds";
@@ -33,6 +34,8 @@ export const router = createBrowserRouter([
       {
         path: "/about-us",
         element: React.createElement(AboutUs)
+        path: "/contact-us",
+      element:React.createElement(ContactUs),
       }
     ],
   },

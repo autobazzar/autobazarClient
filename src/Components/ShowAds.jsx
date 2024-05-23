@@ -8,6 +8,7 @@ export default function ShowAds() {
   const [ads, setAds] = useState([]);
   const [filteredAds, setFilteredAds] = useState([]);
   const dropdownItems = ['Item 1', 'Item 2', 'Item 3'];
+  
 
   useEffect(() => {
     const fetchAds = async () => {
@@ -29,6 +30,36 @@ export default function ShowAds() {
     setFilteredAds(filtered);
   };
 
+  const handlePriceRangeChange = (startPrice, endPrice) => {
+    const filtered = ads.filter(ad => ad.price >= startPrice && ad.price <= endPrice);
+    setFilteredAds(filtered);
+  };
+
+  const handleDisRangeChange = (startDis, endDis) => {
+    const filtered = ads.filter(ad => ad.distance >= startDis && ad.distance <= endDis);
+    setFilteredAds(filtered);
+  };
+
+  const handleColorChange = (color) => {
+    if (color === '') {
+      setFilteredAds(ads);
+    } else {
+      const filtered = ads.filter((ad) => ad.color === color);
+      setFilteredAds(filtered);
+    }
+  };
+
+  const handleAccidentalChange = (checked) => {
+    
+    if(checked){
+      const filtered = ads.filter((ad) => ad.accidental === true);
+      setFilteredAds(filtered);
+    }else{
+      setFilteredAds(ads);
+    }
+    
+  };
+
   return (
     <>
       <div dir="rtl" className='h-screen flex flex-col h-full min-h-0 '>
@@ -39,13 +70,44 @@ export default function ShowAds() {
         <div className='h-[100vh] z-0 w-full flex flex-row mt-[54px] basis-3/4 px-16 pt-4'>
           <div className='hidden w-[0px] h-[0px] lg:flex lg:flex-col lg:basis-1/5'>
             <DropDownMenu title="برند و تیپ" items={['بی ام و', 'پراید', 'رانا', 'سایپا', 'پژو']} showInput={false} />
-            <DropDownMenu title="رنگ" items={dropdownItems} showInput={true} placeholder={"رنگ را وارد کنید"} />
-            <DropDownMenu title="سال تولید" items={dropdownItems} showInput={true} placeholder={"مثلا 1399"} type="year" onYearRangeChange={handleYearRangeChange} />
-            <DropDownMenu title="کارکرد" items={dropdownItems} showInput={true} placeholder={'مثلا 1000 کیلومتر'} />
-            <DropDownMenu title="قیمت" items={dropdownItems} showInput={true} placeholder={'به میلیون تومان'} />
+            <DropDownMenu
+                title="رنگ"
+                items={['سفید', 'مشکی', 'نقره‌ای', 'آبی', 'قرمز', 'زرد', 'سبز', 'خاکستری', 'بنفش', 'قهوه‌ای']}
+                showInput={false}
+                type="color"
+                onChange={handleColorChange}
+            />
+            <DropDownMenu 
+              title="سال تولید" 
+              items={dropdownItems} 
+              showInput={true}  
+              type="year" 
+              onChange={handleYearRangeChange} 
+            />
+            <DropDownMenu 
+              title="کارکرد" 
+              items={dropdownItems} 
+              showInput={true} 
+              type="distance"
+              placeholder={'مثلا 1000 کیلومتر'} 
+              onChange={handleDisRangeChange}
+            />
+            <DropDownMenu 
+              title="قیمت" 
+              items={dropdownItems} 
+              showInput={true} 
+              type="price"
+              onChange={handlePriceRangeChange} 
+            />
             <DropDownMenu title="مشخصات بدنه" items={['سالم', 'خط و خش جزیی', 'رنگ شدگی', 'دوررنگ', 'تمام رنگ', 'تصادفی', 'اوراقی']} showInput={false} />
             <DropDownMenu title="نوع سوخت" items={['دوگانه سوز دستی', 'دوگانه سوز شرکتی', 'گازوییل', 'بنزین']} showInput={false} />
-            <DropDownMenu title="تصادفی بودن" items={dropdownItems} />
+            <DropDownMenu 
+             
+             title="تصادفی بودن"
+             items={dropdownItems} 
+             type="accidental"
+             onChange={handleAccidentalChange}
+            />
             <DropDownMenu title="موتور" items={['تعویض شده', 'نیاز به تعمیر', 'سالم']} showInput={false} />
             <DropDownMenu title="محل" items={dropdownItems} showInput={true} placeholder={'محل را وارد کنید'} />
             <DropDownMenu title="مهلت بیمه شخص ثالث" items={dropdownItems} showInput={true} placeholder={"مثلا 7 ماه"} />
