@@ -12,18 +12,21 @@ import { deleteAd } from "../api/api";
 
 export default function Detail({ id, isOpen, handleClose, detail, img, isMine }) {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-
+  
   const handleDeleteClick = () => {
     setIsDeleteModalOpen(true);
   };
 
   const handleConfirmDelete = async () => {
-    // Logic to delete the ad goes here
-    setIsDeleteModalOpen(false);
-    console.log("Ad deleted");
-    await deleteAd(id);
-    // Optionally, you can close the Detail modal here
-    // handleClose();
+    try {
+      await deleteAd(id);
+      console.log("Ad deleted");
+      setIsDeleteModalOpen(false);
+      // Reload the page
+      window.location.reload();
+    } catch (error) {
+      console.error("Error deleting ad:", error);
+    }
   };
 
   const handleCancelDelete = () => {
