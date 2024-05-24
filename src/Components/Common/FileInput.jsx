@@ -14,7 +14,7 @@ export default function FileInput({ handleChange, title, accept, type }) {
     setSrc(data);
   };
   return (
-    <div className="flex flex-row justify-center items-center gap-3">
+    <div className="flex flex-row justify-center items-center gap-3 border-[1px]">
       <input
         accept={accept}
         ref={inputRef}
