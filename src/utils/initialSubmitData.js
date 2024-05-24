@@ -1,20 +1,16 @@
 export const dataToTransfer = [
   //   { props:{placeholder:""},type: "input", name: "123" },
+  {type:'h2',title:'محل سکونت'},
+  { label: "آدرس", type: "input", name: "address" },
+  { label: "شهر", type: "input", name: "city" },
+  {type:'h2',title:'مشخصات ضروری'},
   {
     label: "مشخصات فنی",
     type: "input",
     name: "technicalInfo",
   },
-  { label: "آدرس", type: "input", name: "address" },
-  {
-    label: "شماره تماس",
-    type: "input",
-    name: "mobileNum",
-    props: {
-      type: "number",
-    },
-  },
-  { label: "شهر", type: "input", name: "city" },
+
+  
   { label: "مدل ماشین", type: "input", name: "carName" },
   {
     label: "قیمت",
@@ -40,6 +36,7 @@ export const dataToTransfer = [
   { label: "موتور", type: "input", name: "motor" },
   { label: "برند", type: "input", name: "brand" },
   { label: "رنگ", type: "input", name: "color" },
+  {type:'h2',title:'مشخصات تکمیلی'},
   {
     label: "فاصله",
     type: "input",
@@ -73,7 +70,15 @@ export const dataToTransfer = [
     name: "additionalInfo",
     className: "resize-none",
   },
-
+  {type:'h2',title:'مشخصات تماس'},
+  {
+    label: "شماره تماس",
+    type: "input",
+    name: "mobileNum",
+    props: {
+      type: "number",
+    },
+  },
   //  props:{placeholder:""}, { type: "input", name: "picsUrl" },
   //  props:{placeholder:""}, { type: "input", name: "videoUrl" },
 ];

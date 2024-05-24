@@ -50,20 +50,25 @@ export default function SubmitAds() {
   }
 
   return (
-    <div
+    
+      <div 
       dir="rtl"
-      className="flex justify-center items-center min-h-screen bg-gray-100"
-    >
-      <div className="bg-[#4C857A] p-6 rounded-lg shadow-lg w-full max-w-lg">
-        <form className="space-y-4 flex flex-col" onSubmit={handleSubmit}>
-          <h2 className="text-2xl font-bold mb-4 text-white">ثبت آگهی</h2>
-          {dataToTransfer.map((item) => (
-            <InputField
-              key={item.name}
-              item={item}
-              handleChange={handleChange}
-            />
-          ))}
+      className="w-full"
+      // className="bg-[#4C857A] p-6 rounded-lg shadow-lg w-full max-w-lg"
+      >
+        <form className="space-y-4 flex flex-col w-[60%]" onSubmit={handleSubmit}>
+          <h2 className="text-2xl font-bold mb-4 text-white font-dast">ثبت آگهی</h2>
+          {dataToTransfer.map((item) =>
+            item.type != "h2" ? (
+              <InputField
+                key={item.name}
+                item={item}
+                handleChange={handleChange}
+              />
+            ) : (
+              <h2 className="text-2xl font-semibold border-b-2 w-[30%] font-dast" key={item.title}>{item.title}</h2>
+            )
+          )}
           <div className="text-lg font-semibold text-white">آپلود عکس</div>
           {/* <input
             type="file"
@@ -71,23 +76,27 @@ export default function SubmitAds() {
             onChange={handlePictureChange}
             className="w-full mb-4 text-white"
           /> */}
-          <FileInput type={'img'} handleChange={handlePictureChange} title={'افزودن تصویر'} accept={"image/*"} />
+          <FileInput
+            type={"img"}
+            handleChange={handlePictureChange}
+            title={"افزودن تصویر"}
+            accept={"image/*"}
+          />
           <div className="text-lg font-semibold text-white">آپلود ویدیو</div>
-          <FileInput type={'video'} handleChange={handleVideoChange} title={'افزودن ویدیو'} accept={"video/*"} />
-          {/* <input
-            type="file"
-            accept="video/*"
-            onChange={handleVideoChange}
-            className="w-full mb-4 text-white"
-          /> */}
+          <FileInput
+            type={"video"}
+            handleChange={handleVideoChange}
+            title={"افزودن ویدیو"}
+            accept={"video/*"}
+          />
+         
           <button
             type="submit"
-            className="flex items-center justify-center  bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors duration-200"
+            className="flex items-center justify-center  bg-[#2B4E47] text-white py-2 px-4 rounded-lg"
           >
             ثبت آگهی
           </button>
         </form>
       </div>
-    </div>
   );
 }

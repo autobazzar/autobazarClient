@@ -4,7 +4,7 @@ import React from "react";
 export default function InputField({ item, handleChange }) {
   return (
     <div className="flex flex-col">
-      <label className="text-lg font-semibold text-white" htmlFor="">
+      <label className="text-lg font-semibold font-dast " htmlFor="">
         {item.label}
       </label>
       {React.createElement(item.type, {
@@ -14,7 +14,7 @@ export default function InputField({ item, handleChange }) {
             : e.target.value;
           handleChange(value, item.name);
         },
-        className: `input-form ${item.className}`,
+        className: `input-form ${item.className} font-dast`,
         ...item.props,
       })}
     </div>

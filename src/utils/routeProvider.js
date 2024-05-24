@@ -11,6 +11,7 @@ import SubmitAds from "../Components/SubmitAds";
 import ProtectedRoute from "./protectedRoute";
 // import { ToastContainer } from 'react-toastify'; 
 import 'react-toastify/dist/ReactToastify.css'; 
+import SubmitPage from "../Components/SubmitPage";
 export const router = createBrowserRouter([
   {
     element: React.createElement(Layout),
@@ -32,7 +33,7 @@ export const router = createBrowserRouter([
       {
         path: "/submit-ads",
         element: React.createElement(ProtectedRoute,{
-          element: React.createElement(SubmitAds),
+          element: React.createElement(SubmitPage),
         }),
       },
       {
