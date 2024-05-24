@@ -27,13 +27,12 @@ export default function Profile() {
       navigate("/")
     }
   };
-  
+  const [ads, setAds] = useState([]);
   useEffect(() => {
     const fetchAds = async () => {
       try {
         const response = await receiveAdsById(profile.user_id);
         setAds(response.data);
-        setFilteredAds(response.data);
       } catch (error) {
         console.error('Error fetching ads data:', error);
       }
@@ -98,7 +97,14 @@ export default function Profile() {
             </div>
           </form>
           <div dir='rtl' className='overflow-y-auto flex flex-row flex-wrap gap-y-6 gap-x-4 content-start p-0'>
-          
+          {ads.map((ad) => (
+              <AdsItem
+                key={ad.adId}
+                className="lg:basis-[32%]"
+                id={ad.adId}
+                ad={ad}
+              />
+            ))}
           </div>
           </>
         )}
