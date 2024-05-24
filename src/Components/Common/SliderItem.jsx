@@ -51,8 +51,5 @@ export default function SliderItem({ id, ad  }) {
 
 SliderItem.propTypes = {
   id: number,
-  title: string,
-  img: string,
-  price: string,
-  kilometer: string,
+  ad:object,
 };

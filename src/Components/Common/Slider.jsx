@@ -24,9 +24,6 @@ export default function Slider({ mainDiv }) {
     mainDiv,
     sliderRef
   );
-  const arr = Array(10)
-    .fill(0)
-    .map(() => id++);
   return (
     <div className="relative overflow-hidden ">
       <div
