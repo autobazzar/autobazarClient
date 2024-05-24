@@ -1,4 +1,4 @@
-import { POST, GET } from "./config";
+import { POST, GET, DELETE_AD } from "./config";
 export async function registerUser(payload, googleFlag) {
   const url = "/users/sign-up";
   return await POST(url, { ...payload, isFromGoogle: Boolean(googleFlag) })
@@ -12,6 +12,11 @@ export async function loginUser(payload, googleFlag) {
 export async function receiveAds() {
   const url = "/ads";
   return GET(url);
+}
+
+export async function deleteAd(id) {
+  const url = `/ads/${id}`;
+  return DELETE_AD(url);
 }
 export async function submitAds(payload) {
   //const url = "localhost:3000/ads";

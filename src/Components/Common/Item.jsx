@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useState,useCallback} from 'react';
 import Detail from '../Detail';
 import Avatar from './Avatar';
-export default function Item({className,id, ad, type}) {
+export default function Item({className,id, ad, type, isMine}) {
   const[isOpen,setIsOpen]= useState(false);
   const handleOpen=()=>{
     setIsOpen(true)
@@ -13,6 +13,7 @@ export default function Item({className,id, ad, type}) {
   return (
     <>
       <Detail
+        id={ad.adId}
         detail={{
           brand: ad.carName,
           color: ad.color,
@@ -30,6 +31,7 @@ export default function Item({className,id, ad, type}) {
         handleClose={handleClose}
         isOpen={isOpen}
         img={ad.picsUrl}
+        isMine={isMine}
       />
       {type === "ad" &&
           <button key={id} onClick={handleOpen} dir="rtl" className={`flex flex-row justify-around lg:w-1/4 lg:h-1/4 border-2 rounded-md p-2 m-0 items-center ${className}`}>
@@ -50,8 +52,8 @@ export default function Item({className,id, ad, type}) {
             <Avatar imgSrc={ad.picsUrl} />
             <div className="select-none flex flex-col w-fit text-nowrap" >
               <h1 className="font-bold mb-5">{ad.carName}</h1>
-              <h3>{ad.distance}</h3>
-              <h3>{ad.price}</h3>
+              <h3>{ad.distance} کیلومتر</h3>
+              <h3>{ad.price} تومان</h3>
             </div>
           </button>
       }
@@ -63,5 +65,6 @@ Item.propTypes = {
   className: PropTypes.string.isRequired,
   ad:PropTypes.object.isRequired,
   id:PropTypes.string.isRequired,
-  type:PropTypes.string
+  type:PropTypes.string,
+  isMine: PropTypes.bool
 };

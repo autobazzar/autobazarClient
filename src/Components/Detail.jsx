@@ -1,20 +1,54 @@
 import { bool, func, object, string } from "prop-types";
+import { useState } from "react";
 import Modal from "./Common/Modal";
 import { detailKeys } from "../utils/const";
 import InfinitySlider from "./Common/InfinitySlider";
 import StarPicker from "./Common/StarPicker";
 import { CgClose } from "react-icons/cg";
+import { MdDeleteForever } from "react-icons/md";
+import Button from "./Common/Button";
+import { PiWarningCircleBold } from "react-icons/pi";
+import { deleteAd } from "../api/api";
 
+export default function Detail({ id, isOpen, handleClose, detail, img, isMine }) {
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
-export default function Detail({isOpen,handleClose,detail,img}) {
-  const renderText=()=>{
-    return `امتیاز ${detail.numberOfScores} از مجموع`
-  }
+  const handleDeleteClick = () => {
+    setIsDeleteModalOpen(true);
+  };
+
+  const handleConfirmDelete = async () => {
+    // Logic to delete the ad goes here
+    setIsDeleteModalOpen(false);
+    console.log("Ad deleted");
+    await deleteAd(id);
+    // Optionally, you can close the Detail modal here
+    // handleClose();
+  };
+
+  const handleCancelDelete = () => {
+    setIsDeleteModalOpen(false);
+  };
+
+  const renderText = () => {
+    return `امتیاز ${detail.numberOfScores} از مجموع`;
+  };
+
   return (
+    <>
       <Modal isOpen={isOpen} handleClose={handleClose}>
-        <button onClick={handleClose}>
-          <CgClose />
-        </button>
+        <div className="flex flex-col gap-y-4 ">
+          <button onClick={handleClose}>
+            <CgClose />
+          </button>
+          <div className="border-b-2"></div>
+          {isMine && (
+              <div className="flex flex-row gap-x-2 min-h-0 h-full ">
+                <Button text="حذف آگهی" onClick={() => handleDeleteClick()} className='border-2 border-red-800 !text-xs !bg-red-800 !h-full' />
+                <Button text="ویرایش آگهی" onClick={() => handleDeleteClick()} className='border-2 border-[#2b4e47] !text-xs ' />
+              </div>
+          )}
+        </div>
         <div dir="rtl" className="flex flex-row gap-5">
           <div className="detail">
             <div className="flex flex-col items-end">
@@ -22,8 +56,7 @@ export default function Detail({isOpen,handleClose,detail,img}) {
                 {detail.brand}
               </h1>
               <h3 className="w-full text-start detail-border pb-3 text-gray-600">
-                لحظاتی پیش در   
-                {detail.address}
+                لحظاتی پیش در {detail.address}
               </h3>
               <div
                 dir="rtl"
@@ -77,13 +110,37 @@ export default function Detail({isOpen,handleClose,detail,img}) {
           </div>
         </div>
       </Modal>
+      {isDeleteModalOpen && (
+        <Modal isOpen={isDeleteModalOpen} handleClose={handleCancelDelete}>
+          <div className="p-5">
+            
+            <h2 className="text-xl font-bold mb-4">آیا مطمئن هستید که می‌خواهید این آگهی را حذف کنید؟</h2>
+            <div className="flex justify-end gap-3">
+              <button
+                onClick={() => handleConfirmDelete()}
+                className="p-2 rounded-xl bg-red-600 text-white"
+              >
+                بله، حذف شود
+              </button>
+              <button
+                onClick={() => handleCancelDelete()}
+                className="p-2 rounded-xl bg-gray-300 text-black"
+              >
+                لغو
+              </button>
+            </div>
+          </div>
+        </Modal>
+      )}
+    </>
   );
 }
 
 Detail.propTypes = {
+  id:string,
   isOpen: bool,
   handleClose: func,
-  detail:object,
-  img:string
- 
+  detail: object,
+  img: string,
+  isMine: bool,
 };

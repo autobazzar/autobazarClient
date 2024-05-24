@@ -4,13 +4,14 @@ import Item from './Common/Item';
 import Button from './Common/Button';
 import { receiveAds } from '../api/api';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export default function ShowAds() {
   const [ads, setAds] = useState([]);
   const [filteredAds, setFilteredAds] = useState([]);
   const dropdownItems = ['Item 1', 'Item 2', 'Item 3'];
+  const profile = useSelector((state) => state.profile);
   
-
   useEffect(() => {
     const fetchAds = async () => {
       try {
@@ -117,12 +118,14 @@ export default function ShowAds() {
           </div>
           <div dir="ltr" className='flex flex-col w-full gap-y-6 p-0 m-0 lg:overflow-y-auto lg:flex-row lg:flex-wrap lg:basis-4/5 lg:gap-x-4 lg:content-start'>
             {filteredAds.map((ad) => (
+              
               <Item
                 key={ad.adId}
                 className="lg:basis-[32%]"
                 id={ad.adId}
                 ad={ad}
                 type="ad"
+                isMine={profile.user_id === ad.userId}
               />
             ))}
           </div>

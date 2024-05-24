@@ -9,7 +9,17 @@ export function GET(url) {
       .catch((err) => {
        
       });
-  ;
+  
+}
+export function DELETE_AD(url) {
+  return axios
+      .delete(`${BASE_URL}${url}`)
+      .catch((err) => {
+        const { message } = err.response.data;
+        toast.error(prettyString(message));
+        throw err;
+      });
+  
 }
 export async function POST(url, payload) {
   const body = payload;
