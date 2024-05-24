@@ -1,4 +1,4 @@
-import { number, string } from "prop-types";
+import { number, object } from "prop-types";
 import Avatar from "./Avatar";
 import { useCallback, useState } from "react";
 import Detail from "../Detail";
@@ -51,5 +51,5 @@ export default function SliderItem({ id, ad  }) {
 
 SliderItem.propTypes = {
   id: number,
-  ad:object,
+  ad:object
 };
