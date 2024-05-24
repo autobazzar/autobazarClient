@@ -29,6 +29,7 @@ export default function AdsItem({className,id, ad}) {
         }}
         handleClose={handleClose}
         isOpen={isOpen}
+        img={ad.picsUrl}
       />
       <button key={id} onClick={handleOpen} dir="rtl" className={`flex flex-row justify-around lg:w-1/4 lg:h-1/4 border-2 rounded-md p-2 m-0 items-center ${className}`}>
           <div className='mb-2'>

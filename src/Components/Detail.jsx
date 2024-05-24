@@ -5,7 +5,7 @@ import InfinitySlider from "./Common/InfinitySlider";
 import StarPicker from "./Common/StarPicker";
 import { CgClose } from "react-icons/cg";
 
-export default function Detail({isOpen,handleClose,detail}) {
+export default function Detail({isOpen,handleClose,detail,img}) {
   const renderText=()=>{
     return `امتیاز ${detail.numberOfScores} از مجموع`
   }
@@ -51,8 +51,7 @@ export default function Detail({isOpen,handleClose,detail}) {
           <div className="flex flex-col mt-[5rem] gap-4">
             <InfinitySlider
               images={[
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6tcD5h90YTk2sVcruvpVJ49YsR5H8o-Bl74I6VdrjIg&s",
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4oiqvLyfyyU9UghkY6KiXstwQ0Uxhg4oPaU7kMtWilw&s",
+                img
               ]}
             />
             <div className="flex flex-col">
