@@ -1,10 +1,10 @@
-import { bool, func, object } from "prop-types";
+import { bool, func, object, string } from "prop-types";
 import Modal from "./Common/Modal";
 import { detailKeys } from "../utils/const";
 import InfinitySlider from "./Common/InfinitySlider";
 import StarPicker from "./Common/StarPicker";
 import { CgClose } from "react-icons/cg";
-import PropTypes from 'prop-types'
+
 
 export default function Detail({isOpen,handleClose,detail,img}) {
   const renderText=()=>{
@@ -83,6 +83,6 @@ Detail.propTypes = {
   isOpen: bool,
   handleClose: func,
   detail:object,
-  img:PropTypes.string,
+  img:string
  
 };
