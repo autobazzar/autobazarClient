@@ -3,7 +3,7 @@ import Avatar from "./Avatar";
 import { useCallback, useState } from "react";
 import Detail from "../Detail";
 
-export default function SliderItem({ id, title, img, price, kilometer }) {
+export default function SliderItem({ id, ad  }) {
   const[isOpen,setIsOpen]= useState(false);
   const handleOpen=()=>{
     setIsOpen(true)
@@ -13,35 +13,36 @@ export default function SliderItem({ id, title, img, price, kilometer }) {
   },[]);
   return (
     <>
-      <Detail
+       <Detail
         detail={{
-          brand: "دنا تیپ یک",
-          color: "سفید",
-          year: "96",
-          kilometer: "صفر",
-          price: "960 میلیون تومان",
-          body: "سقف باز",
-          motor: "سالم",
-          shasiJolo: "نامشخص",
-          shasiaqab: "نامشخص",
-          bime: "6 ماه",
-          descriptions: "خودرو صفر ",
-          score:'4.2',
-          numberOfScores:123,
+          brand: ad.carName,
+          color: ad.color,
+          year: ad.year,
+          kilometer:ad.distance,
+          price: ad.price,
+          body: "body",
+          motor: ad.motor,
+          fuel: ad.fuel,
+          bime: ad.insurance,
+          descriptions: ad.additionalInfo,
+          score:ad.score,
+          numberOfScores:'',
+          location:ad.address,
         }}
         handleClose={handleClose}
         isOpen={isOpen}
+        img={ad.picsUrl}
       />
       <button
         key={id}
         className="flex flex-row w-fit p-5 items-center justify-center bg-[var(--background-Color)] min-w-fit gap-5"
         onClick={handleOpen}
       >
-        <Avatar imgSrc={img} />
+        <Avatar imgSrc={ad.picsUrl} />
         <div className="select-none flex flex-col w-fit text-nowrap" >
-          <h1 className="font-bold mb-5">{title}</h1>
-          <h3>{kilometer}</h3>
-          <h3>{price}</h3>
+          <h1 className="font-bold mb-5">{ad.carName}</h1>
+          <h3>{ad.distance}</h3>
+          <h3>{ad.price}</h3>
         </div>
       </button>
     </>
@@ -50,8 +51,5 @@ export default function SliderItem({ id, title, img, price, kilometer }) {
 
 SliderItem.propTypes = {
   id: number,
-  title: string,
-  img: string,
-  price: string,
-  kilometer: string,
+  ad:object,
 };

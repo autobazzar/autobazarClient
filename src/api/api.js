@@ -23,3 +23,9 @@ export async function submitAds(payload) {
 export async function getByUrl(url) {
   return GET(url);
 }
+
+
+export async function receiveAdsById(id) {
+  const url = `/ads/user/${id}`;
+  return GET(url);
+}

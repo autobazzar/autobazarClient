@@ -6,9 +6,10 @@ import { RxExit } from "react-icons/rx";
 import { IoSearchOutline } from "react-icons/io5";
 import { FaPlus } from "react-icons/fa6";
 import AdsItem from './Common/AdsItem';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { useNavigate,Navigate } from 'react-router-dom';
 import { persistor } from "../store/store";
+import { receiveAdsById } from '../api/api';
 
 export default function Profile() {
   const profile = useSelector((state) => state.profile);
@@ -26,7 +27,20 @@ export default function Profile() {
       navigate("/")
     }
   };
+  const [ads, setAds] = useState([]);
+  useEffect(() => {
+    const fetchAds = async () => {
+      try {
+        const response = await receiveAdsById(profile.user_id);
+        setAds(response.data);
+      } catch (error) {
+        console.error('Error fetching ads data:', error);
+      }
+    };
 
+    fetchAds();
+  }, []);
+  console.log(profile)
   return (
     <div dir="rtl" className='flex flex-row h-screen'>
       <div className='bg-[#2b4e47] med:rounded-bl-[4rem] med:basis-[28%] w-full flex flex-col gap-y-12 h-[92%]'>
@@ -83,15 +97,19 @@ export default function Profile() {
             </div>
           </form>
           <div dir='rtl' className='overflow-y-auto flex flex-row flex-wrap gap-y-6 gap-x-4 content-start p-0'>
-            <AdsItem className="basis-2/5" />
-            <AdsItem className="basis-2/5" />
-            <AdsItem className="basis-2/5" />
-            <AdsItem className="basis-2/5" />
+          {ads.map((ad) => (
+              <AdsItem
+                key={ad.adId}
+                className="lg:basis-[32%]"
+                id={ad.adId}
+                ad={ad}
+              />
+            ))}
           </div>
           </>
         )}
-        {state.state_count === 2 && <h1>ثبت آگهی Page</h1>}
-        {state.state_count === 3 && <Navigate to='/show-ads' />}
+        {state.state_count === 3 && <Navigate to='/show-ads'/>}
+        {state.state_count === 2 && <Navigate to='/submit-ads' />}
         
 
         
