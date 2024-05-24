@@ -15,6 +15,7 @@ export async function receiveAds() {
 }
 export async function submitAds(payload) {
   //const url = "localhost:3000/ads";
+  console.error(payload);
   const url = "/ads";
   return POST(url, payload);
 }
