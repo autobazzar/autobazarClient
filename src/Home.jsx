@@ -3,9 +3,11 @@ import landing from "./assets/image/landing_logo.png";
 import { VscSearch } from "react-icons/vsc";
 import Slider from "./Components/Common/Slider";
 import { useNavigate, Link } from "react-router-dom";
+
 export default function Home() {
   const mainDiv = useRef(null);
   const navigate = useNavigate();
+  
   const onClickHandler = () => {
     navigate("/show-ads")
   };

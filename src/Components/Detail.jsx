@@ -19,10 +19,11 @@ export default function Detail({isOpen,handleClose,detail,img}) {
           <div className="detail">
             <div className="flex flex-col items-end">
               <h1 className="w-full text-start text-3xl font-bold detail-border pb-5 mb-5">
-                دنا تیپ یک
+                {detail.brand}
               </h1>
               <h3 className="w-full text-start detail-border pb-3 text-gray-600">
-                لحظاتی پیش در تهران , یافت آباد
+                لحظاتی پیش در   
+                {detail.address}
               </h3>
               <div
                 dir="rtl"

@@ -8,5 +8,6 @@ export const detailKeys = {
   motor:'وضعیت موتور',
   fuel:'سوخت',
   bime:'مهلت بیمه شخص ثالث',
-  descriptions:'توضیحات'
+  descriptions:'توضیحات',
+  location:'آدرس'
 };
