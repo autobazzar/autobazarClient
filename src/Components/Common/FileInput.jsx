@@ -10,7 +10,7 @@ export default function FileInput({ handleChange, title, accept, type }) {
   const onInputChange = (event) => {
     const file = event.target.files[0];
     const data = URL.createObjectURL(file);
-    handleChange(data);
+    handleChange(file);
     setSrc(data);
   };
   return (
