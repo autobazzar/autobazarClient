@@ -1,12 +1,10 @@
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
-import './contact-us.css';
 
 export default function ContactUS() {
   return (
-    <div dir="rtl" className="flex justify-center items-center min-h-screen bg-gray-100 p-4">
-      <div className="container flex flex-col md:flex-row w-full max-w-4xl">
+    <div dir="rtl" className="flex justify-center bg-gray-100 p-4 grid-cols-3 gap-10 pt-20" >
         {/* Contact Us Section */}
-        <div className="p-6 rounded-lg shadow-lg w-full md:w-1/2 bg-white">
+        <div className="p-6 rounded-lg shadow-lg  bg-white col-span-6">
           <h2 className="text-2xl font-bold mb-4 text-black">تماس با ما</h2>
           <div className="mb-2 flex items-center">
             <FaPhoneAlt className="text-black ml-2" />
@@ -23,9 +21,9 @@ export default function ContactUS() {
             <span className="font-bold text-black">کد پستی:</span>
             <span className="text-black ml-2">1983969411</span>
           </div>
-        </div>
-        {/* Address Section */}
-        <div className="p-6 rounded-lg shadow-lg w-full md:w-1/2 bg-white">
+          </div>
+           {/* Address Section */}
+        <div className="p-6 rounded-lg shadow-lg  bg-white col-span-6">
           <h2 className="text-2xl font-bold mb-4 text-black">نشانی</h2>
           <div className="text-black mb-4">
             تهران، اوین، میدان شهید شهریاری
@@ -40,8 +38,7 @@ export default function ContactUS() {
               loading="lazy"
             ></iframe>
           </div>
-        </div>
+        </div>       
       </div>
-    </div>
   );
 }
