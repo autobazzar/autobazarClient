@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import DropDownMenu from './Common/DropDownMenu'; // Adjust the path if necessary
-import AdsItem from './Common/AdsItem'; // Adjust the path if necessary
-import Button from './Common/Button'; // Adjust the path if necessary
-import { receiveAds } from '../api/api'; // Adjust the path if necessary
+import { useState, useEffect } from 'react';
+import DropDownMenu from './Common/DropDownMenu'; 
+import Item from './Common/Item'; 
+import Button from './Common/Button';
+import { receiveAds } from '../api/api';
 import { useNavigate } from 'react-router-dom';
 
 export default function ShowAds() {
@@ -117,11 +117,12 @@ export default function ShowAds() {
           </div>
           <div dir="ltr" className='flex flex-col w-full gap-y-6 p-0 m-0 lg:overflow-y-auto lg:flex-row lg:flex-wrap lg:basis-4/5 lg:gap-x-4 lg:content-start'>
             {filteredAds.map((ad) => (
-              <AdsItem
+              <Item
                 key={ad.adId}
                 className="lg:basis-[32%]"
                 id={ad.adId}
                 ad={ad}
+                type="ad"
               />
             ))}
           </div>
