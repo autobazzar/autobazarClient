@@ -3,6 +3,7 @@ import DropDownMenu from './Common/DropDownMenu'; // Adjust the path if necessar
 import AdsItem from './Common/AdsItem'; // Adjust the path if necessary
 import Button from './Common/Button'; // Adjust the path if necessary
 import { receiveAds } from '../api/api'; // Adjust the path if necessary
+import { useNavigate } from 'react-router-dom';
 
 export default function ShowAds() {
   const [ads, setAds] = useState([]);
@@ -16,7 +17,6 @@ export default function ShowAds() {
         const response = await receiveAds();
         setAds(response.data);
         setFilteredAds(response.data);
-        console.log(response.data);
       } catch (error) {
         console.error('Error fetching ads data:', error);
       }
@@ -24,7 +24,10 @@ export default function ShowAds() {
 
     fetchAds();
   }, []);
-
+  const navigate=useNavigate()
+  const handleClick=()=>{
+    navigate("/submit-ads")
+  }
   const handleYearRangeChange = (startYear, endYear) => {
     const filtered = ads.filter(ad => ad.year >= startYear && ad.year <= endYear);
     setFilteredAds(filtered);
@@ -65,7 +68,7 @@ export default function ShowAds() {
       <div dir="rtl" className='h-screen flex flex-col h-full min-h-0 '>
         <div className='z-10 flex flex-row bg-white justify-center lg:justify-between items-center fixed top-12 px-16 w-full min-h-0 h-[7%] mb-0'>
           <p className='hidden lg:flex text-lg font-semibold pr-2'>فیلترها</p>
-          <Button text="آگهی بده!" className="h-[90%] w-full" />
+          <Button onClick={()=> handleClick()} text="آگهی بده!" className="h-[90%] w-full" />
         </div>
         <div className='h-[100vh] z-0 w-full flex flex-row mt-[54px] basis-3/4 px-16 pt-4'>
           <div className='hidden w-[0px] h-[0px] lg:flex lg:flex-col lg:basis-1/5'>
@@ -117,10 +120,8 @@ export default function ShowAds() {
               <AdsItem
                 key={ad.adId}
                 className="lg:basis-[32%]"
-                carName={ad.carName}
-                distance={ad.distance}
-                price={ad.price}
-                picsUrl={ad.picsUrl}
+                id={ad.adId}
+                ad={ad}
               />
             ))}
           </div>
