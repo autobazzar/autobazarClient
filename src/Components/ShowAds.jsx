@@ -121,6 +121,7 @@ export default function ShowAds() {
                 distance={ad.distance}
                 price={ad.price}
                 picsUrl={ad.picsUrl}
+                id={ad.adId}
               />
             ))}
           </div>
