@@ -102,8 +102,8 @@ export default function Profile() {
           </div>
           </>
         )}
-        {state.state_count === 2 && <h1>ثبت آگهی Page</h1>}
-        {state.state_count === 3 && <Navigate to='/show-ads' />}
+        {state.state_count === 3 && <Navigate to='/show-ads'/>}
+        {state.state_count === 2 && <Navigate to='/submit-ads' />}
         
 
         

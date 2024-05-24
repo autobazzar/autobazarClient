@@ -7,9 +7,9 @@ export function GET(url) {
   return axios
       .get(`${BASE_URL}${url}`)
       .catch((err) => {
-        const { message } = err.response.data;
-        toast.error(prettyString(message));
-        return err;
+        // const { message } = err.response.data;
+        // toast.error(prettyString(message));
+        // return err;
       });
   ;
 }
