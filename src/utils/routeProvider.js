@@ -34,6 +34,8 @@ export const router = createBrowserRouter([
       {
         path: "/about-us",
         element: React.createElement(AboutUs)
+      },
+      {
         path: "/contact-us",
       element:React.createElement(ContactUs),
       }
