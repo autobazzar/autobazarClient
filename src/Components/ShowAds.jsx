@@ -16,7 +16,6 @@ export default function ShowAds() {
         const response = await receiveAds();
         setAds(response.data);
         setFilteredAds(response.data);
-        console.log(response.data);
       } catch (error) {
         console.error('Error fetching ads data:', error);
       }
@@ -117,11 +116,8 @@ export default function ShowAds() {
               <AdsItem
                 key={ad.adId}
                 className="lg:basis-[32%]"
-                carName={ad.carName}
-                distance={ad.distance}
-                price={ad.price}
-                picsUrl={ad.picsUrl}
                 id={ad.adId}
+                ad={ad}
               />
             ))}
           </div>

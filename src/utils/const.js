@@ -6,8 +6,7 @@ export const detailKeys = {
   price: "قیمت",
   body: "مشخصات بدنه",
   motor:'وضعیت موتور',
-  shasiJolo:'وضعیت شاسی جلو',
-  shasiaqab:'وضعیت شاسی عقب',
+  fuel:'سوخت',
   bime:'مهلت بیمه شخص ثالث',
   descriptions:'توضیحات'
 };
