@@ -81,5 +81,6 @@ export default function Detail({isOpen,handleClose,detail,img}) {
 Detail.propTypes = {
   isOpen: bool,
   handleClose: func,
-  detail:object
+  detail:object,
+ 
 };

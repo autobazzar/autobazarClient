@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
-import Button from './Button';
-import { useState,useEffect ,useCallback} from 'react';
+import { useState,useCallback} from 'react';
 import Detail from '../Detail';
 export default function AdsItem({className,id, ad}) {
   const[isOpen,setIsOpen]= useState(false);
@@ -45,8 +44,6 @@ export default function AdsItem({className,id, ad}) {
 
 AdsItem.propTypes = {
   className: PropTypes.string.isRequired,
-  carName: PropTypes.string.isRequired,
-  price: PropTypes.string.isRequired,
-  distance: PropTypes.string.isRequired,
-  picsUrl: PropTypes.string.isRequired,
+  ad:PropTypes.object.isRequired,
+  id:PropTypes.string.isRequired,
 };
