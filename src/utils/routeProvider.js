@@ -9,39 +9,45 @@ import Admin from "../Components/Admin";
 import Layout from "../Components/Layout";
 import SubmitAds from "../Components/SubmitAds";
 import ProtectedRoute from "./protectedRoute";
-import { ToastContainer } from 'react-toastify'; 
+// import { ToastContainer } from 'react-toastify'; 
 import 'react-toastify/dist/ReactToastify.css'; 
 export const router = createBrowserRouter([
   {
     element: React.createElement(Layout),
-    children:[
+    children: [
       {
         path: "/",
         element: React.createElement(Home),
-          },
+      },
       {
-        path: "/profile", 
-        element: React.createElement(ProtectedRoute, { element: React.createElement(Profile) })
+        path: "/profile",
+        element: React.createElement(ProtectedRoute, {
+          element: React.createElement(Profile),
+        }),
       },
       {
         path: "/show-ads",
-        element: React.createElement(ShowAds)
+        element: React.createElement(ShowAds),
       },
       {
         path: "/submit-ads",
-        element: React.createElement(SubmitAds)
+        element: React.createElement(ProtectedRoute,{
+          element: React.createElement(SubmitAds),
+        }),
       },
       {
         path: "/about-us",
-        element: React.createElement(AboutUs)
+        element: React.createElement(AboutUs),
+      },
+      {
         path: "/contact-us",
-      element:React.createElement(ContactUs),
-      }
+        element: React.createElement(ContactUs),
+      },
     ],
   },
   {
     path: "/admin",
-    element: React.createElement(Admin)
+    element: React.createElement(Admin),
   },
 ]);
 
