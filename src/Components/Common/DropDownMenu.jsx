@@ -105,14 +105,14 @@ const DropDownMenu = ({ title, items, showInput, placeholder, type, onChange }) 
             type="number"
             value={startYear}
             onChange={(event) => handleRangeChange(event.target.value, endYear, setStartYear, setEndYear)}
-            placeholder="Start Year"
+            placeholder="از سال مثلا 1395"
             className="w-full px-2 py-1 mb-2 border border-gray-300 rounded"
           />
           <input
             type="number"
             value={endYear}
             onChange={(event) => handleRangeChange(startYear, event.target.value, setStartYear, setEndYear)}
-            placeholder="End Year"
+            placeholder="تا سال مثلا 1400"
             className="w-full px-2 py-1 mb-2 border border-gray-300 rounded"
           />
         </div>
@@ -126,14 +126,14 @@ const DropDownMenu = ({ title, items, showInput, placeholder, type, onChange }) 
             type="number"
             value={startDis}
             onChange={(event) => handleRangeChange(event.target.value, endDis, setStartDis, setEndDis)}
-            placeholder="از ... کیلومتر"
+            placeholder="از مثلا 10000 کیلومتر"
             className="w-full px-2 py-1 mb-2 border border-gray-300 rounded"
           />
           <input
             type="number"
             value={endDis}
             onChange={(event) => handleRangeChange(startDis, event.target.value, setStartDis, setEndDis)}
-            placeholder="تا ... کیلومتر"
+            placeholder="تا مثلا 25000 کیلومتر"
             className="w-full px-2 py-1 mb-2 border border-gray-300 rounded"
           />
         </div>
@@ -206,14 +206,14 @@ const DropDownMenu = ({ title, items, showInput, placeholder, type, onChange }) 
             type="number"
             value={startPrice}
             onChange={(event) => handleRangeChange(event.target.value, endPrice, setStartPrice, setEndPrice)}
-            placeholder="از قیمت ... تومان"
+            placeholder="از مثلا 200000000 تومان"
             className="w-full px-2 py-1 mb-2 border border-gray-300 rounded"
           />
           <input
             type="number"
             value={endPrice}
             onChange={(event) => handleRangeChange(startPrice, event.target.value, setStartPrice, setEndPrice)}
-            placeholder="تا قیمت ... تومان"
+            placeholder="تا مثلا 500000000 تومان"
             className="w-full px-2 py-1 mb-2 border border-gray-300 rounded"
           />
         </div>
@@ -227,14 +227,14 @@ const DropDownMenu = ({ title, items, showInput, placeholder, type, onChange }) 
             type="number"
             value={startValue}
             onChange={(event) => handleInsRangeChange(event.target.value, endValue)}
-            placeholder="From 0 to 12"
+            placeholder="از مثلا 4 ماه"
             className={`w-full px-2 py-1 mb-2 border ${errorIns ? 'border-red-500 focus:border-red-500' : 'border-gray-300'} rounded`}
           />
           <input
             type="number"
             value={endValue}
             onChange={(event) => handleInsRangeChange(startValue, event.target.value)}
-            placeholder="From 0 to 12"
+            placeholder="تا مثلا 8 ماه"
             className={`w-full px-2 py-1 mb-2 border ${errorIns ? 'border-red-500 focus:border-red-500' : 'border-gray-300'} rounded`}
           />
           {errorIns && <p className="text-red-500">{errorIns}</p>}
