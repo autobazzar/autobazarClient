@@ -9,6 +9,12 @@ export async function loginUser(payload, googleFlag) {
   return POST(url, { ...payload, isFromGoogle: Boolean(googleFlag) });
 }
 
+export async function submitScore(payload) {
+  const url = "/rates";
+  console.log(payload);
+  return POST(url, payload);
+}
+
 export async function receiveAds() {
   const url = "/ads";
   return GET(url);
@@ -17,6 +23,11 @@ export async function receiveAds() {
 export async function deleteAd(id) {
   const url = `/ads/${id}`;
   return DELETE_AD(url);
+}
+
+export async function receiveAdScore(id) {
+  const url = `/rates/${id}/average`;
+  return GET(url);
 }
 export async function submitAds(payload) {
   //const url = "localhost:3000/ads";
