@@ -20,7 +20,6 @@ export default function ShowAds() {
     engine: null,
     accidental: false,
   });
-  const dropdownItems = ['Item 1', 'Item 2', 'Item 3'];
   const profile = useSelector((state) => state.profile);
 
   useEffect(() => {
@@ -42,51 +41,52 @@ export default function ShowAds() {
   };
 
   useEffect(() => {
+    const applyFilters = () => {
+      let filtered = ads;
+  
+      if (selectedFilters.yearRange) {
+        filtered = filtered.filter(
+          (ad) => ad.year >= selectedFilters.yearRange.startYear 
+                  && ad.year <= selectedFilters.yearRange.endYear
+        );
+      }
+      if (selectedFilters.priceRange) {
+        filtered = filtered.filter(
+          (ad) => ad.price >= selectedFilters.priceRange.startPrice 
+                  && ad.price <= selectedFilters.priceRange.endPrice
+        );
+      }
+      if (selectedFilters.InsRange) {
+        filtered = filtered.filter(
+          (ad) => ad.insurance >= selectedFilters.InsRange.startIns 
+                  && ad.insurance <= selectedFilters.InsRange.endIns
+        );
+      }
+      if (selectedFilters.disRange) {
+        filtered = filtered.filter(
+          (ad) => ad.distance >= selectedFilters.disRange.startDis 
+                  && ad.distance <= selectedFilters.disRange.endDis
+        );
+      }
+      if (selectedFilters.color) {
+        filtered = filtered.filter((ad) => ad.color === selectedFilters.color);
+      }
+      if (selectedFilters.fuelType) {
+        filtered = filtered.filter((ad) => ad.fuel === selectedFilters.fuelType);
+      }
+      if (selectedFilters.accidental) {
+        filtered = filtered.filter((ad) => ad.accidental === true);
+      }
+      if(selectedFilters.engine) {
+        filtered = filtered.filter((ad) => ad.motor === selectedFilters.engine);
+      }
+  
+      setFilteredAds(filtered);
+    };
     applyFilters();
-  }, [selectedFilters]);
+  }, [selectedFilters, ads]);
 
-  const applyFilters = () => {
-    let filtered = ads;
-
-    if (selectedFilters.yearRange) {
-      filtered = filtered.filter(
-        (ad) => ad.year >= selectedFilters.yearRange.startYear 
-                && ad.year <= selectedFilters.yearRange.endYear
-      );
-    }
-    if (selectedFilters.priceRange) {
-      filtered = filtered.filter(
-        (ad) => ad.price >= selectedFilters.priceRange.startPrice 
-                && ad.price <= selectedFilters.priceRange.endPrice
-      );
-    }
-    if (selectedFilters.InsRange) {
-      filtered = filtered.filter(
-        (ad) => ad.insurance >= selectedFilters.InsRange.startIns 
-                && ad.insurance <= selectedFilters.InsRange.endIns
-      );
-    }
-    if (selectedFilters.disRange) {
-      filtered = filtered.filter(
-        (ad) => ad.distance >= selectedFilters.disRange.startDis 
-                && ad.distance <= selectedFilters.disRange.endDis
-      );
-    }
-    if (selectedFilters.color) {
-      filtered = filtered.filter((ad) => ad.color === selectedFilters.color);
-    }
-    if (selectedFilters.fuelType) {
-      filtered = filtered.filter((ad) => ad.fuel === selectedFilters.fuelType);
-    }
-    if (selectedFilters.accidental) {
-      filtered = filtered.filter((ad) => ad.accidental === true);
-    }
-    if(selectedFilters.engine) {
-      filtered = filtered.filter((ad) => ad.motor === selectedFilters.engine);
-    }
-
-    setFilteredAds(filtered);
-  };
+  
 
   const handleYearRangeChange = (startYear, endYear) => {
     if(startYear !== "" && endYear !== ""){
@@ -191,15 +191,13 @@ export default function ShowAds() {
                 onChange={handleColorChange}
             />
             <DropDownMenu 
-              title="سال تولید" 
-              items={dropdownItems} 
+              title="سال تولید"  
               showInput={true}  
               type="year" 
               onChange={handleYearRangeChange} 
             />
             <DropDownMenu 
               title="کارکرد" 
-              items={dropdownItems} 
               showInput={true} 
               type="distance"
               placeholder={'مثلا 1000 کیلومتر'} 
@@ -207,7 +205,6 @@ export default function ShowAds() {
             />
             <DropDownMenu 
               title="قیمت" 
-              items={dropdownItems} 
               showInput={true} 
               type="price"
               onChange={handlePriceRangeChange} 
@@ -233,10 +230,9 @@ export default function ShowAds() {
               onChange={handleEngineChange}
             />
             
-            <DropDownMenu title="محل" items={dropdownItems} showInput={true} placeholder={'محل را وارد کنید'} />
+            <DropDownMenu title="محل" showInput={true} placeholder={'محل را وارد کنید'} />
             <DropDownMenu 
               title="مهلت بیمه شخص ثالث" 
-              items={dropdownItems} 
               showInput={true} 
               placeholder={"مثلا 7 ماه"} 
               type="insurance"
