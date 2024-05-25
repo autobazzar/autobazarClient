@@ -27,6 +27,7 @@ export default function Item({className,id, ad, type, isMine}) {
           descriptions: ad.additionalInfo,
           score:ad.score,
           numberOfScores:'',
+          address: ad.address
         }}
         handleClose={handleClose}
         isOpen={isOpen}
@@ -34,7 +35,12 @@ export default function Item({className,id, ad, type, isMine}) {
         isMine={isMine}
       />
       {type === "ad" &&
-          <button key={id} onClick={handleOpen} dir="rtl" className={`flex flex-row justify-around lg:w-1/4 lg:h-1/4 border-2 rounded-md p-2 m-0 items-center ${className}`}>
+          <button 
+            key={id} 
+            onClick={handleOpen} 
+            dir="rtl" 
+            className={`flex flex-row justify-around lg:w-1/4 lg:h-1/4 border-2 rounded-md p-2 m-0 items-center ${className}`}
+            >
               <div className='mb-2'>
                 <p className='text-lg font-semibold pr-2'>{ad.carName}</p>
                 <p className='text-sm mt-6 pr-2 text-right'>{ad.distance} کیلومتر</p>

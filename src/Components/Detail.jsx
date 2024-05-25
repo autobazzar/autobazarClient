@@ -1,21 +1,35 @@
 import { bool, func, object, string } from "prop-types";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Modal from "./Common/Modal";
 import { detailKeys } from "../utils/const";
 import InfinitySlider from "./Common/InfinitySlider";
 import StarPicker from "./Common/StarPicker";
 import { CgClose } from "react-icons/cg";
-import { MdDeleteForever } from "react-icons/md";
 import Button from "./Common/Button";
-import { PiWarningCircleBold } from "react-icons/pi";
 import { deleteAd } from "../api/api";
+import { receiveAdScore } from "../api/api";
+import {useSelector } from "react-redux";
 
 export default function Detail({ id, isOpen, handleClose, detail, img, isMine }) {
+  const profile = useSelector((state) => state.profile)
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  
+  const [score, setScore] = useState("");
   const handleDeleteClick = () => {
     setIsDeleteModalOpen(true);
   };
+
+  useEffect(() => {
+    const fetchScore = async () => {
+      try {
+        const response = await receiveAdScore(id);
+        setScore(response.data)
+      } catch (error) {
+        console.error('Error fetching ads data:', error);
+      }
+    };
+
+    fetchScore();
+  }, [id]);
 
   const handleConfirmDelete = async () => {
     try {
@@ -33,9 +47,9 @@ export default function Detail({ id, isOpen, handleClose, detail, img, isMine })
     setIsDeleteModalOpen(false);
   };
 
-  const renderText = () => {
-    return `امتیاز ${detail.numberOfScores} از مجموع`;
-  };
+  // const renderText = () => {
+  //   return `امتیاز ${detail.numberOfScores} از مجموع`;
+  // };
 
   return (
     <>
@@ -44,7 +58,7 @@ export default function Detail({ id, isOpen, handleClose, detail, img, isMine })
           <button onClick={handleClose}>
             <CgClose />
           </button>
-          <div className="border-b-2"></div>
+          <div className="border-b-2 mb-2"></div>
           {isMine && (
               <div className="flex flex-row gap-x-2 min-h-0 h-full ">
                 <Button text="حذف آگهی" onClick={() => handleDeleteClick()} className='border-2 border-red-800 !text-xs !bg-red-800 !h-full' />
@@ -96,18 +110,18 @@ export default function Detail({ id, isOpen, handleClose, detail, img, isMine })
               <h3 className="font-bold border-b-[1px] border-gray-300 pb-3">
                 امتیاز و دیدگاه کاربران
               </h3>
-              <span className="flex flex-row pt-3 px-3">
-                <span className="text-xl">{` ${detail["score"]} از `}</span>
-                <span className="text-xl">
-                  <b>5</b>
+              <span className="flex flex-row pt-3 mr-2">
+                <span className="text-xl text-right pl-1 mr-0 font-bold">{`${score} از`}</span>
+                <span className="text-xl opacity-50">
+                  <b>{" "}5</b>
                 </span>
               </span>
-              <span className="px-2 text-gray-400">{renderText()}</span>
+              {/* <span className="px-2 text-gray-400">{renderText()}</span> */}
               <h3 className="font-bold border-b-[1px] border-gray-300 pt-5 pb-1">
                 ثبت امتیاز
               </h3>
               <div className="flex flex-col justify-center w-full">
-                <StarPicker />
+                <StarPicker user_id={profile.user_id} ad_id={id}/>
               </div>
             </div>
           </div>
