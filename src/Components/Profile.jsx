@@ -5,7 +5,7 @@ import { LuFolderArchive } from "react-icons/lu";
 import { RxExit } from "react-icons/rx";
 import { IoSearchOutline } from "react-icons/io5";
 import { FaPlus } from "react-icons/fa6";
-import AdsItem from './Common/AdsItem';
+import Item from './Common/Item';
 import { useState,useEffect } from 'react';
 import { useNavigate,Navigate } from 'react-router-dom';
 import { persistor } from "../store/store";
@@ -98,11 +98,12 @@ export default function Profile() {
           </form>
           <div dir='rtl' className='overflow-y-auto flex flex-row flex-wrap gap-y-6 gap-x-4 content-start p-0'>
           {ads.map((ad) => (
-              <AdsItem
+              <Item
                 key={ad.adId}
                 className="lg:basis-[32%]"
                 id={ad.adId}
                 ad={ad}
+                type="ad"
               />
             ))}
           </div>

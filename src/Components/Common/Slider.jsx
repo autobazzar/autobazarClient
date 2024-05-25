@@ -1,10 +1,9 @@
 import { useRef ,useState,useEffect} from "react";
-import SliderItem from "./SliderItem";
+import Item from "./Item";
 import useSlider from "../../hooks/useSlider";
 import { node } from "prop-types";
 import { receiveAds } from "../../api/api";
 
-let id = 0;
 export default function Slider({ mainDiv }) {
   const [ads, setAds] = useState([]);
   useEffect(() => {
@@ -39,10 +38,11 @@ export default function Slider({ mainDiv }) {
       >
         {ads.map((ad) => {
           return (
-            <SliderItem
+            <Item
               key={ad.adId}
               id={ad.adId}
               ad={ad}
+              type="slider"
             />
           );
         })}
