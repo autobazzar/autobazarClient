@@ -7,13 +7,14 @@ import StarPicker from "./Common/StarPicker";
 import { CgClose } from "react-icons/cg";
 import Button from "./Common/Button";
 import { deleteAd } from "../api/api";
-import { receiveAdScore } from "../api/api";
+import { receiveAdScore, receiveNumberOfScores } from "../api/api";
 import {useSelector } from "react-redux";
 
 export default function Detail({ id, isOpen, handleClose, detail, img, isMine }) {
   const profile = useSelector((state) => state.profile)
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [score, setScore] = useState("");
+  const [scores, setScores] = useState("");
   const handleDeleteClick = () => {
     setIsDeleteModalOpen(true);
   };
@@ -28,7 +29,14 @@ export default function Detail({ id, isOpen, handleClose, detail, img, isMine })
       }
     };
 
+    const getNumberOFScores = async () => {
+      const response = await receiveNumberOfScores(id);
+      console.log(response.data)
+      setScores(response.data)
+    };
+
     fetchScore();
+    getNumberOFScores();
   }, [id]);
 
   const handleConfirmDelete = async () => {
@@ -47,9 +55,11 @@ export default function Detail({ id, isOpen, handleClose, detail, img, isMine })
     setIsDeleteModalOpen(false);
   };
 
-  // const renderText = () => {
-  //   return `امتیاز ${detail.numberOfScores} از مجموع`;
-  // };
+  
+
+  const renderText = () => {
+    return `از مجموع ${scores} امتیاز دهنده`;
+  };
 
   return (
     <>
@@ -116,7 +126,7 @@ export default function Detail({ id, isOpen, handleClose, detail, img, isMine })
                   <b>{" "}5</b>
                 </span>
               </span>
-              {/* <span className="px-2 text-gray-400">{renderText()}</span> */}
+              <span className="px-2 text-gray-400">{renderText()}</span>
               <h3 className="font-bold border-b-[1px] border-gray-300 pt-5 pb-1">
                 ثبت امتیاز
               </h3>
