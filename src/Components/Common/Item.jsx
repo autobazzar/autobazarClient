@@ -33,6 +33,7 @@ export default function Item({className,id, ad, type, isMine}) {
         isOpen={isOpen}
         img={ad.picsUrl}
         isMine={isMine}
+        mobileNum={ad.mobileNum}
       />
       {type === "ad" &&
           <button 
