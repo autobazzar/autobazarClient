@@ -8,7 +8,7 @@ export default function AboutUs() {
           <div className="md:w-1/4 p-4 order-2 md:order-1">
             <h2 className="text-2xl font-bold mb-4">درباری اتوبازار</h2>
             <p className="mb-4">
-              اتوبازار از اسفند ماه 1400 با هدف ایجاد سهولت در خرید و فروش ماشین آغار به کار کرد.
+              اتوبازار از اسفند ماه 1400 با هدف ایجاد سهولت در خرید و فروش ماشین آغاز به کار کرد.
             </p>
           </div>
         </div>
