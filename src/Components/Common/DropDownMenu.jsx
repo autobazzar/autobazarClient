@@ -11,7 +11,9 @@ const DropDownMenu = ({ title, items, showInput, placeholder, type, onChange }) 
   const [startDis, setStartDis] = useState('');
   const [endDis, setEndDis] = useState('');
   const [selectedColor, setSelectedColor] = useState('');
-  const [isAccidental, setIsAccidental] = useState(false);
+  const [selectedFuelType, setSelectedFuelType] = useState('');
+  const [selectedEngineState, setSelectedEngineState] = useState('');
+  
 
   const dropdownRef = useRef(null);
 
@@ -43,11 +45,27 @@ const DropDownMenu = ({ title, items, showInput, placeholder, type, onChange }) 
     }
   };
 
-  const handleAccidentalChange = (event) => {
-    setIsAccidental(event.target.checked);
-    onChange(event.target.checked);
+  const handleFuelSelection = (FuelType) => {
+    if (selectedFuelType === FuelType || FuelType === 'None') {
+      setSelectedFuelType('');
+      onChange('');
+    } else {
+      setSelectedFuelType(FuelType);
+      onChange(FuelType);
+    }
   };
 
+  const handleEngineSelection = (engineState) => {
+    if (selectedEngineState === engineState || engineState === 'None') {
+      setSelectedEngineState('');
+      onChange('');
+    } else {
+      setSelectedEngineState(engineState);
+      onChange(engineState);
+    }
+  };
+
+  
   useEffect(() => {
     const handleOutsideClick = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -111,13 +129,53 @@ const DropDownMenu = ({ title, items, showInput, placeholder, type, onChange }) 
           {items.map((color) => (
             <li
               key={color}
-              className={`rounded-md py-2 px-4 hover:bg-gray-200 cursor-pointer w-full ${
-                selectedColor === color ? 'bg-gray-200' : ''
+              className={`rounded-md text-gray-700 py-2 px-4 hover:bg-gray-200 hover:text-gray-700 cursor-pointer w-full ${
+                selectedColor === color ? 'bg-[#2b4e47] text-white' : ''
               }`}
               onClick={() => handleColorSelection(color)}
               onKeyDown={() => handleColorSelection(color)}
             >
               {color}
+            </li>
+          ))}
+        </ul>
+      );
+
+      
+    }
+
+    if (type === 'fuel') {
+      return (
+        <ul>
+          {items.map((fuelType) => (
+            <li
+              key={fuelType}
+              className={`rounded-md py-2 px-4 hover:bg-gray-200 hover:text-gray-700 cursor-pointer w-full ${
+                selectedFuelType === fuelType ? 'bg-[#2b4e47] text-white' : ''
+              }`}
+              onClick={() => handleFuelSelection(fuelType)}
+              onKeyDown={() => handleFuelSelection(fuelType)}
+            >
+              {fuelType}
+            </li>
+          ))}
+        </ul>
+      );
+    }
+
+    if (type === 'engine') {
+      return (
+        <ul>
+          {items.map((engineState) => (
+            <li
+              key={engineState}
+              className={`rounded-md py-2 px-4 hover:bg-gray-200 hover:text-gray-700 cursor-pointer w-full ${
+                selectedEngineState === engineState ? 'bg-[#2b4e47] text-white' : ''
+              }`}
+              onClick={() => handleEngineSelection(engineState)}
+              onKeyDown={() => handleEngineSelection(engineState)}
+            >
+              {engineState}
             </li>
           ))}
         </ul>
@@ -145,20 +203,6 @@ const DropDownMenu = ({ title, items, showInput, placeholder, type, onChange }) 
       );
     }
 
-    if (type === 'accidental') {
-      return (
-        <div className='flex flex-row justify-around'>
-          <input
-            type="checkbox"
-            checked={isAccidental}
-            onClick={handleAccidentalChange}
-            onKeyDown={handleAccidentalChange}
-            className="mr-2"
-          />
-          <label>Accidental</label>
-        </div>
-      );
-    }
 
     return null;
   };

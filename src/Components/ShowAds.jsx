@@ -5,13 +5,23 @@ import Button from './Common/Button';
 import { receiveAds } from '../api/api';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import Checkbox from './Common/Checkbox';
 
 export default function ShowAds() {
   const [ads, setAds] = useState([]);
   const [filteredAds, setFilteredAds] = useState([]);
+  const [selectedFilters, setSelectedFilters] = useState({
+    yearRange: null,
+    priceRange: null,
+    disRange: null,
+    color: null,
+    fuelType: null,
+    engine: null,
+    accidental: false,
+  });
   const dropdownItems = ['Item 1', 'Item 2', 'Item 3'];
   const profile = useSelector((state) => state.profile);
-  
+
   useEffect(() => {
     const fetchAds = async () => {
       try {
@@ -25,43 +35,99 @@ export default function ShowAds() {
 
     fetchAds();
   }, []);
-  const navigate=useNavigate()
-  const handleClick=()=>{
-    navigate("/submit-ads")
-  }
-  const handleYearRangeChange = (startYear, endYear) => {
-    const filtered = ads.filter(ad => ad.year >= startYear && ad.year <= endYear);
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate("/submit-ads");
+  };
+
+  useEffect(() => {
+    applyFilters();
+  }, [selectedFilters]);
+
+  const applyFilters = () => {
+    let filtered = ads;
+
+    if (selectedFilters.yearRange) {
+      filtered = filtered.filter(
+        (ad) => ad.year >= selectedFilters.yearRange.startYear 
+                && ad.year <= selectedFilters.yearRange.endYear
+      );
+    }
+    if (selectedFilters.priceRange) {
+      filtered = filtered.filter(
+        (ad) => ad.price >= selectedFilters.priceRange.startPrice 
+                && ad.price <= selectedFilters.priceRange.endPrice
+      );
+    }
+    if (selectedFilters.disRange) {
+      filtered = filtered.filter(
+        (ad) => ad.distance >= selectedFilters.disRange.startDis 
+                && ad.distance <= selectedFilters.disRange.endDis
+      );
+    }
+    if (selectedFilters.color) {
+      filtered = filtered.filter((ad) => ad.color === selectedFilters.color);
+    }
+    if (selectedFilters.fuelType) {
+      filtered = filtered.filter((ad) => ad.fuel === selectedFilters.fuelType);
+    }
+    if (selectedFilters.accidental) {
+      filtered = filtered.filter((ad) => ad.accidental === true);
+    }
+    if(selectedFilters.engine) {
+      filtered = filtered.filter((ad) => ad.motor === selectedFilters.engine);
+    }
+
     setFilteredAds(filtered);
+  };
+
+  const handleYearRangeChange = (startYear, endYear) => {
+    setSelectedFilters((prevFilters) => ({
+      ...prevFilters,
+      yearRange: { startYear, endYear },
+    }));
   };
 
   const handlePriceRangeChange = (startPrice, endPrice) => {
-    const filtered = ads.filter(ad => ad.price >= startPrice && ad.price <= endPrice);
-    setFilteredAds(filtered);
+    setSelectedFilters((prevFilters) => ({
+      ...prevFilters,
+      priceRange: { startPrice, endPrice },
+    }));
   };
 
   const handleDisRangeChange = (startDis, endDis) => {
-    const filtered = ads.filter(ad => ad.distance >= startDis && ad.distance <= endDis);
-    setFilteredAds(filtered);
+    setSelectedFilters((prevFilters) => ({
+      ...prevFilters,
+      disRange: { startDis, endDis },
+    }));
   };
 
   const handleColorChange = (color) => {
-    if (color === '') {
-      setFilteredAds(ads);
-    } else {
-      const filtered = ads.filter((ad) => ad.color === color);
-      setFilteredAds(filtered);
-    }
+    setSelectedFilters((prevFilters) => ({
+      ...prevFilters,
+      color: color,
+    }));
+  };
+
+  const handleFuelTypeChange = (fuelType) => {
+    setSelectedFilters((prevFilters) => ({
+      ...prevFilters,
+      fuelType: fuelType,
+    }));
   };
 
   const handleAccidentalChange = (checked) => {
-    
-    if(checked){
-      const filtered = ads.filter((ad) => ad.accidental === true);
-      setFilteredAds(filtered);
-    }else{
-      setFilteredAds(ads);
-    }
-    
+    setSelectedFilters((prevFilters) => ({
+      ...prevFilters,
+      accidental: checked,
+    }));
+  };
+
+  const handleEngineChange = (checked) => {
+    setSelectedFilters((prevFilters) => ({
+      ...prevFilters,
+      engine: checked,
+    }));
   };
 
   return (
@@ -103,16 +169,27 @@ export default function ShowAds() {
               type="price"
               onChange={handlePriceRangeChange} 
             />
-            <DropDownMenu title="مشخصات بدنه" items={['سالم', 'خط و خش جزیی', 'رنگ شدگی', 'دوررنگ', 'تمام رنگ', 'تصادفی', 'اوراقی']} showInput={false} />
-            <DropDownMenu title="نوع سوخت" items={['دوگانه سوز دستی', 'دوگانه سوز شرکتی', 'گازوییل', 'بنزین']} showInput={false} />
+            {/* <DropDownMenu title="مشخصات بدنه" items={['سالم', 'خط و خش جزیی', 'رنگ شدگی', 'دوررنگ', 'تمام رنگ', 'تصادفی', 'اوراقی']} showInput={false} /> */}
             <DropDownMenu 
-             
-             title="تصادفی بودن"
-             items={dropdownItems} 
-             type="accidental"
-             onChange={handleAccidentalChange}
+              title="نوع سوخت" 
+              items={['دوگانه سوز دستی', 'دوگانه سوز شرکتی', 'گازوییل', 'بنزین']} 
+              showInput={false} 
+              type="fuel"
+              onChange={handleFuelTypeChange}
             />
-            <DropDownMenu title="موتور" items={['تعویض شده', 'نیاز به تعمیر', 'سالم']} showInput={false} />
+            <Checkbox 
+              text="تصادفی بودن" 
+              onChange={handleAccidentalChange}
+            />
+
+            <DropDownMenu 
+              title="موتور" 
+              items={['تعویض شده', 'نیاز به تعمیر', 'سالم']} 
+              showInput={false} 
+              type="engine"
+              onChange={handleEngineChange}
+            />
+            
             <DropDownMenu title="محل" items={dropdownItems} showInput={true} placeholder={'محل را وارد کنید'} />
             <DropDownMenu title="مهلت بیمه شخص ثالث" items={dropdownItems} showInput={true} placeholder={"مثلا 7 ماه"} />
           </div>
