@@ -89,31 +89,59 @@ export default function ShowAds() {
   };
 
   const handleYearRangeChange = (startYear, endYear) => {
-    setSelectedFilters((prevFilters) => ({
-      ...prevFilters,
-      yearRange: { startYear, endYear },
-    }));
+    if(startYear !== "" && endYear !== ""){
+        setSelectedFilters((prevFilters) => ({
+          ...prevFilters,
+          yearRange: { startYear, endYear },
+        }));
+    }else{
+      setSelectedFilters((prevFilters) => ({
+        ...prevFilters,
+        yearRange: { startYear : 0, endYear : Number.POSITIVE_INFINITY },
+      }));
+    }
   };
 
   const handlePriceRangeChange = (startPrice, endPrice) => {
-    setSelectedFilters((prevFilters) => ({
-      ...prevFilters,
-      priceRange: { startPrice, endPrice },
-    }));
+    if(startPrice !== "" && endPrice !== ""){
+        setSelectedFilters((prevFilters) => ({
+          ...prevFilters,
+          priceRange: { startPrice, endPrice },
+        }));
+    }else{
+      setSelectedFilters((prevFilters) => ({
+        ...prevFilters,
+        priceRange: { startPrice : 0, endPrice : Number.POSITIVE_INFINITY },
+      }));
+    }
   };
 
   const handleDisRangeChange = (startDis, endDis) => {
-    setSelectedFilters((prevFilters) => ({
-      ...prevFilters,
-      disRange: { startDis, endDis },
-    }));
+    if(startDis !== "" && endDis !== ""){
+      setSelectedFilters((prevFilters) => ({
+        ...prevFilters,
+        disRange: { startDis, endDis },
+      }));
+    }else{
+      setSelectedFilters((prevFilters) => ({
+        ...prevFilters,
+        disRange: { startDis : 0, endDis : Number.POSITIVE_INFINITY },
+      }));
+    }
   };
 
   const handleInsRangeChange = (startIns, endIns) => {
-    setSelectedFilters((prevFilters) => ({
-      ...prevFilters,
-      InsRange: { startIns, endIns },
-    }));
+    if(startIns !== "" && endIns !== ""){
+      setSelectedFilters((prevFilters) => ({
+        ...prevFilters,
+        InsRange: { startIns, endIns },
+      }));
+    }else{
+      setSelectedFilters((prevFilters) => ({
+        ...prevFilters,
+        InsRange: { startIns : 0, endIns : Number.POSITIVE_INFINITY },
+      }));
+    }
   };
 
 
