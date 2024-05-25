@@ -1,18 +1,26 @@
 import { useState } from "react";
 import { string, number } from "prop-types";
 import { submitScore } from "../../api/api";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { prettyString } from "../../utils/prettyString";
 export default function StarPicker({user_id, ad_id}) {
+    const profile = useSelector((state) => state.profile);
     const [choosenStar,setChoosenStar]= useState(-1);
     const handleSubmit = async () => {
-      const payload = {
-          score: choosenStar,
-          userId: user_id,
-          adId: ad_id
-      };
-      
-      console.log(payload);
-      await submitScore(payload);
-      window.location.reload();
+      if("user_id" in profile){
+        const payload = {
+            score: choosenStar,
+            userId: user_id,
+            adId: ad_id
+        };
+        
+        console.log(payload);
+        await submitScore(payload);
+        window.location.reload();
+      }else{
+        toast.error(prettyString("لطفا ابتدا وارد شوید و یا ثبت نام کنید."));
+      }
   };
   return (
     <div className="flex flex-col gap-2 justify-center">
