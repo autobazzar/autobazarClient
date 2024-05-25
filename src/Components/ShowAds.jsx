@@ -19,6 +19,8 @@ export default function ShowAds() {
     fuelType: null,
     engine: null,
     accidental: false,
+    location: null,
+    carName: null
   });
   const profile = useSelector((state) => state.profile);
 
@@ -79,6 +81,12 @@ export default function ShowAds() {
       }
       if(selectedFilters.engine) {
         filtered = filtered.filter((ad) => ad.motor === selectedFilters.engine);
+      }
+      if(selectedFilters.location){
+        filtered = filtered.filter((ad) => ad.address.toLowerCase().startsWith(selectedFilters.location));
+      }
+      if(selectedFilters.carName){
+        filtered = filtered.filter((ad) => ad.carName.toLowerCase().startsWith(selectedFilters.carName));
       }
   
       setFilteredAds(filtered);
@@ -173,6 +181,21 @@ export default function ShowAds() {
     }));
   };
 
+  const handleLocationChange = (location) => {
+    setSelectedFilters((prevFilters) => ({
+      ...prevFilters,
+      location: location,
+    }));
+  };
+
+  const handleCarNameChange = (carName) => {
+    setSelectedFilters((prevFilters) => ({
+      ...prevFilters,
+      carName: carName,
+    }));
+  };
+
+
   return (
     <>
       <div dir="rtl" className='h-screen flex flex-col h-full min-h-0 '>
@@ -182,7 +205,13 @@ export default function ShowAds() {
         </div>
         <div className='h-[100vh] z-0 w-full flex flex-row mt-[54px] basis-3/4 px-16 pt-4'>
           <div className='hidden w-[0px] h-[0px] lg:flex lg:flex-col lg:basis-1/5'>
-            <DropDownMenu title="برند و تیپ" items={['بی ام و', 'پراید', 'رانا', 'سایپا', 'پژو']} showInput={false} />
+            <DropDownMenu 
+              title="برند و تیپ" 
+              items={['بی ام و', 'پراید', 'رانا', 'سایپا', 'پژو']} 
+              showInput={false} 
+              type="carName"
+              onChange={handleCarNameChange}
+            />
             <DropDownMenu
                 title="رنگ"
                 items={['سفید', 'مشکی', 'نقره‌ای', 'آبی', 'قرمز', 'زرد', 'سبز', 'خاکستری', 'بنفش', 'قهوه‌ای']}
@@ -230,7 +259,13 @@ export default function ShowAds() {
               onChange={handleEngineChange}
             />
             
-            <DropDownMenu title="محل" showInput={true} placeholder={'محل را وارد کنید'} />
+            <DropDownMenu 
+              title="محل" 
+              showInput={true} 
+              placeholder={'محل را وارد کنید'}
+              type="location"
+              onChange={handleLocationChange}
+            />
             <DropDownMenu 
               title="مهلت بیمه شخص ثالث" 
               showInput={true} 

@@ -13,6 +13,8 @@ const DropDownMenu = ({ title, items, showInput, placeholder, type, onChange }) 
   const [selectedColor, setSelectedColor] = useState('');
   const [selectedFuelType, setSelectedFuelType] = useState('');
   const [selectedEngineState, setSelectedEngineState] = useState('');
+  const [location, setLocation] = useState('');
+  const [carName, setCarName] = useState('');
   const [startValue, setStartValue] = useState('');
   const [endValue, setEndValue] = useState('');
   const [errorIns, setErrorIns] = useState('');
@@ -36,6 +38,16 @@ const DropDownMenu = ({ title, items, showInput, placeholder, type, onChange }) 
     startStateSetter(startValue);
     endStateSetter(endValue);
     onChange(startValue, endValue);
+  };
+
+  const handleLocationChange = (loc) => {
+    setLocation(loc);
+    onChange(loc);
+  };
+
+  const handleCarNameChange = (carName) => {
+    setCarName(carName);
+    onChange(carName);
   };
 
   const handleInsRangeChange = (start, end) => {
@@ -239,6 +251,30 @@ const DropDownMenu = ({ title, items, showInput, placeholder, type, onChange }) 
           />
           {errorIns && <p className="text-red-500">{errorIns}</p>}
         </div>
+      );
+    }
+
+    if(type == "location"){
+      return(
+          <input
+            type="text"
+            value={location}
+            onChange={(event) => handleLocationChange(event.target.value)}
+            placeholder="مثلا تهران، کرج"
+            className={`w-full px-2 py-1 mb-2 border rounded`}
+          />
+      );
+    }
+
+    if(type == "carName"){
+      return(
+        <input
+          type="text"
+          value={carName}
+          onChange={(event) => handleCarNameChange(event.target.value)}
+          placeholder="مثلا دنا پلاس"
+          className={`w-full px-2 py-1 mb-2 border rounded`}
+        />
       );
     }
 
