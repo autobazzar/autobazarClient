@@ -23,16 +23,22 @@ export default function Detail({ id, isOpen, handleClose, detail, img, isMine })
     const fetchScore = async () => {
       try {
         const response = await receiveAdScore(id);
+        
         setScore(response.data)
       } catch (error) {
         console.error('Error fetching ads data:', error);
+        setScore("هنوز هیچ کاربری به این آگهی امتیاز نداده است.")
       }
     };
 
     const getNumberOFScores = async () => {
       const response = await receiveNumberOfScores(id);
-      console.log(response.data)
-      setScores(response.data)
+      
+      try {
+        setScores(response.data)
+      }catch(error){
+        setScores("0");
+      }
     };
 
     fetchScore();
@@ -120,13 +126,21 @@ export default function Detail({ id, isOpen, handleClose, detail, img, isMine })
               <h3 className="font-bold border-b-[1px] border-gray-300 pb-3">
                 امتیاز و دیدگاه کاربران
               </h3>
-              <span className="flex flex-row pt-3 mr-2">
-                <span className="text-xl text-right pl-1 mr-0 font-bold">{`${score} از`}</span>
-                <span className="text-xl opacity-50">
-                  <b>{" "}5</b>
-                </span>
-              </span>
-              <span className="px-2 text-gray-400">{renderText()}</span>
+              {score !== "هنوز هیچ کاربری به این آگهی امتیاز نداده است." &&
+                <div>
+                  <span className="flex flex-row pt-3 mr-2">
+                    <span className="text-xl text-right pl-1 mr-0 font-bold">{`${score} از`}</span>
+                    <span className="text-xl opacity-50">
+                      <b>{" "}5</b>
+                    </span>
+                  </span>
+                  <span className="px-2 text-gray-400">{renderText()}</span>
+                </div>
+              }
+              {score.length > 10 &&
+                <h6 className="mr-1 mt-2 font-sm text-sm opacity-50">{score}</h6>
+              }   
+              
               <h3 className="font-bold border-b-[1px] border-gray-300 pt-5 pb-1">
                 ثبت امتیاز
               </h3>
