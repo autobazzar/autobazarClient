@@ -46,7 +46,7 @@ export default function Item({className,id, ad, type, isMine}) {
                 <p className='text-sm mt-6 pr-2 text-right'>{ad.distance} کیلومتر</p>
                 <p className='text-sm mt-2 pr-2 text-right'>{ad.price} تومان</p>
               </div>
-              <img src={ad.picsUrl} alt={"carImg"} className='border-1 w-[50%] h-[67%]'/>
+              <Avatar imgSrc={ad.picsUrl} className='border-1 w-[50%] h-[67%]'/>
           </button>
       }
       {type ==="slider" &&
@@ -55,7 +55,7 @@ export default function Item({className,id, ad, type, isMine}) {
             className="flex flex-row w-fit p-5 items-center justify-center bg-[var(--background-Color)] min-w-fit gap-5"
             onClick={handleOpen}
             >
-            <Avatar imgSrc={ad.picsUrl} />
+            <Avatar imgSrc={ad.picsUrl} className='border-1 w-[50%] h-[67%]'/>
             <div className="select-none flex flex-col w-fit text-nowrap" >
               <h1 className="font-bold mb-5">{ad.carName}</h1>
               <h3>{ad.distance} کیلومتر</h3>

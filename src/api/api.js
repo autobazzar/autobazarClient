@@ -29,6 +29,11 @@ export async function receiveAdScore(id) {
   const url = `/rates/${id}/average`;
   return GET(url);
 }
+
+export async function receiveNumberOfScores(id) {
+  const url = `/rates/${id}/unique-users-count`;
+  return GET(url);
+}
 export async function submitAds(payload) {
   //const url = "localhost:3000/ads";
   console.error(payload);
