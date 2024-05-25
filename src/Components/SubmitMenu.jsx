@@ -10,7 +10,7 @@ export default function SubmitMenu() {
       </h3>
       <div className="flex flex-col gap-5">
         <MenuCard
-        className={'bg-[#2B4E47] text-white'}
+        className={'!bg-[#2B4E47] text-white'}
           title={"محل سکونت"}
           icon={<IoLocationOutline className="text-2xl" />}
         />
