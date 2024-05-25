@@ -1,8 +1,9 @@
 FROM node:18-alpine
+USER nonroot
 WORKDIR '/app'
 COPY ./package.json ./
-RUN npm install
-COPY . .
+RUN npm install --ignore-scripts
+COPY . ./app
 # RUN npm run build
 EXPOSE 5173
 CMD ["npm", "run" , "dev"]
