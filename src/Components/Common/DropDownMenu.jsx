@@ -13,6 +13,9 @@ const DropDownMenu = ({ title, items, showInput, placeholder, type, onChange }) 
   const [selectedColor, setSelectedColor] = useState('');
   const [selectedFuelType, setSelectedFuelType] = useState('');
   const [selectedEngineState, setSelectedEngineState] = useState('');
+  const [startValue, setStartValue] = useState('');
+  const [endValue, setEndValue] = useState('');
+  const [errorIns, setErrorIns] = useState('');
   
 
   const dropdownRef = useRef(null);
@@ -33,6 +36,20 @@ const DropDownMenu = ({ title, items, showInput, placeholder, type, onChange }) 
     startStateSetter(startValue);
     endStateSetter(endValue);
     onChange(startValue, endValue);
+  };
+
+  const handleInsRangeChange = (start, end) => {
+    const isValidStart = start >= 0 && start <= 12;
+    const isValidEnd = end >= 0 && end <= 12;
+
+    if (isValidStart && isValidEnd) {
+      setStartValue(start);
+      setEndValue(end);
+      onChange(start, end)
+      setErrorIns('');
+    } else {
+      setErrorIns('لطفا ماه وارد شده بین 1 تا 12 باشد.');
+    }
   };
 
   const handleColorSelection = (color) => {
@@ -199,6 +216,28 @@ const DropDownMenu = ({ title, items, showInput, placeholder, type, onChange }) 
             placeholder="تا قیمت ... تومان"
             className="w-full px-2 py-1 mb-2 border border-gray-300 rounded"
           />
+        </div>
+      );
+    }
+
+    if (type === 'insurance') {
+      return (
+        <div>
+          <input
+            type="number"
+            value={startValue}
+            onChange={(event) => handleInsRangeChange(event.target.value, endValue)}
+            placeholder="From 0 to 12"
+            className={`w-full px-2 py-1 mb-2 border ${errorIns ? 'border-red-500 focus:border-red-500' : 'border-gray-300'} rounded`}
+          />
+          <input
+            type="number"
+            value={endValue}
+            onChange={(event) => handleInsRangeChange(startValue, event.target.value)}
+            placeholder="From 0 to 12"
+            className={`w-full px-2 py-1 mb-2 border ${errorIns ? 'border-red-500 focus:border-red-500' : 'border-gray-300'} rounded`}
+          />
+          {errorIns && <p className="text-red-500">{errorIns}</p>}
         </div>
       );
     }

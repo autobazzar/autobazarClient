@@ -14,6 +14,7 @@ export default function ShowAds() {
     yearRange: null,
     priceRange: null,
     disRange: null,
+    InsRange: null,
     color: null,
     fuelType: null,
     engine: null,
@@ -59,6 +60,12 @@ export default function ShowAds() {
                 && ad.price <= selectedFilters.priceRange.endPrice
       );
     }
+    if (selectedFilters.InsRange) {
+      filtered = filtered.filter(
+        (ad) => ad.insurance >= selectedFilters.InsRange.startIns 
+                && ad.insurance <= selectedFilters.InsRange.endIns
+      );
+    }
     if (selectedFilters.disRange) {
       filtered = filtered.filter(
         (ad) => ad.distance >= selectedFilters.disRange.startDis 
@@ -101,6 +108,14 @@ export default function ShowAds() {
       disRange: { startDis, endDis },
     }));
   };
+
+  const handleInsRangeChange = (startIns, endIns) => {
+    setSelectedFilters((prevFilters) => ({
+      ...prevFilters,
+      InsRange: { startIns, endIns },
+    }));
+  };
+
 
   const handleColorChange = (color) => {
     setSelectedFilters((prevFilters) => ({
@@ -191,7 +206,14 @@ export default function ShowAds() {
             />
             
             <DropDownMenu title="محل" items={dropdownItems} showInput={true} placeholder={'محل را وارد کنید'} />
-            <DropDownMenu title="مهلت بیمه شخص ثالث" items={dropdownItems} showInput={true} placeholder={"مثلا 7 ماه"} />
+            <DropDownMenu 
+              title="مهلت بیمه شخص ثالث" 
+              items={dropdownItems} 
+              showInput={true} 
+              placeholder={"مثلا 7 ماه"} 
+              type="insurance"
+              onChange={handleInsRangeChange}
+            />
           </div>
           <div dir="ltr" className='flex flex-col w-full gap-y-6 p-0 m-0 lg:overflow-y-auto lg:flex-row lg:flex-wrap lg:basis-4/5 lg:gap-x-4 lg:content-start'>
             {filteredAds.map((ad) => (
