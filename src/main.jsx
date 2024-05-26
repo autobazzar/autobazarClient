@@ -17,7 +17,7 @@ root.render(
     <Provider store={Store}>
       <PersistGate persistor={persistor} loading={null}>
         {/* <React.StrictMode> */}
-          <RouterProvider router={router} />
+        <RouterProvider router={router} />
         {/* </React.StrictMode> */}
       </PersistGate>
     </Provider>

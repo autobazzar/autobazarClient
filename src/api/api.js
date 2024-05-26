@@ -11,7 +11,6 @@ export async function loginUser(payload, googleFlag) {
 
 export async function submitScore(payload) {
   const url = "/rates";
-  console.log(payload);
   return POST(url, payload);
 }
 

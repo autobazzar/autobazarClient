@@ -8,14 +8,16 @@ import "./sections.css";
 import { useDispatch } from "react-redux";
 import { logginUser } from "../store/profileSlice";
 import { bool } from "prop-types";
+import { useNavigate } from "react-router-dom";
 
 export default function Login({ openInitial }) {
   const [isModalOpen, setisModalOpen] = useState(openInitial || false);
   const formRef = useRef(null);
   const dispatch = useDispatch();
+  const navigate=useNavigate();
   async function responseMessage(credintalResponse) {
     const user = getUserGoogle(credintalResponse.credential);
-    dispatch(logginUser({ email: user.email, flag: true }));
+    dispatch(logginUser({ email: user.email, flag: true ,navigate}));
   }
   function onError(error) {
     console.error(error);

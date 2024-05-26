@@ -13,8 +13,12 @@ const ProfileSetter = (state, action) => {
 };
 
 export const logginUser = createAsyncThunk("loginUser", async (payload) => {
-  const { flag, ...user } = payload;
-  return await loginUser(user, flag);
+  const { flag, navigate, ...user } = payload;
+  const result = await loginUser(user, flag);
+  if (parseJwt(result.token).role == "admin") {
+    navigate("/admin");
+  }
+  return result;
 });
 
 export const SignUpUser = createAsyncThunk("SignUpUser", async (payload) => {

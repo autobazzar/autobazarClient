@@ -32,7 +32,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/submit-ads",
-        element: React.createElement(ProtectedRoute,{
+        element: React.createElement(ProtectedRoute, {
           element: React.createElement(SubmitPage),
         }),
       },
