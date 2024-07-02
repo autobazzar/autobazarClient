@@ -11,7 +11,7 @@ const AdminProtection = () => {
     const message = "ابتدا ثبت نام کنید یا وارد سایت شوید.";
     toast.error(prettyString(message));
     console.log(message);
-    return <Navigate to="/" />;
+    return <Navigate to="/admin-login" />;
   }
 
   return <Outlet/>;
