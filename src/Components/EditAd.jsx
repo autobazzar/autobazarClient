@@ -93,7 +93,6 @@ export default function SubmitAds() {
         switch (item.customComponent) {
           case "DropDownMenu":
             const { items, title } = item.props;
-            console.log(value)
             return (
               <PureDropDown
                 items={items}
