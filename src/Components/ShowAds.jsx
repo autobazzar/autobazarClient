@@ -203,7 +203,7 @@ export default function ShowAds() {
           <p className='hidden lg:flex text-lg font-semibold pr-2'>فیلترها</p>
           <Button onClick={()=> handleClick()} text="آگهی بده!" className="h-[90%] w-full" />
         </div>
-        <div className='h-[100vh] z-0 w-full flex flex-row mt-[54px] basis-3/4 px-16 pt-4'>
+        <div className='h-[100vh] z-0 w-full relative flex flex-row mt-[54px] basis-3/4 px-16 pt-4'>
           <div className='hidden w-[0px] h-[0px] lg:flex lg:flex-col lg:basis-1/5'>
             <DropDownMenu 
               title="برند و تیپ" 

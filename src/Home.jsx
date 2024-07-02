@@ -12,9 +12,9 @@ export default function Home() {
     navigate("/show-ads")
   };
   return (
-    <div ref={mainDiv} className=" flex flex-col z-10">
-      <div className="flex flex-row gap-[-5rem] relative w-full items-center h-full justify-center font-dast">
-        <div className="flex flex-col pl-5 relative left-[10rem] text-[20px] gap-[5rem] mt-[-11rem]">
+    <div ref={mainDiv} className=" flex flex-col pl-20 z-10 items-center justify-center">
+      <div className="flex flex-row gap-[-5rem]  w-full items-center h-full justify-center font-dast">
+        <div className="flex flex-col pl-5  left-[5rem] text-[20px] gap-[5rem] mt-[-1rem] items-center justify-center">
           <h1 className="text-[2.5rem] font-bold text-[var(--text-black)]">
             !با اتوبازار همین الان ماشینت رو بخر
           </h1>
@@ -24,7 +24,7 @@ export default function Home() {
           </button>
         </div>
         <img
-          className="w-[40rem] relative bottom-15 right-10"
+          className="w-[40rem]  bottom-15 right-10 items-center justify-center"
           src={landing}
           alt=""
         />

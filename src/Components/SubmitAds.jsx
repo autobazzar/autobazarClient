@@ -87,7 +87,7 @@ export default function SubmitAds() {
     }
   }
   return (
-    <div dir="rtl" className="w-full">
+    <div dir="rtl" className="w-full items-center justify-center">
       <form className="space-y-4 flex flex-col w-[60%]" onSubmit={handleSubmit}>
         <h2 className="text-2xl font-bold mb-4 text-white font-dast">
           ثبت آگهی
