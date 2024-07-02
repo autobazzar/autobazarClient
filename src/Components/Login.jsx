@@ -17,7 +17,7 @@ export default function Login({ openInitial }) {
   const navigate=useNavigate();
   async function responseMessage(credintalResponse) {
     const user = getUserGoogle(credintalResponse.credential);
-    dispatch(logginUser({ email: user.email, flag: true ,navigate}));
+    dispatch(logginUser({ email: user.email, flag: true }));
   }
   function onError(error) {
     console.error(error);
