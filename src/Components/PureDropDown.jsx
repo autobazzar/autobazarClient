@@ -1,15 +1,23 @@
 import { array, func, string } from "prop-types";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AiFillCaretUp, AiFillCaretDown } from "react-icons/ai";
 
-export default function PureDropDown({ items, title,name,handleChange }) {
+export default function PureDropDown({ items, title, name, handleChange, selectedValue }) {
   const [isOpen, setIsOpen] = useState(false);
   const [choosen, setChoosen] = useState("");
+
+  useEffect(() => {
+    if (selectedValue) {
+      setChoosen(selectedValue);
+    }
+  }, [selectedValue]);
+
   const chooseOption = (item) => {
     setChoosen(item);
     setIsOpen(false);
-    handleChange(item,name);
+    handleChange(item, name);
   };
+
   return (
     <div className="relative flex flex-col items-center w-fit h-full rounded-lg">
       <button
@@ -27,7 +35,7 @@ export default function PureDropDown({ items, title,name,handleChange }) {
         <span className="flex flex-row gap-3 items-center">
           <h3 className="font-bold font-dast text-2xl">{`${title}`}</h3>
           <h3 className="font-bold font-dast text-xl text-gray-500">
-            {choosen}
+            {choosen || selectedValue}
           </h3>
         </span>
       </button>
@@ -51,9 +59,11 @@ export default function PureDropDown({ items, title,name,handleChange }) {
     </div>
   );
 }
-PureDropDown.propTypes={
-    items:array,
-    title:string,
-    name:string,
-    handleChange:func
-}
+
+PureDropDown.propTypes = {
+  items: array.isRequired,
+  title: string.isRequired,
+  name: string.isRequired,
+  handleChange: func.isRequired,
+  selectedValue: string
+};

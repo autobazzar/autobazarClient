@@ -12,6 +12,8 @@ import ProtectedRoute from "./protectedRoute";
 // import { ToastContainer } from 'react-toastify'; 
 import 'react-toastify/dist/ReactToastify.css'; 
 import SubmitPage from "../Components/SubmitPage";
+import EditProfile from "../Components/EditProfile";
+import EditAd from "../Components/EditAd";
 export const router = createBrowserRouter([
   {
     element: React.createElement(Layout),
@@ -44,11 +46,19 @@ export const router = createBrowserRouter([
         path: "/contact-us",
         element: React.createElement(ContactUs),
       },
+      {
+        path: "/edit-ad/:id",
+        element: React.createElement(ProtectedRoute, {
+          element: React.createElement(EditAd),
+        }),
+      },
     ],
   },
   {
     path: "/admin",
-    element: React.createElement(Admin),
+    element: React.createElement(ProtectedRoute, {
+      element: React.createElement(Admin)}),
+    
   },
 ]);
 

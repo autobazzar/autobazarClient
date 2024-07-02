@@ -15,12 +15,12 @@ export default function Item({className,id, ad, type, isMine}) {
       <Detail
         id={ad.adId}
         detail={{
+          city: ad.city,
           brand: ad.carName,
           color: ad.color,
           year: ad.year,
           kilometer:ad.distance,
           price: ad.price,
-          body: "body",
           motor: ad.motor,
           fuel: ad.fuel,
           bime: ad.insurance,
