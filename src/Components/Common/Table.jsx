@@ -1,39 +1,41 @@
-import { string } from "prop-types";
-import { MdOutlineCancelPresentation } from "react-icons/md";
-import { TiTick } from "react-icons/ti";
+import { array, string } from "prop-types";
+import { useEffect } from "react";
+
+import { translateTitle } from "./helper";
 let id=0;
-export default function Table({ title }) {
+export default function Table({ title , headers,data , ActionComp1,ActionComp2}) {
+  // useEffect(()=>{
+  //   // useEffect(()=>{})
+  // },[]);
   return (
     <div className="w-full bg-white rounded-lg font-dast pb-4 ">
       <h1 className="text-[1.5rem] font-bold pt-5 pr-5 pb-3">{title}</h1>
       <div className="tableFixHead">
         <table className="w-full  h-[14rem]">
           <thead className="text-[20px] text-center">
-            <tr>
-              <th>نام کاربری</th>
-              <th>دیدگاه</th>
-              <th>کد آگهی</th>
-              <th>عملیات</th>
+            <tr className="border-[1px] border-gray-200 p-5">
+              {headers.map((item, index) => (
+                <th key={index}>{translateTitle(item)}</th>
+              ))}
+              <th key={-1}>{'عملیات'}</th>
             </tr>
           </thead>
           <tbody className=" text-center h-[1rem] overflow-scorll  text-gray-500">
-            {Array(15)
-              .fill(0)
-              .map(() => (
-                <tr key={id++}>
-                  <td>محمد </td>
-                  <td>راضیم خوب بود....</td>
-                  <td>#123123</td>
-                  <td className="flex flex-row justify-center gap-3">
-                    <button>
-                      <MdOutlineCancelPresentation className="text-red-600" />
-                    </button>
-                    <button>
-                      <TiTick className="text-green-600" />
-                    </button>
-                  </td>
-                </tr>
-              ))}
+            {data.map((item, id) => (
+              <tr key={id++}>
+                {headers.map((headerKey, index) => (
+                  <td key={`${id}-${index}`}>{item[headerKey]}</td>
+                ))}
+                <td className="flex flex-row justify-center gap-3 h-full">
+                  <button>
+                    <ActionComp1 className="text-red-600" />
+                  </button>
+                  <button>
+                    <ActionComp2 className="text-gray-600" />
+                  </button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
@@ -43,4 +45,6 @@ export default function Table({ title }) {
 
 Table.propTypes = {
   title: string,
+  headers:array,
+  data:array,
 };

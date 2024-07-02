@@ -7,8 +7,25 @@ import { IoMdLogOut, IoIosPeople, IoMdStats } from "react-icons/io";
 import DashboardCard from "./Common/Dashboard-card";
 import { MdQueryStats, MdSignalWifiStatusbar1Bar } from "react-icons/md";
 import Table from "./Common/Table";
+import { useEffect, useState } from "react";
+import { getAds, getAllUsers } from "../api/api";
+import { properAds, propeUserData } from "./hlpers";
+import { BsBoxArrowInDownRight } from "react-icons/bs";
 
+import { CiLock } from "react-icons/ci";
+import { TbForbid2 } from "react-icons/tb";
+import { CiSquareRemove } from "react-icons/ci";
 export default function Admin() {
+  const [users, setUsers] = useState([]);
+  const [ads, setAds] = useState([]);
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      getAllUsers().then(propeUserData).then(data=>setUsers(data));
+      getAds().then(properAds).then(data=>setAds(data));
+    };
+    fetchData();
+  },[]);
   return (
     <div dir="rtl" className="flex flex-row justify-between">
       <section className="flex flex-col w-full font-dast ">
@@ -42,9 +59,28 @@ export default function Admin() {
             />
           </div>
           <div className="flex flex-col gap-5 mb-10">
-            <Table title={"بررسی دیدگاه ها"} />
-            <Table title={"مدیریت کاربران"} />
-            <Table title={"مدیریت آگهی ها"} />
+            <Table
+              key={1}
+              headers={["name", "comment", "code"]}
+              title={"بررسی دیدگاه ها"}
+              data={[]}
+            />
+            <Table
+              key={2}
+              headers={["name", "email"]}
+              title={"مدیریت کاربران"}
+              data={users}
+              ActionComp1={TbForbid2}
+              ActionComp2={CiLock}
+            />
+            <Table
+              key={3}
+              headers={["creator", "code", "least-review"]}
+              title={"مدیریت آگهی ها"}
+              data={ads}
+              ActionComp1={CiSquareRemove}
+              ActionComp2={BsBoxArrowInDownRight}
+            />
           </div>
         </div>
       </section>

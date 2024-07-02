@@ -16,7 +16,10 @@ export const logginUser = createAsyncThunk("loginUser", async (payload) => {
   const { flag, navigate, ...user } = payload;
   const result = await loginUser(user, flag);
   if (parseJwt(result.token).role == "admin") {
-    navigate("/admin");
+    if (navigate)
+      setTimeout(() => {
+        navigate("/admin");
+      }, 150);
   }
   return result;
 });
