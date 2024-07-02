@@ -4,10 +4,9 @@ export const detailKeys = {
   year: "سال تولید",
   kilometer: "کارکرد",
   price: "قیمت",
-  body: "مشخصات بدنه",
   motor:'وضعیت موتور',
   fuel:'سوخت',
   bime:'مهلت بیمه شخص ثالث',
   descriptions:'توضیحات',
-  location:'آدرس'
+  address: 'آدرس'
 };
