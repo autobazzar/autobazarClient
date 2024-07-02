@@ -1,5 +1,6 @@
 import { bool, func, object, string } from "prop-types";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Modal from "./Common/Modal";
 import { detailKeys } from "../utils/const";
 import InfinitySlider from "./Common/InfinitySlider";
@@ -18,7 +19,7 @@ export default function Detail({ id, isOpen, handleClose, detail, img, isMine, m
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [score, setScore] = useState("");
   const [scores, setScores] = useState("");
-
+  const navigate = useNavigate();
   const handleDeleteClick = () => {
 
     setIsDeleteModalOpen(true);
@@ -59,6 +60,10 @@ export default function Detail({ id, isOpen, handleClose, detail, img, isMine, m
     }
   };
 
+  const handleEditClick =  () => {
+    navigate(`/edit-ad/${id}`)
+  };
+
   const handleCancelDelete = () => {
     setIsDeleteModalOpen(false);
   };
@@ -91,7 +96,7 @@ export default function Detail({ id, isOpen, handleClose, detail, img, isMine, m
           {isMine && (
             <div className="flex flex-row gap-x-2 min-h-0 h-full ">
               <Button text="حذف آگهی" onClick={() => handleDeleteClick()} className='border-2 border-red-800 !text-xs !bg-red-800 !h-full' />
-              <Button text="ویرایش آگهی" onClick={() => handleDeleteClick()} className='border-2 border-[#2b4e47] !text-xs ' />
+              <Button text="ویرایش آگهی" onClick={() => handleEditClick()} className='border-2 border-[#2b4e47] !text-xs ' />
             </div>
           )}
         </div>
