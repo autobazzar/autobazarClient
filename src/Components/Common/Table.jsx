@@ -1,7 +1,7 @@
 import { array, string } from "prop-types";
 
 import { translateTitle } from "./helper";
-export default function Table({ title , headers,data , ActionComp1,ActionComp2,deleteHandler}) {
+export default function Table({ title , headers,data , ActionComp1,deleteHandler}) {
   // useEffect(()=>{
   //   // useEffect(()=>{})
   // },[]);
@@ -28,9 +28,7 @@ export default function Table({ title , headers,data , ActionComp1,ActionComp2,d
                   <button onClick={()=>deleteHandler(item.id)}>
                     <ActionComp1 className="text-red-600" />
                   </button>
-                  {/* <button>
-                    <ActionComp2 className="text-gray-600" />
-                  </button> */}
+                
                 </td>
               </tr>
             ))}
