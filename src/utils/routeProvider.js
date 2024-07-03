@@ -7,7 +7,6 @@ import AboutUs from "../Components/AboutUs";
 import ContactUs from "../Components/ContactUs";
 import Admin from "../Components/Admin";
 import Layout from "../Components/Layout";
-import SubmitAds from "../Components/SubmitAds";
 import ProtectedRoute from "./protectedRoute";
 // import { ToastContainer } from 'react-toastify'; 
 import 'react-toastify/dist/ReactToastify.css'; 
