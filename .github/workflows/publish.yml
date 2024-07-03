@@ -1,15 +1,21 @@
+name: Update cms/master
+
 on:
   push:
     branches:
-      - 'master'
+      - master
+
 jobs:
-  merge-branch:
+  update-cms-master:
+    name: Merge master into release after a PR is merged
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: everlytic/branch-merge@1.1.2
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: merge
+        uses: mtanzi/action-automerge@v1
+        id: merge
         with:
           github_token: ${{ github.token }}
-          source_ref: ${{ 'refs/heads/master' }}
-          target_branch: 'dockerize'
-          commit_message_template: '[Automated] Merged {source_ref} into target {target_branch}'
+          source: 'master'
+          target: 'dockerize'
