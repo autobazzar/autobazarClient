@@ -6,7 +6,7 @@ import { receiveAds } from '../api/api';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Checkbox from './Common/Checkbox';
-
+import DropDownMenus from './DropDownMenus';
 export default function ShowAds() {
   const [ads, setAds] = useState([]);
   const [filteredAds, setFilteredAds] = useState([]);
@@ -204,143 +204,35 @@ export default function ShowAds() {
           <Button onClick={()=> handleClick()} text="آگهی بده!" className="h-full min-h-0 w-full" />
           <p className='lg:hidden text-lg font-semibold'>فیلترها</p>
           <div className='w-full lg:hidden'>
-            <DropDownMenu 
-              title="برند و تیپ" 
-              items={['بی ام و', 'پراید', 'رانا', 'سایپا', 'پژو']} 
-              showInput={false} 
-              type="carName"
-              onChange={handleCarNameChange}
-            />
-            <DropDownMenu
-                title="رنگ"
-                items={['سفید', 'مشکی', 'نقره‌ای', 'آبی', 'قرمز', 'زرد', 'سبز', 'خاکستری', 'بنفش', 'قهوه‌ای']}
-                showInput={false}
-                type="color"
-                onChange={handleColorChange}
-            />
-            <DropDownMenu 
-              title="سال تولید"  
-              showInput={true}  
-              type="year" 
-              onChange={handleYearRangeChange} 
-            />
-            <DropDownMenu 
-              title="کارکرد" 
-              showInput={true} 
-              type="distance"
-              placeholder={'مثلا 1000 کیلومتر'} 
-              onChange={handleDisRangeChange}
-            />
-            <DropDownMenu 
-              title="قیمت" 
-              showInput={true} 
-              type="price"
-              onChange={handlePriceRangeChange} 
-            />
-            <DropDownMenu 
-              title="نوع سوخت" 
-              items={['دوگانه سوز دستی', 'دوگانه سوز شرکتی', 'گازوییل', 'بنزین']} 
-              showInput={false} 
-              type="fuel"
-              onChange={handleFuelTypeChange}
-            />
-            <Checkbox 
-              text="تصادفی بودن" 
-              onChange={handleAccidentalChange}
-            />
-
-            <DropDownMenu 
-              title="موتور" 
-              items={['تعویض شده', 'نیاز به تعمیر', 'سالم']} 
-              showInput={false} 
-              type="engine"
-              onChange={handleEngineChange}
-            />
-            
-            <DropDownMenu 
-              title="محل" 
-              showInput={true} 
-              placeholder={'محل را وارد کنید'}
-              type="location"
-              onChange={handleLocationChange}
-            />
-            <DropDownMenu 
-              title="مهلت بیمه شخص ثالث" 
-              showInput={true} 
-              placeholder={"مثلا 7 ماه"} 
-              type="insurance"
-              onChange={handleInsRangeChange}
-            />
+            <DropDownMenus
+                handleAccidentalChange={handleAccidentalChange}
+                handleCarNameChange={handleCarNameChange}
+                handleColorChange={handleColorChange}
+                handleDisRangeChange={handleDisRangeChange}
+                handleEngineChange={handleEngineChange}
+                handleFuelTypeChange={handleFuelTypeChange}
+                handleInsRangeChange={handleInsRangeChange}
+                handleLocationChange={handleLocationChange}
+                handlePriceRangeChange={handlePriceRangeChange}
+                handleYearRangeChange={handleYearRangeChange}
+              
+              />
           </div>
         </div>
         <div className='lg:h-[100vh] z-0 w-full flex flex-row mt-[54px] lg:basis-3/4 px-16 pt-4'>
           <div className='hidden w-[0px] h-[0px] lg:flex lg:flex-col lg:basis-1/5'>
-            <DropDownMenu 
-              title="برند و تیپ" 
-              items={['بی ام و', 'پراید', 'رانا', 'سایپا', 'پژو']} 
-              showInput={false} 
-              type="carName"
-              onChange={handleCarNameChange}
-            />
-            <DropDownMenu
-                title="رنگ"
-                items={['سفید', 'مشکی', 'نقره‌ای', 'آبی', 'قرمز', 'زرد', 'سبز', 'خاکستری', 'بنفش', 'قهوه‌ای']}
-                showInput={false}
-                type="color"
-                onChange={handleColorChange}
-            />
-            <DropDownMenu 
-              title="سال تولید"  
-              showInput={true}  
-              type="year" 
-              onChange={handleYearRangeChange} 
-            />
-            <DropDownMenu 
-              title="کارکرد" 
-              showInput={true} 
-              type="distance"
-              placeholder={'مثلا 1000 کیلومتر'} 
-              onChange={handleDisRangeChange}
-            />
-            <DropDownMenu 
-              title="قیمت" 
-              showInput={true} 
-              type="price"
-              onChange={handlePriceRangeChange} 
-            />
-            <DropDownMenu 
-              title="نوع سوخت" 
-              items={['دوگانه سوز دستی', 'دوگانه سوز شرکتی', 'گازوییل', 'بنزین']} 
-              showInput={false} 
-              type="fuel"
-              onChange={handleFuelTypeChange}
-            />
-            <Checkbox 
-              text="تصادفی بودن" 
-              onChange={handleAccidentalChange}
-            />
-
-            <DropDownMenu 
-              title="موتور" 
-              items={['تعویض شده', 'نیاز به تعمیر', 'سالم']} 
-              showInput={false} 
-              type="engine"
-              onChange={handleEngineChange}
-            />
+            <DropDownMenus
+              handleAccidentalChange={handleAccidentalChange}
+              handleCarNameChange={handleCarNameChange}
+              handleColorChange={handleColorChange}
+              handleDisRangeChange={handleDisRangeChange}
+              handleEngineChange={handleEngineChange}
+              handleFuelTypeChange={handleFuelTypeChange}
+              handleInsRangeChange={handleInsRangeChange}
+              handleLocationChange={handleLocationChange}
+              handlePriceRangeChange={handlePriceRangeChange}
+              handleYearRangeChange={handleYearRangeChange}
             
-            <DropDownMenu 
-              title="محل" 
-              showInput={true} 
-              placeholder={'محل را وارد کنید'}
-              type="location"
-              onChange={handleLocationChange}
-            />
-            <DropDownMenu 
-              title="مهلت بیمه شخص ثالث" 
-              showInput={true} 
-              placeholder={"مثلا 7 ماه"} 
-              type="insurance"
-              onChange={handleInsRangeChange}
             />
           </div>
           <div dir="ltr" className='flex flex-col w-full gap-y-6 p-0 m-0 lg:overflow-y-auto lg:flex-row lg:flex-wrap lg:basis-4/5 lg:gap-x-4 lg:content-start'>
