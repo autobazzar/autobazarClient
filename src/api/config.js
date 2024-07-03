@@ -6,9 +6,10 @@ import { prettyString } from "../utils/prettyString";
 export function GET(url) {
   return axios
       .get(`${BASE_URL}${url}`)
-      .catch((err) => {
+      // .catch((err) => {
        
-      });
+      // })
+      ;
   
 }
 export function DELETE_AD(url) {
