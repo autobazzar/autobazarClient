@@ -10,9 +10,6 @@ import Table from "./Common/Table";
 import { useEffect, useState } from "react";
 import { bannedUser, deleteAd, getAds, getAllComments, getAllUsers } from "../api/api";
 import { properAds, properComments, propeUserData } from "./hlpers";
-import { BsBoxArrowInDownRight } from "react-icons/bs";
-
-import { CiLock } from "react-icons/ci";
 import { TbForbid2 } from "react-icons/tb";
 import { CiSquareRemove } from "react-icons/ci";
 export default function Admin() {
@@ -89,7 +86,6 @@ export default function Admin() {
               title={"بررسی دیدگاه ها"}
               data={comments}
               ActionComp1={CiSquareRemove}
-              ActionComp2={CiLock}
               deleteHandler={detleComment}
               />
             <Table
@@ -99,7 +95,7 @@ export default function Admin() {
               data={users}
               deleteHandler={banUser}
               ActionComp1={TbForbid2}
-              ActionComp2={CiLock}
+          
               />
             <Table
               key={3}
@@ -108,7 +104,7 @@ export default function Admin() {
               deleteHandler={deleteAds}
               data={ads}
               ActionComp1={CiSquareRemove}
-              ActionComp2={BsBoxArrowInDownRight}
+             
             />
           </div>
         </div>
@@ -140,7 +136,7 @@ export default function Admin() {
             className={"dashboard-iconbutton"}
           />
           <IconButton
-            title={"خروچ"}
+            title={"خروج"}
             Icon={IoMdLogOut}
             className={"dashboard-iconbutton"}
           />
