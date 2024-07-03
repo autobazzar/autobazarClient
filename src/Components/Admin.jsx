@@ -135,11 +135,7 @@ export default function Admin() {
             Icon={LuFileSpreadsheet}
             className={"dashboard-iconbutton"}
           />
-          <IconButton
-            title={"خروج"}
-            Icon={IoMdLogOut}
-            className={"dashboard-iconbutton"}
-          />
+         
         </div>
       </section>
     </div>
