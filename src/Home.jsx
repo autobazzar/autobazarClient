@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <div ref={mainDiv} className=" flex flex-col z-10">
       <div className="flex flex-col lg:flex-row gap-[-5rem] relative w-full items-center h-full justify-center font-dast">
-        <div className="flex flex-col gap-y-4 mt-12 lg:pl-5 lg:relative lg:left-[10rem] lg:text-[20px] lg:gap-[5rem] lg:mt-[-11rem]">
+        <div className="flex flex-col gap-y-4 mt-16 lg:pl-5 lg:relative lg:left-[10rem] lg:text-[20px] lg:gap-[5rem] lg:mt-[-8rem]">
           <h1 className="text-2xl lg:text-[2.5rem] font-bold text-[var(--text-black)]">
             !با اتوبازار همین الان ماشینت رو بخر
           </h1>

@@ -79,7 +79,7 @@ export default function EditAd() {
       case "h2":
         return (
           <h2
-            className="text-2xl font-semibold border-b-2 w-[30%] font-dast"
+            className="text-2xl font-semibold text-[#2b4e47] lg:text-black border-b-2 lg:w-[30%] w-full text-center lg:text-right font-dast"
             key={item.title}
           >
             {item.title}
@@ -113,7 +113,7 @@ export default function EditAd() {
 
   return (
     <div dir="rtl" className="w-full">
-      <form className="space-y-4 flex flex-col w-[60%]" onSubmit={handleSubmit}>
+      <form className="space-y-4 flex flex-col lg:w-[60%] w-full" onSubmit={handleSubmit}>
         <h2 className="text-2xl font-bold mb-4 text-white font-dast">
           ویرایش آگهی
         </h2>

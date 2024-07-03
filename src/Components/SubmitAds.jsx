@@ -58,7 +58,7 @@ export default function SubmitAds() {
       case "h2":
         return (
           <h2
-            className="text-2xl font-semibold border-b-2 w-[30%] font-dast"
+            className="text-2xl font-semibold text-[#2b4e47] lg:text-black border-b-2 lg:w-[30%] w-full text-center lg:text-right font-dast"
             key={item.title}
           >
             {item.title}
@@ -88,8 +88,8 @@ export default function SubmitAds() {
   }
   return (
     <div dir="rtl" className="w-full">
-      <form className="space-y-4 flex flex-col w-[80%] med:flex" onSubmit={handleSubmit}>
-        <h2 className="text-2xl font-bold mb-4 text-white font-dast">
+      <form className="space-y-4 flex flex-col w-full lg:w-[80%] med:flex" onSubmit={handleSubmit}>
+        <h2 className="text-4xl font-bold mb-4 text-white font-dast text-center">
           ثبت آگهی
         </h2>
         {dataToTransfer.map((item) => renderItem(item))}
