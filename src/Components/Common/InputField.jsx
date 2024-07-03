@@ -1,20 +1,20 @@
-import { func, object } from "prop-types";
+import { func, object, string, number, oneOfType } from "prop-types";
 import React from "react";
 
 export default function InputField({ item, handleChange, value }) {
   return (
     <div className="flex flex-col">
-      <label className="text-lg font-semibold font-dast " htmlFor="">
+      <label className="text-lg font-semibold font-dast" htmlFor="">
         {item.label}
       </label>
       {React.createElement(item.type, {
         onChange(e) {
-          const value = item.valueConverter
+          const newValue = item.valueConverter
             ? item.valueConverter(e)
             : e.target.value;
-          handleChange(value, item.name);
+          handleChange(newValue, item.name);
         },
-        value: value, // Add the value prop here
+        value: value,
         className: `input-form ${item.className} font-dast`,
         ...item.props,
       })}
@@ -25,5 +25,5 @@ export default function InputField({ item, handleChange, value }) {
 InputField.propTypes = {
   item: object.isRequired,
   handleChange: func.isRequired,
-  value: func.isRequired,
+  value: oneOfType([string, number]).isRequired,
 };

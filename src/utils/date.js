@@ -10,3 +10,14 @@ export function properData(formData, user_id) {
     // :user_id.toString(),
   };
 }
+
+export function properEditData(formData, user_id) {
+  return {
+    ...formData,
+    date: getTodayDate(),
+    userId:user_id,
+    // :user_id.toString(),
+  };
+}
+
+

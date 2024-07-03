@@ -1,4 +1,4 @@
-import { POST, GET, DELETE_AD } from "./config";
+import { POST, GET, DELETE_AD, PATCH } from "./config";
 export async function registerUser(payload, googleFlag) {
   const url = "/users/sign-up";
   return await POST(url, { ...payload, isFromGoogle: Boolean(googleFlag) })
@@ -29,6 +29,11 @@ export async function deleteAd(id) {
   return DELETE_AD(url);
 }
 
+export async function isGoogle(id) {
+  const url = `/users/${id}/isRegisteredByGoogle`;
+  return GET(url);
+}
+
 export async function receiveAdScore(id) {
   const url = `/rates/${id}/average`;
   return GET(url);
@@ -39,10 +44,23 @@ export async function receiveNumberOfScores(id) {
   return GET(url);
 }
 export async function submitAds(payload) {
-  //const url = "localhost:3000/ads";
+  
   const url = "/ads";
   return POST(url, payload);
 }
+
+export async function editAd(payload, id) {
+
+  const url = `/ads/${id}`;
+  return PATCH(url, payload);
+}
+
+export async function editUser(payload, id) {
+
+  const url = `/users/${id}`;
+  return PATCH(url, payload);
+}
+
 
 export async function getByUrl(url) {
   return GET(url);

@@ -51,7 +51,7 @@ export default function Profile() {
 
   return (
     <div dir="rtl" className='flex flex-row h-screen'>
-      <div className='bg-[#2b4e47] med:rounded-bl-[4rem] med:basis-[28%] w-full flex flex-col gap-y-12 h-[92%]'>
+      <div className='bg-[#2b4e47] med:rounded-bl-[4rem] med:basis-[28%] w-full flex flex-col gap-y-12 h-[92.5%]'>
         <button onClick={() => handleItemClick(0)} onKeyDown={() => handleItemClick(0)} className={`cursor-pointer flex flex-row justify-start med:justify-between items-center hover:bg-[#465956] ${state.state_count === 0 && "bg-[#4C857A]" }`}>
           <MdOutlineEdit color='white' className="med:hidden h-12 w-12 pr-4" />
           <div>
@@ -91,7 +91,7 @@ export default function Profile() {
       </div>
 
       <div className='hidden med:block med:basis-[72%] mt-5 pr-16'>
-        {state.state_count === 0 && <EditProfile/>}
+        {state.state_count === 0 && <EditProfile />}
         {state.state_count === 1 && (
           <>
             <form className="w-[37%] mb-8" onSubmit={handleSearch}>
@@ -105,20 +105,31 @@ export default function Profile() {
                 <Button type="submit" text="جستجو" className='h-[82%] !w-1/4 shadow-2xl text-sm text-white text-center absolute end-2.5 bottom-1 focus:ring-4 focus:outline-none rounded-lg text-sm' />
               </div>
             </form>
-            <div dir='rtl' className='overflow-y-auto flex flex-row flex-wrap gap-y-6 gap-x-4 content-start p-0'>
-              {ads.map((ad) => (
-                <Item
-                  key={ad.adId}
-                  className="lg:basis-[32%]"
-                  id={ad.adId}
-                  ad={ad}
-                  type="ad"
+            {ads.length === 0 ? (
+              <div className="flex items-center justify-center h-[60vh]">
+                <Button
+                  text="اولین آگهیتو بده!"
+                  onClick={() => navigate('/submit-ads')}
+                  className="h-[60px] !w-1/6 shadow-2xl text-sm text-white text-center bg-[#2b4e47] focus:ring-4 focus:outline-none rounded-lg"
                 />
-              ))}
-            </div>
+              </div>
+            ) : (
+              <div dir='rtl' className='overflow-y-auto flex flex-row flex-wrap gap-y-6 gap-x-4 content-start p-0'>
+                {ads.map((ad) => (
+                  <Item
+                    key={ad.adId}
+                    className="lg:basis-[32%]"
+                    id={ad.adId}
+                    ad={ad}
+                    type="ad"
+                    isMine="true"
+                  />
+                ))}
+              </div>
+            )}
           </>
         )}
-        {state.state_count === 3 && <Navigate to='/show-ads'/>}
+        {state.state_count === 3 && <Navigate to='/show-ads' />}
         {state.state_count === 2 && <Navigate to='/submit-ads' />}
       </div>
     </div>
