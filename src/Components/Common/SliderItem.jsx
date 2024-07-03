@@ -35,11 +35,11 @@ export default function SliderItem({ id, ad  }) {
       />
       <button
         key={id}
-        className="flex flex-row w-fit p-5 items-center justify-center bg-[var(--background-Color)] min-w-fit gap-5"
+        className="flex flex-row p-5 items-center justify-center bg-[var(--background-Color)] gap-5"
         onClick={handleOpen}
       >
         <Avatar imgSrc={ad.picsUrl} />
-        <div className="select-none flex flex-col w-fit text-nowrap" >
+        <div className="select-none flex flex-col text-nowrap w-full" >
           <h1 className="font-bold mb-5">{ad.carName}</h1>
           <h3>{ad.distance}</h3>
           <h3>{ad.price}</h3>
