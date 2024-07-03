@@ -21,8 +21,11 @@ function EditProfile() {
     const checkIfGoogleUser = async () => {
       try {
         const response = await isGoogle(id);
-        setIsGoogleUser(response.data);
-        console.log(isGoogleUser)
+        if(response.data.google == "No")
+            setIsGoogleUser(false);
+        else
+            setIsGoogleUser(true)
+        console.log('isGoogleUser state:', response.data); // Modify this line
       } catch (error) {
         console.error('Error checking if user is a Google user:', error);
       }
