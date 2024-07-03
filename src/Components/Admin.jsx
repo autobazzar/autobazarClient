@@ -8,7 +8,7 @@ import DashboardCard from "./Common/Dashboard-card";
 import { MdQueryStats, MdSignalWifiStatusbar1Bar } from "react-icons/md";
 import Table from "./Common/Table";
 import { useEffect, useState } from "react";
-import { bannedUser, deleteAd, getAds, getAllComments, getAllUsers } from "../api/api";
+import { bannedUser, deleteAd, deleteComment, getAds, getAllComments, getAllUsers } from "../api/api";
 import { properAds, properComments, propeUserData } from "./hlpers";
 import { BsBoxArrowInDownRight } from "react-icons/bs";
 
@@ -46,9 +46,9 @@ export default function Admin() {
     })
   }
   const detleComment=(comentId)=>{
-    // deleteComment(userId).then(()=>{
-    //   window.location.reload();
-    // })
+    deleteComment(comentId).then(()=>{
+      window.location.reload();
+    })
   }
   return (
     <div dir="rtl" className="flex flex-row justify-between">

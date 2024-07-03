@@ -28,9 +28,9 @@ export default function Table({ title , headers,data , ActionComp1,ActionComp2,d
                   <button onClick={()=>deleteHandler(item.id)}>
                     <ActionComp1 className="text-red-600" />
                   </button>
-                  <button>
+                  {/* <button>
                     <ActionComp2 className="text-gray-600" />
-                  </button>
+                  </button> */}
                 </td>
               </tr>
             ))}

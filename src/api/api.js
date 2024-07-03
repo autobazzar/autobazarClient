@@ -1,4 +1,4 @@
-import { POST, GET, DELETE_AD, PATCH } from "./config";
+import { POST, GET, DELETE_AD, PATCH, DELETE } from "./config";
 export async function registerUser(payload, googleFlag) {
   const url = "/users/sign-up";
   return await POST(url, { ...payload, isFromGoogle: Boolean(googleFlag) })
@@ -95,4 +95,7 @@ export async function getAllComments(){
 
 export async function bannedUser(id){
   return PATCH(`/admin/user/${id}/banned-status`, { isBanned: true });
+}
+export async function deleteComment(id){
+  return DELETE(`/comments/${id}`)
 }

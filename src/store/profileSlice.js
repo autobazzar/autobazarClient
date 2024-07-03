@@ -19,7 +19,7 @@ export const logginUser = createAsyncThunk("loginUser", async (payload) => {
     if (navigate)
       setTimeout(() => {
         navigate("/admin");
-      }, 150);
+      }, 1500);
   }
   return result;
 });
