@@ -10,6 +10,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, Navigate } from 'react-router-dom';
 import { persistor } from "../store/store";
 import { receiveAdsById } from '../api/api';
+import EditProfile from './EditProfile';
 
 export default function Profile() {
   const profile = useSelector((state) => state.profile);
@@ -90,7 +91,7 @@ export default function Profile() {
       </div>
 
       <div className='hidden med:block med:basis-[72%] mt-5 pr-16'>
-        {state.state_count === 0 && <h1>Edit profile Page</h1>}
+        {state.state_count === 0 && <EditProfile/>}
         {state.state_count === 1 && (
           <>
             <form className="w-[37%] mb-8" onSubmit={handleSearch}>

@@ -19,6 +19,11 @@ export async function receiveAds() {
   return GET(url);
 }
 
+export async function receiveAd(id) {
+  const url = `/ads/${id}`;
+  return GET(url);
+}
+
 export async function deleteAd(id) {
   const url = `/ads/${id}`;
   return DELETE_AD(url);
