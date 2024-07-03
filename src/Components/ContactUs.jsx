@@ -2,7 +2,7 @@ import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaMailBulk } from 'react-icons/
 
 export default function ContactUS() {
   return (
-    <div dir="rtl" className="flex justify-center bg-gray-100 p-4 pt-20">
+    <div dir="rtl" className="flex justify-center p-5 pl-20 pt-10">
       {/* Contact Us Section */}
       
       <div className="p-6 col-span-6 grid-rows-3">
