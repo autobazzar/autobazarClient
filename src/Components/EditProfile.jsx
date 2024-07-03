@@ -57,8 +57,8 @@ function EditProfile() {
   };
 
   return (
-    <section className="max-w-4xl w-2/3 p-6 mx-auto bg-white text-black rounded-md shadow-md">
-      <h2 className="text-lg font-semibold text-gray-700 capitalize">ویرایش پروفایل</h2>
+    <section className="max-w-4xl med:w-2/3 w-full p-6 mx-auto bg-white text-black rounded-md shadow-md">
+      <h2 className="text-xl font-bold text-gray-700 capitalize mb-10">ویرایش پروفایل</h2>
 
       <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">

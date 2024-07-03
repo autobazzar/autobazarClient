@@ -68,14 +68,14 @@ export default function Profile() {
           <LuFolderArchive color='white' className="hidden med:block h-12 w-12 ml-5" />
         </button>
         <button onClick={() => handleItemClick(2)} onKeyDown={() => handleItemClick(2)} className={`cursor-pointer flex flex-row justify-start med:justify-between items-center hover:bg-[#465956] ${state.state_count === 2 && "bg-[#4C857A]" }`}>
-          <FaPlus color='white' className="med:hidden h-12 w-12 ml-5 pr-4" />
+          <FaPlus color='white' className="med:hidden h-12 w-12 pr-4" />
           <div>
             <p className='text-xl font-semibold text-white m-5'>ثبت آگهی</p>
           </div>
           <FaPlus color='white' className="hidden med:block h-12 w-12 ml-5" />
         </button>
         <button onClick={() => handleItemClick(3)} onKeyDown={() => handleItemClick(3)} className={`cursor-pointer flex flex-row justify-start med:justify-between items-center hover:bg-[#465956] ${state.state_count === 3 && "bg-[#4C857A]" }`}>
-          <IoSearchOutline color='white' className="med:hidden h-12 w-12 ml-5 pr-4" />
+          <IoSearchOutline color='white' className="med:hidden h-12 w-12  pr-4" />
           <div>
             <p className='text-xl font-semibold text-white m-5'>بازارگردی</p>
           </div>
