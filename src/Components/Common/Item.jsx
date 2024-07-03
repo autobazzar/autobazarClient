@@ -53,7 +53,7 @@ export default function Item({className,id, ad, type, isMine}) {
       {type ==="slider" &&
           <button
             key={id}
-            className="flex flex-row w-fit p-5 items-center justify-center bg-[var(--background-Color)] min-w-fit gap-5"
+            className="flex flex-row p-5 items-center justify-center bg-[var(--background-Color)] gap-5"
             onClick={handleOpen}
             >
             <Avatar imgSrc={ad.picsUrl} className='border-1 w-[50%] h-[67%]'/>
