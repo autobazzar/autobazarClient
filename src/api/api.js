@@ -14,6 +14,16 @@ export async function submitScore(payload) {
   return POST(url, payload);
 }
 
+export async function submitComment(payload) {
+  const url = "/comments";
+  return POST(url, payload);
+}
+
+export async function getComments(adId) {
+  console.error(adId);
+  return GET(`/comments/${adId}/comments`);
+}
+
 export async function receiveAds() {
   const url = "/ads";
   return GET(url);
