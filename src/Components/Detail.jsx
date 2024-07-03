@@ -7,52 +7,60 @@ import InfinitySlider from "./Common/InfinitySlider";
 import StarPicker from "./Common/StarPicker";
 import { CgClose } from "react-icons/cg";
 import Button from "./Common/Button";
-import { deleteAd, receiveAdScore, receiveNumberOfScores } from "../api/api";
+import { deleteAd, getComments, receiveAdScore } from "../api/api";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { prettyString } from "../utils/prettyString";
+import Comment from "./Comment";
 
 export default function Detail({ id, isOpen, handleClose, detail, img, isMine, mobileNum }) {
   const profile = useSelector((state) => state.profile);
-  console.log(detail)
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
-  const [score, setScore] = useState("");
-  const [scores, setScores] = useState("");
+  const [score, setScore] = useState(-1);
+
+  const [comments,setComments]=useState([]);
   const navigate = useNavigate();
   const handleDeleteClick = () => {
 
     setIsDeleteModalOpen(true);
   };
-
   useEffect(() => {
-    const fetchScore = async () => {
-      try {
-        const response = await receiveAdScore(id);
-        setScore(response.data);
-      } catch (error) {
-        console.error('Error fetching ads data:', error);
-        setScore("هنوز هیچ کاربری به این آگهی امتیاز نداده است.");
-      }
+    const fetchComments = async () => {
+      const comments = await getComments(id);
+      setComments(comments.data);
+      const response = await receiveAdScore(id);
+      setScore(response.data);
     };
+    if (isOpen) fetchComments();
+  }, [isOpen]);
+  // useEffect(() => {
+  //   const fetchScore = async () => {
+  //     try {
+  //       const response = await receiveAdScore(id);
+  //       // setScore(response.data);
+  //     } catch (error) {
+  //       console.error('Error fetching ads data:', error);
+  //       // setScore("هنوز هیچ کاربری به این آگهی امتیاز نداده است.");
+  //     }
+  //   };
 
-    const getNumberOfScores = async () => {
-      try {
-        const response = await receiveNumberOfScores(id);
-        setScores(response.data);
-      } catch (error) {
-        setScores("0");
-      }
-    };
+  //   const getNumberOfScores = async () => {
+  //     try {
+  //       const response = await receiveNumberOfScores(id);
+  //       setScores(response.data);
+  //     } catch (error) {
+  //       setScores("0");
+  //     }
+  //   };
 
-    fetchScore();
-    getNumberOfScores();
-  }, [id]);
+  //   fetchScore();
+  //   getNumberOfScores();
+  // }, [id]);
 
   const handleConfirmDelete = async () => {
     try {
       await deleteAd(id);
-      console.log("Ad deleted");
       setIsDeleteModalOpen(false);
       window.location.reload();
     } catch (error) {
@@ -69,7 +77,16 @@ export default function Detail({ id, isOpen, handleClose, detail, img, isMine, m
   };
 
   const renderText = () => {
-    return `از مجموع ${scores} امتیاز دهنده`;
+    return [1, 2, 3, 4, 5].map((value) => (
+      <span
+        key={value}
+        className={`pointer-events-none ${
+          value > score ? "text-gray-400" : "text-yellow-400"
+        }`}
+      >
+        &#9733;
+      </span>
+    ));
   };
 
   const handleContactClick = () => {
@@ -84,6 +101,9 @@ export default function Detail({ id, isOpen, handleClose, detail, img, isMine, m
   const handleCloseContactModal = () => {
     setIsContactModalOpen(false);
   };
+  const renderNoComment=()=>{
+    return <p className="w-full text-center mt-5 font-bold">بدون دیدگاه</p>
+  }
 
   return (
     <>
@@ -95,8 +115,16 @@ export default function Detail({ id, isOpen, handleClose, detail, img, isMine, m
           <div className="border-b-2 mb-2"></div>
           {isMine && (
             <div className="flex flex-row gap-x-2 min-h-0 h-full ">
-              <Button text="حذف آگهی" onClick={() => handleDeleteClick()} className='border-2 border-red-800 !text-xs !bg-red-800 !h-full' />
-              <Button text="ویرایش آگهی" onClick={() => handleEditClick()} className='border-2 border-[#2b4e47] !text-xs ' />
+              <Button
+                text="حذف آگهی"
+                onClick={() => handleDeleteClick()}
+                className="border-2 border-red-800 !text-xs !bg-red-800 !h-full"
+              />
+              <Button
+                text="ویرایش آگهی"
+                onClick={() => handleEditClick()}
+                className="border-2 border-[#2b4e47] !text-xs "
+              />
             </div>
           )}
         </div>
@@ -109,7 +137,10 @@ export default function Detail({ id, isOpen, handleClose, detail, img, isMine, m
               <h3 className="w-full text-start detail-border pb-3 text-gray-600">
                 لحظاتی پیش در {detail.city}
               </h3>
-              <div dir="rtl" className="flex pt-7 pb-5 flex-row justify-between gap-5">
+              <div
+                dir="rtl"
+                className="flex pt-7 pb-5 flex-row justify-between gap-5"
+              >
                 <button
                   className="p-2 w-[10rem] hover:bg-[#4C857A] text-nowrap rounded-xl bg-[var(--buttons-color)] text-white shadow-lg shadow-gray-200"
                   onClick={handleContactClick}
@@ -123,35 +154,34 @@ export default function Detail({ id, isOpen, handleClose, detail, img, isMine, m
             </div>
             <div className="flex flex-col">
               {Object.entries(detailKeys).map(([key, value]) => (
-                <div dir="rtl" className="flex flex-row text-gray-500 py-1 border-b-[1px] border-gray-300 justify-between w-full" key={key}>
+                <div
+                  dir="rtl"
+                  className="flex flex-row text-gray-500 py-1 border-b-[1px] border-gray-300 justify-between w-full"
+                  key={key}
+                >
                   <span>{value}</span>
                   <span className="text-gray-900">{detail[key]}</span>
                 </div>
               ))}
             </div>
           </div>
-          <div className="flex flex-col mt-[5rem] gap-4">
+
+          <div className="flex flex-col gap-1">
             <InfinitySlider images={[img]} />
             <div className="flex flex-col">
-              <h3 className="font-bold border-b-[1px] border-gray-300 pb-3">
+              <h3 className="flex flex-row font-bold border-b-[1px] border-gray-300 pb-3 justify-between">
                 امتیاز و دیدگاه کاربران
+                <p dir="rtl">{renderText()}</p>
               </h3>
-              {score !== "هنوز هیچ کاربری به این آگهی امتیاز نداده است." && (
-                <div>
-                  <span className="flex flex-row pt-3 mr-2">
-                    <span className="text-xl text-right pl-1 mr-0 font-bold">{`${score} از`}</span>
-                    <span className="text-xl opacity-50">
-                      <b>{" "}5</b>
-                    </span>
-                  </span>
-                  <span className="px-2 text-gray-400">{renderText()}</span>
-                </div>
-              )}
-              {score.length > 10 && (
-                <h6 className="mr-1 mt-2 font-sm text-sm opacity-50">{score}</h6>
-              )}
-              <h3 className="font-bold border-b-[1px] border-gray-300 pt-5 pb-1">
-                ثبت امتیاز
+              <div className="flex flex-col overflow-y-auto overflow-x-hidden pt-2 gap-4 h-[8rem]">
+                {comments.length
+                  ? comments.map((item, index) => (
+                      <Comment key={index} {...item} />
+                    ))
+                  : renderNoComment()}
+              </div>
+              <h3 className="font-bold border-b-[1px] border-gray-300 pt-1 pb-1">
+                ثبت نظر
               </h3>
               <div className="flex flex-col justify-center w-full">
                 <StarPicker user_id={profile.user_id} ad_id={id} />
@@ -165,12 +195,20 @@ export default function Detail({ id, isOpen, handleClose, detail, img, isMine, m
       {isDeleteModalOpen && (
         <Modal isOpen={isDeleteModalOpen} handleClose={handleCancelDelete}>
           <div className="p-5">
-            <h2 className="text-xl font-bold mb-4">آیا مطمئن هستید که می‌خواهید این آگهی را حذف کنید؟</h2>
+            <h2 className="text-xl font-bold mb-4">
+              آیا مطمئن هستید که می‌خواهید این آگهی را حذف کنید؟
+            </h2>
             <div className="flex justify-end gap-3">
-              <button onClick={() => handleConfirmDelete()} className="p-2 rounded-xl bg-red-600 text-white">
+              <button
+                onClick={() => handleConfirmDelete()}
+                className="p-2 rounded-xl bg-red-600 text-white"
+              >
                 بله، حذف شود
               </button>
-              <button onClick={() => handleCancelDelete()} className="p-2 rounded-xl bg-gray-300 text-black">
+              <button
+                onClick={() => handleCancelDelete()}
+                className="p-2 rounded-xl bg-gray-300 text-black"
+              >
                 لغو
               </button>
             </div>
@@ -180,14 +218,22 @@ export default function Detail({ id, isOpen, handleClose, detail, img, isMine, m
 
       {/* Contact Info Modal */}
       {isContactModalOpen && (
-        <Modal isOpen={isContactModalOpen} handleClose={handleCloseContactModal}>
+        <Modal
+          isOpen={isContactModalOpen}
+          handleClose={handleCloseContactModal}
+        >
           <div className="p-5">
             <h2 className="text-xl font-bold mb-4">اطلاعات تماس</h2>
             <div className="flex justify-center items-center">
-              <span className="text-white p-2 rounded-lg bg-[#2b4e47]">{mobileNum}</span>
+              <span className="text-white p-2 rounded-lg bg-[#2b4e47]">
+                {mobileNum}
+              </span>
             </div>
             <div className="flex justify-end mt-4">
-              <button onClick={handleCloseContactModal} className="p-2 rounded-xl bg-gray-300 text-black">
+              <button
+                onClick={handleCloseContactModal}
+                className="p-2 rounded-xl bg-gray-300 text-black"
+              >
                 بستن
               </button>
             </div>

@@ -1,9 +1,7 @@
 import { array, string } from "prop-types";
-import { useEffect } from "react";
 
 import { translateTitle } from "./helper";
-let id=0;
-export default function Table({ title , headers,data , ActionComp1,ActionComp2}) {
+export default function Table({ title , headers,data , ActionComp1,ActionComp2,deleteHandler}) {
   // useEffect(()=>{
   //   // useEffect(()=>{})
   // },[]);
@@ -27,7 +25,7 @@ export default function Table({ title , headers,data , ActionComp1,ActionComp2})
                   <td key={`${id}-${index}`}>{item[headerKey]}</td>
                 ))}
                 <td className="flex flex-row justify-center gap-3 h-full">
-                  <button>
+                  <button onClick={()=>deleteHandler(item.id)}>
                     <ActionComp1 className="text-red-600" />
                   </button>
                   <button>

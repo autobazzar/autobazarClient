@@ -8,8 +8,8 @@ import DashboardCard from "./Common/Dashboard-card";
 import { MdQueryStats, MdSignalWifiStatusbar1Bar } from "react-icons/md";
 import Table from "./Common/Table";
 import { useEffect, useState } from "react";
-import { getAds, getAllUsers } from "../api/api";
-import { properAds, propeUserData } from "./hlpers";
+import { bannedUser, deleteAd, getAds, getAllComments, getAllUsers } from "../api/api";
+import { properAds, properComments, propeUserData } from "./hlpers";
 import { BsBoxArrowInDownRight } from "react-icons/bs";
 
 import { CiLock } from "react-icons/ci";
@@ -18,14 +18,38 @@ import { CiSquareRemove } from "react-icons/ci";
 export default function Admin() {
   const [users, setUsers] = useState([]);
   const [ads, setAds] = useState([]);
+  const [comments, setComment] = useState([]);
   
   useEffect(() => {
     const fetchData = async () => {
-      getAllUsers().then(propeUserData).then(data=>setUsers(data));
-      getAds().then(properAds).then(data=>setAds(data));
+      getAllUsers()
+        .then(propeUserData)
+        .then((data) => setUsers(data));
+      getAds()
+        .then(properAds)
+        .then((data) => setAds(data));
+      getAllComments()
+        .then(properComments)
+        .then((data) => setComment(data));
     };
     fetchData();
-  },[]);
+  }, []);
+
+  const banUser = (userId) => {
+    bannedUser(userId).then(() => {
+      window.location.reload();
+    });
+  };
+  const deleteAds=(adId)=>{
+    deleteAd(adId).then(()=>{
+      window.location.reload();
+    })
+  }
+  const detleComment=(comentId)=>{
+    // deleteComment(userId).then(()=>{
+    //   window.location.reload();
+    // })
+  }
   return (
     <div dir="rtl" className="flex flex-row justify-between">
       <section className="flex flex-col w-full font-dast ">
@@ -61,22 +85,27 @@ export default function Admin() {
           <div className="flex flex-col gap-5 mb-10">
             <Table
               key={1}
-              headers={["name", "comment", "code"]}
+              headers={["name", "comment",'ad-id']}
               title={"بررسی دیدگاه ها"}
-              data={[]}
-            />
+              data={comments}
+              ActionComp1={CiSquareRemove}
+              ActionComp2={CiLock}
+              deleteHandler={detleComment}
+              />
             <Table
               key={2}
-              headers={["name", "email"]}
+              headers={["name", "email",'status']}
               title={"مدیریت کاربران"}
               data={users}
+              deleteHandler={banUser}
               ActionComp1={TbForbid2}
               ActionComp2={CiLock}
-            />
+              />
             <Table
               key={3}
               headers={["creator", "code", "least-review"]}
               title={"مدیریت آگهی ها"}
+              deleteHandler={deleteAds}
               data={ads}
               ActionComp1={CiSquareRemove}
               ActionComp2={BsBoxArrowInDownRight}
