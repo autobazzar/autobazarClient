@@ -29,6 +29,11 @@ export async function deleteAd(id) {
   return DELETE_AD(url);
 }
 
+export async function isGoogle(id) {
+  const url = `/users/${id}/isRegisteredByGoogle`;
+  return GET(url);
+}
+
 export async function receiveAdScore(id) {
   const url = `/rates/${id}/average`;
   return GET(url);
