@@ -36,8 +36,13 @@ export async function POST(url, payload) {
 export function PATCH(url, payload) {
   return axios.patch(`${BASE_URL}${url}`, {
     ...payload,
+  }).catch((err) => {
+    const { message } = err.response.data;
+    toast.error(prettyString(message));
+    throw err;
   });
 }
+
 
 export function DELETE(url, payload) {
   return axios.delete(`${BASE_URL}${url}`, {

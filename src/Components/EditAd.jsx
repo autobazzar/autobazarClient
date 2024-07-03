@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { submitAds, receiveAd } from "../api/api";
+import { submitAds, receiveAd, editAd } from "../api/api";
 import { dataToTransfer } from "../utils/initialSubmitData";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -9,7 +9,7 @@ import FileInput from "./Common/FileInput";
 import { toBase64 } from "../utils/fileConvert";
 import PureDropDown from "./PureDropDown";
 
-export default function SubmitAds() {
+export default function EditAd() {
   const { user_id } = useSelector((state) => state.profile);
   const { id } = useParams();
   const [adDetails, setAdDetails] = useState(null);
@@ -42,7 +42,7 @@ export default function SubmitAds() {
     event.preventDefault();
     const data = properData(formData.current, user_id);
     try {
-      await submitAds(data);
+      await editAd(data, id);
       navigate("/show-ads");
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -54,7 +54,8 @@ export default function SubmitAds() {
       ...formData.current,
       [key]: value,
     };
-  }, []);
+    setAdDetails({ ...adDetails, [key]: value }); // Update the state to re-render the component
+  }, [adDetails]);
 
   async function handlePictureChange(Data) {
     const base64 = await toBase64(Data);
@@ -124,6 +125,7 @@ export default function SubmitAds() {
           handleChange={handlePictureChange}
           title={"افزودن تصویر"}
           accept={"image/*"}
+          initialSrc={formData.current.picsUrl} // Pass initial image source
         />
         <div className="text-lg font-semibold text-white">آپلود ویدیو</div>
         <FileInput
@@ -131,6 +133,7 @@ export default function SubmitAds() {
           handleChange={handleVideoChange}
           title={"افزودن ویدیو"}
           accept={"video/*"}
+          initialSrc={formData.current.videoUrl} // Pass initial video source
         />
 
         <button
