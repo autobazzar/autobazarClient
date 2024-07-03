@@ -12,7 +12,7 @@ export default function DashboardCard({subtitle,Icon,url}) {
    fetcher();
   },[]);
   return (
-    <div className="flex flex-col w-fit p-10 bg-white rounded-xl font-dast pointer-events-none">
+    <div className="flex flex-col w-fit p-7 bg-white rounded-xl font-dast pointer-events-none">
       <div className="flex flex-row justify-between items-center">
         <h1 className="text-[2rem] font-bold pr-6">{data}</h1>
         <Icon className="text-[2rem] text-[#ccc]" />
