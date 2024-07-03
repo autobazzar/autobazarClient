@@ -51,7 +51,7 @@ export default function Profile() {
 
   return (
     <div dir="rtl" className='flex flex-row h-screen'>
-      <div className='bg-[#2b4e47] med:rounded-bl-[4rem] med:basis-[28%] w-full flex flex-col gap-y-12 h-[92%]'>
+      <div className='bg-[#2b4e47] med:rounded-bl-[4rem] med:basis-[28%] w-full flex flex-col gap-y-12 h-[92.5%]'>
         <button onClick={() => handleItemClick(0)} onKeyDown={() => handleItemClick(0)} className={`cursor-pointer flex flex-row justify-start med:justify-between items-center hover:bg-[#465956] ${state.state_count === 0 && "bg-[#4C857A]" }`}>
           <MdOutlineEdit color='white' className="med:hidden h-12 w-12 pr-4" />
           <div>
