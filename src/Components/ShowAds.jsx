@@ -199,7 +199,7 @@ export default function ShowAds() {
   return (
     <>
       <div dir="rtl" className='h-screen flex flex-col h-full'>
-        <div className='flex flex-col lg:flex-row bg-white justify-center gap-2 lg:justify-between items-center mt-4 lg:fixed lg:top-16 lg:pt-0 lg:mt-0 lg:mb-0 px-16 w-full lg:h-[7%]'>
+        <div className='z-10 flex flex-col lg:flex-row bg-white justify-center gap-2 lg:justify-between items-center mt-4 lg:fixed lg:top-16 lg:pt-0 lg:mt-0 lg:mb-0 px-16 w-full lg:h-[7%]'>
           <p className='hidden lg:flex text-lg font-semibold pr-2'>فیلترها</p>
           <Button onClick={()=> handleClick()} text="آگهی بده!" className="h-[60px] lg:h-[50px] min-h-0 w-full" />
           <p className='lg:hidden text-lg font-semibold'>فیلترها</p>
