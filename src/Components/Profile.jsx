@@ -50,8 +50,8 @@ export default function Profile() {
   };
 
   return (
-    <div dir="rtl" className='flex flex-row h-screen'>
-      <div className='bg-[#2b4e47] med:rounded-bl-[4rem] med:basis-[28%] w-full flex flex-col gap-y-12 h-[92.5%]'>
+    <div dir="rtl" className='flex  flex-col med:flex-row h-screen'>
+      <div className='bg-[#2b4e47] med:rounded-bl-[4rem] med:basis-[28%] w-full flex flex-col gap-y-2 med:gap-y-12 med:h-[92.5%]'>
         <button onClick={() => handleItemClick(0)} onKeyDown={() => handleItemClick(0)} className={`cursor-pointer flex flex-row justify-start med:justify-between items-center hover:bg-[#465956] ${state.state_count === 0 && "bg-[#4C857A]" }`}>
           <MdOutlineEdit color='white' className="med:hidden h-12 w-12 pr-4" />
           <div>
@@ -82,19 +82,18 @@ export default function Profile() {
           <IoSearchOutline color='white' className="hidden med:block h-12 w-12 ml-5" />
         </button>
         <button onClick={() => handleItemClick(4)} onKeyDown={() => handleItemClick(4)} className={`cursor-pointer flex flex-row justify-start med:justify-between items-center hover:bg-[#465956] ${state.state_count === 4 && "bg-[#4C857A]" }`}>
-          <RxExit color='white' className="med:hidden h-12 w-12 ml-5 pr-4" />
           <div>
-            <p className='text-xl font-semibold text-white m-5'>خروج</p>
+            <p className='hidden med:block text-xl font-semibold text-white m-5'>خروج</p>
           </div>
           <RxExit color='white' className="hidden med:block h-12 w-12 ml-5" />
         </button>
       </div>
 
-      <div className='hidden med:block med:basis-[72%] mt-5 pr-16'>
+      <div className=' med:block med:basis-[72%] mt-5 med:pr-16 px-8'>
         {state.state_count === 0 && <EditProfile />}
         {state.state_count === 1 && (
           <>
-            <form className="w-[37%] mb-8" onSubmit={handleSearch}>
+            <form className=" w-full med:w-[37%] mb-8" onSubmit={handleSearch}>
               <div className="relative min-h-0 h-full">
                 <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                   <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -114,7 +113,7 @@ export default function Profile() {
                 />
               </div>
             ) : (
-              <div dir='rtl' className='overflow-y-auto flex flex-row flex-wrap gap-y-6 gap-x-4 content-start p-0'>
+              <div dir='rtl' className='overflow-y-auto flex flex-col med:flex-row flex-wrap gap-y-6 med:gap-x-4 med:content-start p-0'>
                 {ads.map((ad) => (
                   <Item
                     key={ad.adId}
