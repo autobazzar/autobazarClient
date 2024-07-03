@@ -40,7 +40,6 @@ export async function receiveNumberOfScores(id) {
 }
 export async function submitAds(payload) {
   //const url = "localhost:3000/ads";
-  console.error(payload);
   const url = "/ads";
   return POST(url, payload);
 }
@@ -49,8 +48,15 @@ export async function getByUrl(url) {
   return GET(url);
 }
 
-
 export async function receiveAdsById(id) {
   const url = `/ads/user/${id}`;
   return GET(url);
+}
+
+export async function getAllUsers(){
+  return GET('/admin/all-users');
+}
+
+export async function getAds(){
+  return GET('/admin/ads-with-average-rate');
 }
