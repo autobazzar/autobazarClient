@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { editUser, isGoogle } from '../api/api';
+import { useNavigate, Navigate } from 'react-router-dom';
 
 function EditProfile() {
   const profile = useSelector((state) => state.profile);
@@ -16,7 +17,8 @@ function EditProfile() {
   });
 
   const [isGoogleUser, setIsGoogleUser] = useState(false);
-
+ 
+  
   useEffect(() => {
     const checkIfGoogleUser = async () => {
       try {
@@ -137,7 +139,8 @@ function EditProfile() {
         </div>
 
         <div className="flex justify-end mt-6">
-          <button type="submit" className="px-8 py-2.5 leading-5 text-white transition-colors duration-300 bg-[#2b4e47] rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">اعمال تغییرات</button>
+          <button  type="submit" className="px-8 py-2.5 leading-5 text-white transition-colors duration-300 bg-[#2b4e47] rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">اعمال تغییرات</button>
+           
         </div>
       </form>
     </section>
