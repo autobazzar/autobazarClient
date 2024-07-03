@@ -4,7 +4,9 @@ const langs={
     code:'کد کاربری',
     email:'ایمیل',
     'least-review':'کمترین امتیاز',
-    creator:'شماره سازنده'
+    creator:'شماره سازنده',
+    'ad-id':'شماره آگهی',
+    status:'وضعیت'
 }
 
 export function translateTitle(title) {
