@@ -201,8 +201,8 @@ export default function ShowAds() {
       <div dir="rtl" className='h-screen flex flex-col h-full min-h-0'>
         <div className='z-10 flex flex-col lg:flex-row bg-white justify-center gap-2 lg:justify-between items-center lg:fixed lg:top-12 pt-80 mb-64 lg:pt-0 lg:mt-0 lg:mb-0 px-16 w-full min-h-0 h-[50%] lg:h-[7%]'>
           <p className='hidden lg:flex text-lg font-semibold pr-2'>فیلترها</p>
-          <Button onClick={()=> handleClick()} text="آگهی بده!" className="!h-[50px] w-full" />
-          <p className='lg:hidden text-lg font-semibold pr-2'>فیلترها</p>
+          <Button onClick={()=> handleClick()} text="آگهی بده!" className="h-full min-h-0 w-full" />
+          <p className='lg:hidden text-lg font-semibold'>فیلترها</p>
           <div className='w-full lg:hidden'>
             <DropDownMenu 
               title="برند و تیپ" 
