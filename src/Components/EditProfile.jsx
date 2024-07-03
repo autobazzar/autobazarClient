@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { editUser, isGoogle } from '../api/api';
+import { useNavigate, Navigate } from 'react-router-dom';
 
 function EditProfile() {
   const profile = useSelector((state) => state.profile);
@@ -16,7 +17,8 @@ function EditProfile() {
   });
 
   const [isGoogleUser, setIsGoogleUser] = useState(false);
-
+ 
+  
   useEffect(() => {
     const checkIfGoogleUser = async () => {
       try {
@@ -57,8 +59,8 @@ function EditProfile() {
   };
 
   return (
-    <section className="max-w-4xl w-2/3 p-6 mx-auto bg-white text-black rounded-md shadow-md">
-      <h2 className="text-lg font-semibold text-gray-700 capitalize">ویرایش پروفایل</h2>
+    <section className="max-w-4xl med:w-2/3 w-full p-6 mx-auto bg-white text-black rounded-md shadow-md">
+      <h2 className="text-xl font-bold text-gray-700 capitalize mb-10">ویرایش پروفایل</h2>
 
       <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
@@ -137,7 +139,8 @@ function EditProfile() {
         </div>
 
         <div className="flex justify-end mt-6">
-          <button type="submit" className="px-8 py-2.5 leading-5 text-white transition-colors duration-300 bg-[#2b4e47] rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">اعمال تغییرات</button>
+          <button  type="submit" className="px-8 py-2.5 leading-5 text-white transition-colors duration-300 bg-[#2b4e47] rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">اعمال تغییرات</button>
+           
         </div>
       </form>
     </section>
