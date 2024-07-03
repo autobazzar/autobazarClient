@@ -10,7 +10,7 @@ export default {
       'lg': '1130px',
       // => @media (min-width: 640px) { ... }
 
-      'med': '950px',
+      'med': '1129px',
       // => @media (min-width: 1024px) { ... }
 
       'desktop': '1280px',

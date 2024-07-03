@@ -4,7 +4,7 @@ import { GrPowerForceShutdown } from "react-icons/gr";
 import { AiOutlineAppstoreAdd } from "react-icons/ai";
 export default function SubmitMenu() {
   return (
-    <div className="bg-[#F1F5F6] h-fit w-fit p-10 rounded-xl">
+    <div className="hidden med:flex bg-[#F1F5F6] h-fit w-fit p-10 rounded-xl">
       <h3 className="text-2xl font-bold text-nowrap font-dast mb-6">
         مراحل ثبت آگهی
       </h3>
