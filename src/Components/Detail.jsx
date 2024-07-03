@@ -113,6 +113,8 @@ export default function Detail({ id, isOpen, handleClose, detail, img, isMine, m
             <CgClose />
           </button>
           <div className="border-b-2 mb-2"></div>
+          <InfinitySlider className="lg:hidden" images={[img]} />
+
           {isMine && (
             <div className="flex flex-row gap-x-2 min-h-0 h-full ">
               <Button
@@ -128,7 +130,7 @@ export default function Detail({ id, isOpen, handleClose, detail, img, isMine, m
             </div>
           )}
         </div>
-        <div dir="rtl" className="flex flex-row gap-5">
+        <div dir="rtl" className="flex flex-col lg:flex-row gap-5">
           <div className="detail">
             <div className="flex flex-col items-end">
               <h1 className="w-full text-start text-3xl font-bold detail-border pb-5 mb-5">
@@ -167,7 +169,7 @@ export default function Detail({ id, isOpen, handleClose, detail, img, isMine, m
           </div>
 
           <div className="flex flex-col gap-1">
-            <InfinitySlider images={[img]} />
+            <InfinitySlider className="hidden lg:block" images={[img]} />
             <div className="flex flex-col">
               <h3 className="flex flex-row font-bold border-b-[1px] border-gray-300 pb-3 justify-between">
                 امتیاز و دیدگاه کاربران
