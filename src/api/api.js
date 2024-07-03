@@ -88,3 +88,11 @@ export async function getAllUsers(){
 export async function getAds(){
   return GET('/admin/ads-with-average-rate');
 }
+
+export async function getAllComments(){
+  return GET('/comments');
+}
+
+export async function bannedUser(id){
+  return PATCH(`/admin/user/${id}/banned-status`, { isBanned: true });
+}
